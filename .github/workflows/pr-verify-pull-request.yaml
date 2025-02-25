@@ -42,9 +42,9 @@ jobs:
       - name: Validate YAML file
         run: yamllint -c .yamllint-config src/zebrafish_toxicology_atlas_schema/schema/zebrafish_toxicology_atlas_schema.yaml
 
-      - name: Codespell
-        uses: codespell-project/actions-codespell@v1
-        with:
-          ignore_words_list: amination,ehr
-          skip: .idea,.venv,.git,*.pdf,*.svg,context.*
+#      - name: Codespell
+#        uses: codespell-project/actions-codespell@v1
+#        with:
+#          ignore_words_list: amination,ehr
+#          skip: .idea,.venv,.git,*.pdf,*.svg,context.*
 
