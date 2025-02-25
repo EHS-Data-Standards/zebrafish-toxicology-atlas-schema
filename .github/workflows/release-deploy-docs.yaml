@@ -1,5 +1,5 @@
 ---
-name: Auto-deployment of Information Resource Registry Documentation
+name: Auto-deployment of zebrafish_toxicology_atlas_schema Documentation
 
 on:
   release:

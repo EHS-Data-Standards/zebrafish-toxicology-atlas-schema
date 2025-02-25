@@ -40,7 +40,7 @@ jobs:
           make test_pr
 
       - name: Validate YAML file
-        run: yamllint -c .yamllint-config src/information_resource_registry/schema/information_resource_registry.yaml
+        run: yamllint -c .yamllint-config src/zebrafish_toxicology_atlas_schema/schema/zebrafish_toxicology_atlas_schema.yaml
 
       - name: Codespell
         uses: codespell-project/actions-codespell@v1
