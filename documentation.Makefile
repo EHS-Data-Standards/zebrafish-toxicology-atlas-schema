@@ -15,7 +15,7 @@ gendoc: $(DOCDIR)
 	cp $(DEST)/graphql/zebrafish_toxicology_atlas_schema.graphql $(DOCDIR)/zebrafish_toxicology_atlas_schema.graphql ; \
 	cp $(DEST)/shex/zebrafish_toxicology_atlas_schema.shex $(DOCDIR)/zebrafish_toxicology_atlas_scheman.shex ; \
 	cp $(DEST)/shacl/zebrafish_toxicology_atlas_schema.shacl.ttl $(DOCDIR)/zebrafish_toxicology_atlas_schema.shacl.ttl ; \
-	cp $(SRC)/schema/zebrafish_toxicology_atlas_schema.yaml $(DOCDIR) ; \
+	cp $(SRC)/zebrafish_toxicology_atlas_schema/schema/zebrafish_toxicology_atlas_schema.yaml $(DOCDIR) ; \
 	cp $(SRC)/zebrafish_toxicology_atlas_schema/schema/zebrafish_toxicology_atlas_schema.yaml $(DOCDIR) ; \
 	cp -r $(SRC)/docs/* $(DOCDIR) ; \
 	cp -r $(SRC)/docs/images $(DOCDIR)/images ; \
