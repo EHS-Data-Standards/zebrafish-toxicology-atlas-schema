@@ -1,0 +1,50 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Verify Pull Request
+
+# Controls when the action will run.
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
+    types: trigger-verify-pull-request
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: [ "3.10", "3.11", "3.12" ]
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-python@v2
+        name: setup python environment
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install poetry
+          poetry install 
+
+      - name: Run tests, codespell, and yamllint
+        run: |
+          make test_pr
+
+      - name: Validate YAML file
+        run: yamllint -c .yamllint-config src/information_resource_registry/schema/information_resource_registry.yaml
+
+      - name: Codespell
+        uses: codespell-project/actions-codespell@v1
+        with:
+          ignore_words_list: amination,ehr
+          skip: .idea,.venv,.git,*.pdf,*.svg,context.*
+
