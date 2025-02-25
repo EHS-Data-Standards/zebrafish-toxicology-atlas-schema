@@ -65,28 +65,32 @@ classes:
       name:
         description: Name of the allele.
 
-  Exposure:
+  ExposureEvent:
     is_a: NamedThing
-    description: An instance of a toxicological exposure event in the study.
+    description: >- 
+      An instance of a toxicological exposure event in the study.  According to ECTO, 
+      an exposure
     slots:
-      - toxicant
+      - exposure_substance
+      - exposure_type
       - concentration
-      - exposure_regime
       - start_stage
       - end_stage
       - duration
+      - frequency
     exact_mappings:
       - biolink:ExposureEvent
     slot_usage:
-      toxicant:
+      exposure_substance:
         description: The chemical substance used in the exposure.
+        comments: >-
+          # TODO: as Sabrina these questions:
+          Will all exposures be chemicals represented by ChEBI (e.g., what about complex mixtures/drugs)?
+          Will all exposures be toxic?
         range: Chemical
       concentration:
         description: The concentration of the toxicant used.
         range: Concentration
-      exposure_regime:
-        description: The exposure regime type.
-        range: ExposureRegime
       start_stage:
         description: The stage at which exposure starts.
         range: DevelopmentalStage
@@ -111,8 +115,6 @@ classes:
   Phenotype:
     is_a: NamedThing
     description: A phenotype observed in the fish as a result of exposure.
-    slots:
-      - name
     slot_usage:
       id:
         description: ZP identifier for the phenotype.
@@ -134,18 +136,6 @@ classes:
       - has_unit
       - has_numeric_value
 
-  ExposureRegime:
-    is_a: NamedThing
-    description: The type of exposure regime used in the study.
-    slots:
-      - name
-    slot_usage:
-      id:
-        description: ECTO identifier for the exposure regime.
-        pattern: "^ECTO:\\d+$"
-      name:
-        description: Description of the exposure regime.
-
   DevelopmentalStage:
     is_a: NamedThing
     description: A zebrafish developmental stage.
@@ -158,23 +148,16 @@ classes:
       name:
         description: Name of the developmental stage.
 
-  FishExposurePhenotype:
-    is_a: NamedThing
+  FishExposureOutcome:
+    # TODO: determine if we want the Biolink Association model here, or
+    # if we want to use a simpler model, that is less generic (e.g. instead of 'subject' and 'object',
+    # we could use 'fish' and 'outcome' because we know that we won't have lots of types of associations
+    # that generically represent an edge between two nodes)
     description: A representation of the phenotype observed in the fish as a result of exposure.
     slots:
       - fish
-      - exposure
-      - phenotype
-    slot_usage:
-      fish:
-        description: The fish exposed to the toxicant.
-        range: Fish
-      exposure:
-        description: The exposure event.
-        range: Exposure
-      phenotype:
-        description: The phenotype observed in the fish.
-        range: Phenotype
+      - exposure_event
+      - outcome
 
 slots:
   id:
@@ -185,9 +168,9 @@ slots:
   background:
     description: The genetic background of the fish.
     range: uriorcurie
-  exposure_regime:
-    description: The exposure regime type.
-    range: uriorcurie
+  exposure_type:
+    description: The exposure type.
+    range: ExposureTypeEnum
   start_stage:
     description: The stage at which exposure starts.
     range: uriorcurie
@@ -201,11 +184,8 @@ slots:
   treated_with:
     description: The chemical used in the exposure.
     range: uriorcurie
-  has_phenotype:
-    description: The phenotype observed in the fish.
-    range: uriorcurie
-  toxicant:
-    description: The chemical used in the exposure.
+  exposure_substance:
+    description: The substance used in the exposure.
     range: uriorcurie
   concentration:
     description: The concentration of the toxicant.
@@ -215,18 +195,28 @@ slots:
   duration:
     description: The duration of the exposure.
     range: QuantityValue
-  exposure:
+  exposure_event:
     description: The exposure event.
-    range: Exposure
+    range: ExposureEvent
   fish:
     description: The fish exposed to the toxicant.
     range: Fish
-  phenotype:
-    description: The phenotype observed in the fish.
+  outcome:
+    description: >- 
+      An outcome is a list of the observed phenotypes in the fish exposed to the toxicant.
     range: Phenotype
+    multivalued: true
+  frequency:
+    description: The frequency of the exposure.
+    range: QuantityValue
 
 enums:
-  ExposureRegimeTypeEnum:
-    permissible_values:
-      reachable_from: ECTO:0000001
+  ExposureTypeEnum:
+    description: An enumeration of exposure types derived from the ECTO ontology.
+    reachable_from:
+      source_ontology: "ECTO"
+      relationship_types:
+        - "rdfs:subClassOf"
+      include_self: true
+
 
