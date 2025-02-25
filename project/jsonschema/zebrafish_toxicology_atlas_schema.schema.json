@@ -1,159 +1,292 @@
 {
     "$defs": {
-        "Genotype": {
+        "Allele": {
             "additionalProperties": false,
-            "description": "Represents a Genotype",
+            "description": "A representation of the genetic background of the fish.",
             "properties": {
-                "age_in_years": {
-                    "description": "Number of years since birth",
-                    "type": [
-                        "integer",
-                        "null"
-                    ]
-                },
-                "birth_date": {
-                    "description": "Date on which a person is born",
-                    "format": "date",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "description": {
-                    "description": "A human-readable description for a thing",
+                "gene": {
+                    "description": "The gene associated with the allele.",
                     "type": [
                         "string",
                         "null"
                     ]
                 },
                 "id": {
-                    "description": "A unique identifier for a thing",
+                    "description": "ZFIN identifier for the allele.",
+                    "pattern": "^ZFIN:ZDB-GENO-\\d{6}-\\d$",
                     "type": "string"
                 },
                 "name": {
-                    "description": "A human-readable name for a thing",
+                    "description": "Name of the allele.",
                     "type": [
                         "string",
                         "null"
                     ]
                 },
-                "primary_email": {
-                    "description": "The main email address of a person",
-                    "pattern": "^\\S+@[\\S+\\.]+\\S+",
+                "variation_type": {
+                    "description": "The variation_type of the allele.",
                     "type": [
                         "string",
                         "null"
                     ]
-                },
-                "vital_status": {
-                    "$ref": "#/$defs/PersonStatus",
-                    "description": "living or dead status"
                 }
             },
             "required": [
                 "id"
             ],
-            "title": "Genotype",
+            "title": "Allele",
             "type": "object"
         },
-        "GenotypeCollection": {
+        "ChemicalEntity": {
             "additionalProperties": false,
-            "description": "A holder for Genotype objects",
+            "description": "A chemical compound used as a toxicant in the study.",
             "properties": {
-                "entries": {
-                    "additionalProperties": {
-                        "anyOf": [
-                            {
-                                "$ref": "#/$defs/Genotype__identifier_optional"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ]
+                "id": {
+                    "description": "CHEBI identifier for the chemical.",
+                    "pattern": "^CHEBI:\\d+$",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Name of the chemical.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "ChemicalEntity",
+            "type": "object"
+        },
+        "Concentration": {
+            "additionalProperties": false,
+            "description": "The concentration of a chemical.",
+            "properties": {
+                "has_numeric_value": {
+                    "description": "The numeric value of the concentration.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "has_unit": {
+                    "description": "The unit of the concentration value.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "title": "Concentration",
+            "type": "object"
+        },
+        "DevelopmentalStage": {
+            "additionalProperties": false,
+            "description": "A zebrafish developmental stage.",
+            "properties": {
+                "id": {
+                    "description": "ZFS identifier for the developmental stage.",
+                    "pattern": "^ZFS:\\d+$",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Name of the developmental stage.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "DevelopmentalStage",
+            "type": "object"
+        },
+        "ExposureEvent": {
+            "additionalProperties": false,
+            "description": "An instance of a toxicological exposure event in the study.  According to ECTO,  an exposure",
+            "properties": {
+                "concentration": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Concentration"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "The concentration of the chemical used."
+                },
+                "duration": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/QuantityValue"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "The duration of the exposure."
+                },
+                "end_stage": {
+                    "description": "The stage at which exposure ends.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "exposure_substance": {
+                    "description": "The chemical substance used in the exposure.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "exposure_type": {
+                    "$ref": "#/$defs/ExposureTypeEnum",
+                    "description": "The exposure type."
+                },
+                "frequency": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/QuantityValue"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "The frequency of the exposure."
+                },
+                "id": {
+                    "description": "Unique identifier for the entity.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Name or label of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "start_stage": {
+                    "description": "The stage at which exposure starts.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "ExposureEvent",
+            "type": "object"
+        },
+        "ExposureTypeEnum": {
+            "description": "An enumeration of exposure types derived from the ECTO ontology.",
+            "title": "ExposureTypeEnum",
+            "type": "string"
+        },
+        "Fish": {
+            "additionalProperties": false,
+            "description": "A representation of the zebrafish used in the toxicology study.",
+            "properties": {
+                "allele": {
+                    "description": "The allele present in a fish.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "background": {
+                    "description": "The genetic background of the fish.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique identifier for the zebrafish.",
+                    "pattern": "^ZDB:FISH:\\d{6}-\\d$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Name or label of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "zygosity": {
+                    "description": "The zygosity of the fish.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "Fish",
+            "type": "object"
+        },
+        "FishExposureOutcome": {
+            "additionalProperties": false,
+            "description": "A representation of the phenotype observed in the fish as a result of exposure.",
+            "properties": {
+                "exposure_event": {
+                    "description": "The exposure event.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "fish": {
+                    "description": "The fish exposed to the toxicant.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "outcome": {
+                    "description": "An outcome is a list of the observed phenotypes in the fish exposed to the toxicant.",
+                    "items": {
+                        "type": "string"
                     },
                     "type": [
-                        "object",
+                        "array",
                         "null"
                     ]
                 }
             },
-            "title": "GenotypeCollection",
+            "title": "FishExposureOutcome",
             "type": "object"
         },
-        "Genotype__identifier_optional": {
+        "Gene": {
             "additionalProperties": false,
-            "description": "Represents a Genotype",
+            "description": "A representation of a gene.",
             "properties": {
-                "age_in_years": {
-                    "description": "Number of years since birth",
-                    "type": [
-                        "integer",
-                        "null"
-                    ]
-                },
-                "birth_date": {
-                    "description": "Date on which a person is born",
-                    "format": "date",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "description": {
-                    "description": "A human-readable description for a thing",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
                 "id": {
-                    "description": "A unique identifier for a thing",
+                    "description": "ZFIN identifier for the gene.",
+                    "pattern": "^ZFIN:ZDB-GENE-\\d{6}-\\d$",
                     "type": "string"
                 },
                 "name": {
-                    "description": "A human-readable name for a thing",
+                    "description": "Name of the gene.",
                     "type": [
                         "string",
                         "null"
                     ]
                 },
-                "primary_email": {
-                    "description": "The main email address of a person",
-                    "pattern": "^\\S+@[\\S+\\.]+\\S+",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "vital_status": {
-                    "$ref": "#/$defs/PersonStatus",
-                    "description": "living or dead status"
-                }
-            },
-            "required": [],
-            "title": "Genotype",
-            "type": "object"
-        },
-        "NamedThing": {
-            "additionalProperties": false,
-            "description": "A generic grouping for any identifiable entity",
-            "properties": {
-                "description": {
-                    "description": "A human-readable description for a thing",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "id": {
-                    "description": "A unique identifier for a thing",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "name": {
-                    "description": "A human-readable name for a thing",
+                "symbol": {
+                    "description": "The symbol of the NamedThing.",
                     "type": [
                         "string",
                         "null"
@@ -163,43 +296,59 @@
             "required": [
                 "id"
             ],
-            "title": "NamedThing",
+            "title": "Gene",
             "type": "object"
         },
-        "PersonStatus": {
-            "description": "",
-            "enum": [
-                "ALIVE",
-                "DEAD",
-                "UNKNOWN"
+        "Phenotype": {
+            "additionalProperties": false,
+            "description": "A phenotype observed in the fish as a result of exposure.",
+            "properties": {
+                "id": {
+                    "description": "ZP identifier for the phenotype.",
+                    "pattern": "^ZP:\\d+$",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Name of the phenotype.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
             ],
-            "title": "PersonStatus",
-            "type": "string"
+            "title": "Phenotype",
+            "type": "object"
+        },
+        "QuantityValue": {
+            "additionalProperties": false,
+            "description": "A value of an attribute that is quantitative and measurable, expressed as a combination of a unit and a numeric value",
+            "properties": {
+                "has_numeric_value": {
+                    "description": "The numeric value of the quantity value.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "has_unit": {
+                    "description": "The unit of the quantity value.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "title": "QuantityValue",
+            "type": "object"
         }
     },
     "$id": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
     "$schema": "https://json-schema.org/draft/2019-09/schema",
     "additionalProperties": true,
-    "description": "A holder for Genotype objects",
     "metamodel_version": "1.7.0",
-    "properties": {
-        "entries": {
-            "additionalProperties": {
-                "anyOf": [
-                    {
-                        "$ref": "#/$defs/Genotype__identifier_optional"
-                    },
-                    {
-                        "type": "null"
-                    }
-                ]
-            },
-            "type": [
-                "object",
-                "null"
-            ]
-        }
-    },
     "title": "zebrafish-toxicology-atlas-schema",
     "type": "object",
     "version": null

@@ -350,40 +350,25 @@
   ],
   "enums": [
     {
-      "name": "PersonStatus",
-      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/PersonStatus",
+      "name": "ExposureTypeEnum",
+      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/ExposureTypeEnum",
+      "description": "An enumeration of exposure types derived from the ECTO ontology.",
       "from_schema": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
-      "permissible_values": [
-        {
-          "text": "ALIVE",
-          "description": "the person is living",
-          "meaning": "PATO:0001421"
-        },
-        {
-          "text": "DEAD",
-          "description": "the person is deceased",
-          "meaning": "PATO:0001422"
-        },
-        {
-          "text": "UNKNOWN",
-          "description": "the vital status is not known",
-          "todos": [
-            "map this to an ontology"
-          ]
-        }
-      ]
+      "reachable_from": {
+        "source_ontology": "ECTO",
+        "relationship_types": [
+          "rdfs:subClassOf"
+        ],
+        "include_self": true
+      }
     }
   ],
   "slots": [
     {
       "name": "id",
       "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/id",
-      "description": "A unique identifier for a thing",
       "from_schema": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
-      "mappings": [
-        "http://schema.org/identifier"
-      ],
-      "slot_uri": "http://schema.org/identifier",
+      "slot_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/id",
       "identifier": true,
       "owner": "NamedThing",
       "domain_of": [
@@ -396,127 +381,650 @@
     {
       "name": "name",
       "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/name",
-      "description": "A human-readable name for a thing",
+      "description": "Name or label of an entity.",
       "from_schema": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
-      "mappings": [
-        "http://schema.org/name"
-      ],
-      "slot_uri": "http://schema.org/name",
-      "owner": "NamedThing",
+      "slot_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/name",
+      "owner": "DevelopmentalStage",
       "domain_of": [
-        "NamedThing"
+        "NamedThing",
+        "Allele",
+        "Gene",
+        "ChemicalEntity",
+        "DevelopmentalStage"
       ],
       "range": "string",
       "@type": "SlotDefinition"
     },
     {
-      "name": "description",
-      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/description",
-      "description": "A human-readable description for a thing",
+      "name": "background",
+      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/background",
+      "description": "The genetic background of the fish.",
       "from_schema": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
-      "mappings": [
-        "http://schema.org/description"
-      ],
-      "slot_uri": "http://schema.org/description",
-      "owner": "NamedThing",
+      "slot_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/background",
+      "owner": "Fish",
       "domain_of": [
-        "NamedThing"
+        "Fish"
+      ],
+      "range": "uriorcurie",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "exposure_type",
+      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/exposure_type",
+      "description": "The exposure type.",
+      "from_schema": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
+      "slot_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/exposure_type",
+      "owner": "ExposureEvent",
+      "domain_of": [
+        "ExposureEvent"
+      ],
+      "range": "ExposureTypeEnum",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "start_stage",
+      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/start_stage",
+      "description": "The stage at which exposure starts.",
+      "from_schema": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
+      "slot_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/start_stage",
+      "owner": "ExposureEvent",
+      "domain_of": [
+        "ExposureEvent"
+      ],
+      "range": "uriorcurie",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "end_stage",
+      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/end_stage",
+      "description": "The stage at which exposure ends.",
+      "from_schema": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
+      "slot_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/end_stage",
+      "owner": "ExposureEvent",
+      "domain_of": [
+        "ExposureEvent"
+      ],
+      "range": "uriorcurie",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "has_unit",
+      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/has_unit",
+      "description": "The unit of the quantity value.",
+      "from_schema": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
+      "slot_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/has_unit",
+      "owner": "Concentration",
+      "domain_of": [
+        "QuantityValue",
+        "Concentration"
       ],
       "range": "string",
       "@type": "SlotDefinition"
     },
     {
-      "name": "primary_email",
-      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/primary_email",
-      "description": "The main email address of a person",
+      "name": "has_numeric_value",
+      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/has_numeric_value",
+      "description": "The numeric value of the quantity value.",
       "from_schema": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
-      "mappings": [
-        "http://schema.org/email"
-      ],
-      "slot_uri": "http://schema.org/email",
-      "owner": "Genotype",
+      "slot_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/has_numeric_value",
+      "owner": "Concentration",
       "domain_of": [
-        "Genotype"
+        "QuantityValue",
+        "Concentration"
       ],
       "range": "string",
       "@type": "SlotDefinition"
     },
     {
-      "name": "birth_date",
-      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/birth_date",
-      "description": "Date on which a person is born",
+      "name": "treated_with",
+      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/treated_with",
+      "description": "The chemical used in the exposure.",
       "from_schema": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
-      "mappings": [
-        "http://schema.org/birthDate"
-      ],
-      "slot_uri": "http://schema.org/birthDate",
-      "owner": "Genotype",
-      "domain_of": [
-        "Genotype"
-      ],
-      "range": "date",
+      "slot_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/treated_with",
+      "range": "uriorcurie",
       "@type": "SlotDefinition"
     },
     {
-      "name": "age_in_years",
-      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/age_in_years",
-      "description": "Number of years since birth",
+      "name": "exposure_substance",
+      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/exposure_substance",
+      "description": "The substance used in the exposure.",
       "from_schema": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
-      "slot_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/age_in_years",
-      "owner": "Genotype",
+      "slot_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/exposure_substance",
+      "owner": "ExposureEvent",
       "domain_of": [
-        "Genotype"
+        "ExposureEvent"
       ],
-      "range": "integer",
+      "range": "uriorcurie",
       "@type": "SlotDefinition"
     },
     {
-      "name": "vital_status",
-      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/vital_status",
-      "description": "living or dead status",
+      "name": "concentration",
+      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/concentration",
+      "description": "The concentration of the toxicant.",
       "from_schema": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
-      "slot_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/vital_status",
-      "owner": "Genotype",
+      "slot_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/concentration",
+      "owner": "ExposureEvent",
       "domain_of": [
-        "Genotype"
+        "ExposureEvent"
       ],
-      "range": "PersonStatus",
+      "range": "string",
       "@type": "SlotDefinition"
     },
     {
-      "name": "genotypeCollection__entries",
+      "name": "zygosity",
+      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/zygosity",
+      "description": "The zygosity of the fish.",
       "from_schema": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
-      "slot_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/entries",
-      "alias": "entries",
-      "owner": "GenotypeCollection",
+      "slot_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/zygosity",
+      "owner": "Fish",
       "domain_of": [
-        "GenotypeCollection"
+        "Fish"
       ],
-      "range": "Genotype",
-      "multivalued": true,
+      "range": "uriorcurie",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "duration",
+      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/duration",
+      "description": "The duration of the exposure.",
+      "from_schema": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
+      "slot_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/duration",
+      "owner": "ExposureEvent",
+      "domain_of": [
+        "ExposureEvent"
+      ],
+      "range": "QuantityValue",
       "inlined": true,
       "@type": "SlotDefinition"
     },
     {
-      "name": "Genotype_primary_email",
-      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/primary_email",
-      "description": "The main email address of a person",
+      "name": "exposure_event",
+      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/exposure_event",
+      "description": "The exposure event.",
       "from_schema": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
-      "mappings": [
-        "http://schema.org/email"
-      ],
-      "is_a": "primary_email",
-      "domain": "Genotype",
-      "slot_uri": "http://schema.org/email",
-      "alias": "primary_email",
-      "owner": "Genotype",
+      "slot_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/exposure_event",
+      "owner": "FishExposureOutcome",
       "domain_of": [
-        "Genotype"
+        "FishExposureOutcome"
+      ],
+      "range": "ExposureEvent",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "fish",
+      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/fish",
+      "description": "The fish exposed to the toxicant.",
+      "from_schema": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
+      "slot_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/fish",
+      "owner": "FishExposureOutcome",
+      "domain_of": [
+        "FishExposureOutcome"
+      ],
+      "range": "Fish",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "outcome",
+      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/outcome",
+      "description": "An outcome is a list of the observed phenotypes in the fish exposed to the toxicant.",
+      "from_schema": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
+      "slot_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/outcome",
+      "owner": "FishExposureOutcome",
+      "domain_of": [
+        "FishExposureOutcome"
+      ],
+      "range": "Phenotype",
+      "multivalued": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "frequency",
+      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/frequency",
+      "description": "The frequency of the exposure.",
+      "from_schema": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
+      "slot_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/frequency",
+      "owner": "ExposureEvent",
+      "domain_of": [
+        "ExposureEvent"
+      ],
+      "range": "QuantityValue",
+      "inlined": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "allele",
+      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/allele",
+      "description": "The allele present in a fish.",
+      "from_schema": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
+      "slot_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/allele",
+      "owner": "Fish",
+      "domain_of": [
+        "Fish"
+      ],
+      "range": "Allele",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "gene",
+      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/gene",
+      "description": "The gene associated with the allele.",
+      "from_schema": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
+      "slot_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/gene",
+      "owner": "Allele",
+      "domain_of": [
+        "Allele"
+      ],
+      "range": "Gene",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "symbol",
+      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/symbol",
+      "description": "The symbol of the NamedThing.",
+      "from_schema": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
+      "slot_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/symbol",
+      "owner": "Gene",
+      "domain_of": [
+        "Gene"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "variation_type",
+      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/variation_type",
+      "description": "The variation_type of the allele.",
+      "from_schema": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
+      "slot_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/variation_type",
+      "owner": "Allele",
+      "domain_of": [
+        "Allele"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "NamedThing_id",
+      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/id",
+      "description": "Unique identifier for the entity.",
+      "from_schema": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
+      "is_a": "id",
+      "domain": "NamedThing",
+      "slot_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/id",
+      "identifier": true,
+      "alias": "id",
+      "owner": "NamedThing",
+      "domain_of": [
+        "NamedThing"
       ],
       "is_usage_slot": true,
-      "usage_slot_name": "primary_email",
+      "usage_slot_name": "id",
       "range": "string",
-      "pattern": "^\\S+@[\\S+\\.]+\\S+",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "NamedThing_name",
+      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/name",
+      "description": "Name or label of the entity.",
+      "from_schema": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
+      "is_a": "name",
+      "domain": "NamedThing",
+      "slot_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/name",
+      "alias": "name",
+      "owner": "NamedThing",
+      "domain_of": [
+        "NamedThing"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "name",
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "Fish_id",
+      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/id",
+      "description": "Unique identifier for the zebrafish.",
+      "from_schema": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
+      "is_a": "NamedThing_id",
+      "domain": "Fish",
+      "slot_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/id",
+      "identifier": true,
+      "alias": "id",
+      "owner": "Fish",
+      "domain_of": [
+        "Fish"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "id",
+      "range": "string",
+      "required": true,
+      "pattern": "^ZDB:FISH:\\d{6}-\\d$",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "Fish_background",
+      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/background",
+      "description": "The genetic background of the fish.",
+      "from_schema": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
+      "is_a": "background",
+      "domain": "Fish",
+      "slot_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/background",
+      "alias": "background",
+      "owner": "Fish",
+      "domain_of": [
+        "Fish"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "background",
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "Allele_id",
+      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/id",
+      "description": "ZFIN identifier for the allele.",
+      "from_schema": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
+      "is_a": "NamedThing_id",
+      "domain": "Allele",
+      "slot_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/id",
+      "identifier": true,
+      "alias": "id",
+      "owner": "Allele",
+      "domain_of": [
+        "Allele"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "id",
+      "range": "string",
+      "required": true,
+      "pattern": "^ZFIN:ZDB-GENO-\\d{6}-\\d$",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "Allele_name",
+      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/name",
+      "description": "Name of the allele.",
+      "from_schema": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
+      "is_a": "NamedThing_name",
+      "domain": "Allele",
+      "slot_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/name",
+      "alias": "name",
+      "owner": "Allele",
+      "domain_of": [
+        "Allele"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "name",
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "Gene_id",
+      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/id",
+      "description": "ZFIN identifier for the gene.",
+      "from_schema": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
+      "is_a": "NamedThing_id",
+      "domain": "Gene",
+      "slot_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/id",
+      "identifier": true,
+      "alias": "id",
+      "owner": "Gene",
+      "domain_of": [
+        "Gene"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "id",
+      "range": "string",
+      "required": true,
+      "pattern": "^ZFIN:ZDB-GENE-\\d{6}-\\d$",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "Gene_name",
+      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/name",
+      "description": "Name of the gene.",
+      "from_schema": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
+      "is_a": "NamedThing_name",
+      "domain": "Gene",
+      "slot_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/name",
+      "alias": "name",
+      "owner": "Gene",
+      "domain_of": [
+        "Gene"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "name",
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "ExposureEvent_exposure_substance",
+      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/exposure_substance",
+      "description": "The chemical substance used in the exposure.",
+      "comments": [
+        "# TODO: as Sabrina these questions: Will all exposures be chemicals represented by ChEBI (e.g., what about complex mixtures/drugs)? Will all exposures be toxic?"
+      ],
+      "from_schema": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
+      "is_a": "exposure_substance",
+      "domain": "ExposureEvent",
+      "slot_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/exposure_substance",
+      "alias": "exposure_substance",
+      "owner": "ExposureEvent",
+      "domain_of": [
+        "ExposureEvent"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "exposure_substance",
+      "range": "ChemicalEntity",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "ExposureEvent_concentration",
+      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/concentration",
+      "description": "The concentration of the chemical used.",
+      "from_schema": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
+      "is_a": "concentration",
+      "domain": "ExposureEvent",
+      "slot_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/concentration",
+      "alias": "concentration",
+      "owner": "ExposureEvent",
+      "domain_of": [
+        "ExposureEvent"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "concentration",
+      "range": "Concentration",
+      "inlined": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "ExposureEvent_start_stage",
+      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/start_stage",
+      "description": "The stage at which exposure starts.",
+      "from_schema": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
+      "is_a": "start_stage",
+      "domain": "ExposureEvent",
+      "slot_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/start_stage",
+      "alias": "start_stage",
+      "owner": "ExposureEvent",
+      "domain_of": [
+        "ExposureEvent"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "start_stage",
+      "range": "DevelopmentalStage",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "ExposureEvent_end_stage",
+      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/end_stage",
+      "description": "The stage at which exposure ends.",
+      "from_schema": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
+      "is_a": "end_stage",
+      "domain": "ExposureEvent",
+      "slot_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/end_stage",
+      "alias": "end_stage",
+      "owner": "ExposureEvent",
+      "domain_of": [
+        "ExposureEvent"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "end_stage",
+      "range": "DevelopmentalStage",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "ChemicalEntity_id",
+      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/id",
+      "description": "CHEBI identifier for the chemical.",
+      "from_schema": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
+      "is_a": "NamedThing_id",
+      "domain": "ChemicalEntity",
+      "slot_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/id",
+      "identifier": true,
+      "alias": "id",
+      "owner": "ChemicalEntity",
+      "domain_of": [
+        "ChemicalEntity"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "id",
+      "range": "string",
+      "required": true,
+      "pattern": "^CHEBI:\\d+$",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "ChemicalEntity_name",
+      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/name",
+      "description": "Name of the chemical.",
+      "from_schema": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
+      "is_a": "NamedThing_name",
+      "domain": "ChemicalEntity",
+      "slot_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/name",
+      "alias": "name",
+      "owner": "ChemicalEntity",
+      "domain_of": [
+        "ChemicalEntity"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "name",
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "Phenotype_id",
+      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/id",
+      "description": "ZP identifier for the phenotype.",
+      "from_schema": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
+      "is_a": "NamedThing_id",
+      "domain": "Phenotype",
+      "slot_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/id",
+      "identifier": true,
+      "alias": "id",
+      "owner": "Phenotype",
+      "domain_of": [
+        "Phenotype"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "id",
+      "range": "string",
+      "required": true,
+      "pattern": "^ZP:\\d+$",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "Phenotype_name",
+      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/name",
+      "description": "Name of the phenotype.",
+      "from_schema": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
+      "is_a": "NamedThing_name",
+      "domain": "Phenotype",
+      "slot_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/name",
+      "alias": "name",
+      "owner": "Phenotype",
+      "domain_of": [
+        "Phenotype"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "name",
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "Concentration_has_unit",
+      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/has_unit",
+      "description": "The unit of the concentration value.",
+      "from_schema": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
+      "is_a": "has_unit",
+      "domain": "Concentration",
+      "slot_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/has_unit",
+      "alias": "has_unit",
+      "owner": "Concentration",
+      "domain_of": [
+        "Concentration"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "has_unit",
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "Concentration_has_numeric_value",
+      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/has_numeric_value",
+      "description": "The numeric value of the concentration.",
+      "from_schema": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
+      "is_a": "has_numeric_value",
+      "domain": "Concentration",
+      "slot_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/has_numeric_value",
+      "alias": "has_numeric_value",
+      "owner": "Concentration",
+      "domain_of": [
+        "Concentration"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "has_numeric_value",
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "DevelopmentalStage_id",
+      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/id",
+      "description": "ZFS identifier for the developmental stage.",
+      "from_schema": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
+      "is_a": "NamedThing_id",
+      "domain": "DevelopmentalStage",
+      "slot_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/id",
+      "identifier": true,
+      "alias": "id",
+      "owner": "DevelopmentalStage",
+      "domain_of": [
+        "DevelopmentalStage"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "id",
+      "range": "string",
+      "required": true,
+      "pattern": "^ZFS:\\d+$",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "DevelopmentalStage_name",
+      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/name",
+      "description": "Name of the developmental stage.",
+      "from_schema": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
+      "is_a": "NamedThing_name",
+      "domain": "DevelopmentalStage",
+      "slot_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/name",
+      "alias": "name",
+      "owner": "DevelopmentalStage",
+      "domain_of": [
+        "DevelopmentalStage"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "name",
+      "range": "string",
       "@type": "SlotDefinition"
     }
   ],
@@ -524,67 +1032,196 @@
     {
       "name": "NamedThing",
       "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/NamedThing",
-      "description": "A generic grouping for any identifiable entity",
+      "description": "A named entity.",
       "from_schema": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
-      "mappings": [
-        "schema:Thing"
-      ],
+      "abstract": true,
       "slots": [
-        "id",
-        "name",
-        "description"
+        "NamedThing_id",
+        "NamedThing_name"
       ],
       "slot_usage": {},
-      "class_uri": "http://schema.org/Thing",
+      "class_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/NamedThing",
       "@type": "ClassDefinition"
     },
     {
-      "name": "Genotype",
-      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/Genotype",
-      "description": "Represents a Genotype",
+      "name": "Fish",
+      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/Fish",
+      "description": "A representation of the zebrafish used in the toxicology study.",
       "from_schema": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
       "is_a": "NamedThing",
       "slots": [
-        "id",
-        "name",
-        "description",
-        "Genotype_primary_email",
-        "birth_date",
-        "age_in_years",
-        "vital_status"
+        "NamedThing_name",
+        "Fish_background",
+        "allele",
+        "zygosity",
+        "Fish_id"
       ],
       "slot_usage": {},
-      "class_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/Genotype",
+      "class_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/Fish",
       "@type": "ClassDefinition"
     },
     {
-      "name": "GenotypeCollection",
-      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/GenotypeCollection",
-      "description": "A holder for Genotype objects",
+      "name": "Allele",
+      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/Allele",
+      "description": "A representation of the genetic background of the fish.",
       "from_schema": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
+      "is_a": "NamedThing",
       "slots": [
-        "genotypeCollection__entries"
+        "name",
+        "gene",
+        "variation_type",
+        "Allele_id",
+        "Allele_name"
       ],
       "slot_usage": {},
-      "attributes": [
-        {
-          "name": "entries",
-          "range": "Genotype",
-          "multivalued": true,
-          "inlined": true,
-          "@type": "SlotDefinition"
-        }
+      "class_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/Allele",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Gene",
+      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/Gene",
+      "description": "A representation of a gene.",
+      "from_schema": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
+      "is_a": "NamedThing",
+      "slots": [
+        "name",
+        "symbol",
+        "Gene_id",
+        "Gene_name"
       ],
-      "class_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/GenotypeCollection",
-      "tree_root": true,
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/Gene",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "ExposureEvent",
+      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/ExposureEvent",
+      "description": "An instance of a toxicological exposure event in the study.  According to ECTO,  an exposure",
+      "from_schema": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
+      "exact_mappings": [
+        "biolink:ExposureEvent"
+      ],
+      "is_a": "NamedThing",
+      "slots": [
+        "NamedThing_id",
+        "NamedThing_name",
+        "ExposureEvent_exposure_substance",
+        "exposure_type",
+        "ExposureEvent_concentration",
+        "ExposureEvent_start_stage",
+        "ExposureEvent_end_stage",
+        "duration",
+        "frequency"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/ExposureEvent",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "ChemicalEntity",
+      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/ChemicalEntity",
+      "description": "A chemical compound used as a toxicant in the study.",
+      "from_schema": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
+      "exact_mappings": [
+        "biolink:ChemicalEntity"
+      ],
+      "is_a": "NamedThing",
+      "slots": [
+        "name",
+        "ChemicalEntity_id",
+        "ChemicalEntity_name"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/ChemicalEntity",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Phenotype",
+      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/Phenotype",
+      "description": "A phenotype observed in the fish as a result of exposure.",
+      "from_schema": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
+      "is_a": "NamedThing",
+      "slots": [
+        "Phenotype_id",
+        "Phenotype_name"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/Phenotype",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Annotation",
+      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/Annotation",
+      "description": "Root class for entity annotations.",
+      "from_schema": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
+      "abstract": true,
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/Annotation",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "QuantityValue",
+      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/QuantityValue",
+      "description": "A value of an attribute that is quantitative and measurable, expressed as a combination of a unit and a numeric value",
+      "from_schema": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
+      "is_a": "Annotation",
+      "slots": [
+        "has_unit",
+        "has_numeric_value"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/QuantityValue",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "Concentration",
+      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/Concentration",
+      "description": "The concentration of a chemical.",
+      "from_schema": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
+      "is_a": "QuantityValue",
+      "slots": [
+        "Concentration_has_unit",
+        "Concentration_has_numeric_value"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/Concentration",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "DevelopmentalStage",
+      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/DevelopmentalStage",
+      "description": "A zebrafish developmental stage.",
+      "from_schema": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
+      "is_a": "NamedThing",
+      "slots": [
+        "name",
+        "DevelopmentalStage_id",
+        "DevelopmentalStage_name"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/DevelopmentalStage",
+      "@type": "ClassDefinition"
+    },
+    {
+      "name": "FishExposureOutcome",
+      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/FishExposureOutcome",
+      "description": "A representation of the phenotype observed in the fish as a result of exposure.",
+      "from_schema": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
+      "slots": [
+        "fish",
+        "exposure_event",
+        "outcome"
+      ],
+      "slot_usage": {},
+      "class_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/FishExposureOutcome",
       "@type": "ClassDefinition"
     }
   ],
   "metamodel_version": "1.7.0",
   "source_file": "zebrafish_toxicology_atlas_schema.yaml",
-  "source_file_date": "2025-02-24T16:05:46",
-  "source_file_size": 2394,
-  "generation_date": "2025-02-24T16:16:04",
+  "source_file_date": "2025-02-24T17:30:27",
+  "source_file_size": 7180,
+  "generation_date": "2025-02-24T17:30:30",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/zebrafish_toxicology_atlas_schema.context.jsonld",

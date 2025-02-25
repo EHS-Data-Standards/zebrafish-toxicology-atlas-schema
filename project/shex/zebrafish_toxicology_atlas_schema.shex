@@ -3,7 +3,6 @@ BASE <https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX linkml: <https://w3id.org/linkml/>
-PREFIX schema1: <http://schema.org/>
 
 
 linkml:String xsd:string
@@ -44,32 +43,126 @@ linkml:Jsonpath xsd:string
 
 linkml:Sparqlpath xsd:string
 
-<Genotype> CLOSED {
-    (  $<Genotype_tes> (  &<NamedThing_tes> ;
-          rdf:type [ schema1:Thing ] ? ;
-          schema1:email @linkml:String ? ;
-          schema1:birthDate @linkml:Date ? ;
-          <age_in_years> @linkml:Integer ? ;
-          <vital_status> [ <http://purl.obolibrary.org/obo/PATO_0001421> <http://purl.obolibrary.org/obo/PATO_0001422>
-             <https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/PersonStatus#UNKNOWN> ] ?
+<Allele> CLOSED {
+    (  $<Allele_tes> (  &<NamedThing_tes> ;
+          rdf:type [ <NamedThing> ] ? ;
+          <name> @linkml:String ? ;
+          <gene> @<Gene> ? ;
+          <variation_type> @linkml:String ?
        ) ;
-       rdf:type [ <Genotype> ]
+       rdf:type [ <Allele> ]
     )
 }
 
-<GenotypeCollection> CLOSED {
-    (  $<GenotypeCollection_tes> <entries> @<Genotype> * ;
-       rdf:type [ <GenotypeCollection> ] ?
+<Annotation>  (
+    {
+       (  $<Annotation_tes> rdf:type . * ;
+          rdf:type [ <Annotation> ] ?
+       )
+    } OR @<QuantityValue>
+)
+
+<ChemicalEntity> CLOSED {
+    (  $<ChemicalEntity_tes> (  &<NamedThing_tes> ;
+          rdf:type [ <NamedThing> ] ? ;
+          <name> @linkml:String ?
+       ) ;
+       rdf:type [ <ChemicalEntity> ]
+    )
+}
+
+<Concentration> CLOSED {
+    (  $<Concentration_tes> (  &<QuantityValue_tes> ;
+          rdf:type [ <QuantityValue> ] ? ;
+          <has_unit> @linkml:String ? ;
+          <has_numeric_value> @linkml:String ?
+       ) ;
+       rdf:type [ <Concentration> ] ?
+    )
+}
+
+<DevelopmentalStage> CLOSED {
+    (  $<DevelopmentalStage_tes> (  &<NamedThing_tes> ;
+          rdf:type [ <NamedThing> ] ? ;
+          <name> @linkml:String ?
+       ) ;
+       rdf:type [ <DevelopmentalStage> ]
+    )
+}
+
+<ExposureEvent> CLOSED {
+    (  $<ExposureEvent_tes> (  &<NamedThing_tes> ;
+          rdf:type [ <NamedThing> ] ? ;
+          <exposure_substance> @<ChemicalEntity> ? ;
+          <exposure_type> . ? ;
+          <concentration> @<Concentration> ? ;
+          <start_stage> @<DevelopmentalStage> ? ;
+          <end_stage> @<DevelopmentalStage> ? ;
+          <duration> @<QuantityValue> ? ;
+          <frequency> @<QuantityValue> ?
+       ) ;
+       rdf:type [ <ExposureEvent> ]
+    )
+}
+
+<Fish> CLOSED {
+    (  $<Fish_tes> (  &<NamedThing_tes> ;
+          rdf:type [ <NamedThing> ] ? ;
+          <background> @linkml:String ? ;
+          <allele> @<Allele> ? ;
+          <zygosity> @linkml:Uriorcurie ?
+       ) ;
+       rdf:type [ <Fish> ]
+    )
+}
+
+<FishExposureOutcome> CLOSED {
+    (  $<FishExposureOutcome_tes> (  <fish> @<Fish> ? ;
+          <exposure_event> @<ExposureEvent> ? ;
+          <outcome> @<Phenotype> *
+       ) ;
+       rdf:type [ <FishExposureOutcome> ] ?
+    )
+}
+
+<Gene> CLOSED {
+    (  $<Gene_tes> (  &<NamedThing_tes> ;
+          rdf:type [ <NamedThing> ] ? ;
+          <name> @linkml:String ? ;
+          <symbol> @linkml:String ?
+       ) ;
+       rdf:type [ <Gene> ]
     )
 }
 
 <NamedThing>  (
+    @<Allele> OR @<ChemicalEntity> OR @<DevelopmentalStage> OR @<ExposureEvent> OR @<Fish> OR @<Gene> OR @<Phenotype>
+)
+
+<NamedThing_struct> {
+    (  $<NamedThing_tes> <name> @linkml:String ? ;
+       rdf:type [ <NamedThing> ]
+    )
+}
+
+<Phenotype> CLOSED {
+    (  $<Phenotype_tes> (  &<NamedThing_tes> ;
+          rdf:type [ <NamedThing> ] ? ;
+          <name> @linkml:String ?
+       ) ;
+       rdf:type [ <Phenotype> ]
+    )
+}
+
+<QuantityValue>  (
     CLOSED {
-       (  $<NamedThing_tes> (  schema1:name @linkml:String ? ;
-             schema1:description @linkml:String ?
+       (  $<QuantityValue_tes> (  &<Annotation_tes> ;
+             rdf:type [ <Annotation> ] ? ;
+             <has_unit> @linkml:String ? ;
+             <has_numeric_value> @linkml:String ?
           ) ;
-          rdf:type [ schema1:Thing ]
+          rdf:type [ <QuantityValue> ] ?
        )
-    } OR @<Genotype>
+    } OR @<Concentration>
 )
 

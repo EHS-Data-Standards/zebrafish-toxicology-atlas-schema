@@ -1,31 +1,85 @@
 # metamodel_version: 1.7.0
-enum PersonStatus
+type Allele
   {
-    ALIVE
-    DEAD
-    UNKNOWN
-  }
-
-type Genotype
-  {
-    id: Uriorcurie!
     name: String
-    description: String
-    primaryEmail: String
-    birthDate: Date
-    ageInYears: Integer
-    vitalStatus: PersonStatus
+    gene: Gene
+    variationType: String
+    id: String!
   }
 
-type GenotypeCollection
+interface Annotation
   {
-    entries: [Genotype]
   }
 
-type NamedThing
+type ChemicalEntity
   {
-    id: Uriorcurie!
     name: String
-    description: String
+    id: String!
+  }
+
+type Concentration
+  {
+    hasUnit: String
+    hasNumericValue: String
+  }
+
+type DevelopmentalStage
+  {
+    name: String
+    id: String!
+  }
+
+type ExposureEvent
+  {
+    id: String!
+    name: String
+    exposureSubstance: ChemicalEntity
+    exposureType: ExposureTypeEnum
+    concentration: Concentration
+    startStage: DevelopmentalStage
+    endStage: DevelopmentalStage
+    duration: QuantityValue
+    frequency: QuantityValue
+  }
+
+type Fish
+  {
+    name: String
+    background: String
+    allele: Allele
+    zygosity: Uriorcurie
+    id: String!
+  }
+
+type FishExposureOutcome
+  {
+    fish: Fish
+    exposureEvent: ExposureEvent
+    outcome: [Phenotype]
+  }
+
+type Gene
+  {
+    name: String
+    symbol: String
+    id: String!
+  }
+
+interface NamedThing
+  {
+    id: String!
+    name: String
+  }
+
+type Phenotype
+  {
+    id: String!
+    name: String
+  }
+
+type QuantityValue
+  {
+    hasUnit: String
+    hasNumericValue: String
   }
 

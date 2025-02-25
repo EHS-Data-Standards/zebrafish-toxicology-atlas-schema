@@ -57,13 +57,26 @@ classes:
     slots:
       - name
       - gene
-      - variation
+      - variation_type
     slot_usage:
       id:
         description: ZFIN identifier for the allele.
         pattern: "^ZFIN:ZDB-GENO-\\d{6}-\\d$"
       name:
         description: Name of the allele.
+
+  Gene:
+    is_a: NamedThing
+    description: A representation of a gene.
+    slots:
+      - name
+      - symbol
+    slot_usage:
+      id:
+        description: ZFIN identifier for the gene.
+        pattern: "^ZFIN:ZDB-GENE-\\d{6}-\\d$"
+      name:
+        description: Name of the gene.
 
   ExposureEvent:
     is_a: NamedThing
@@ -87,9 +100,9 @@ classes:
           # TODO: as Sabrina these questions:
           Will all exposures be chemicals represented by ChEBI (e.g., what about complex mixtures/drugs)?
           Will all exposures be toxic?
-        range: Chemical
+        range: ChemicalEntity
       concentration:
-        description: The concentration of the toxicant used.
+        description: The concentration of the chemical used.
         range: Concentration
       start_stage:
         description: The stage at which exposure starts.
@@ -135,6 +148,19 @@ classes:
     slots:
       - has_unit
       - has_numeric_value
+
+  Concentration:
+    is_a: QuantityValue
+    description: The concentration of a chemical.
+    slots:
+      - has_unit
+      - has_numeric_value
+    slot_usage:
+      has_unit:
+        description: The unit of the concentration value.
+        range: string
+      has_numeric_value:
+        description: The numeric value of the concentration.
 
   DevelopmentalStage:
     is_a: NamedThing
@@ -209,6 +235,16 @@ slots:
   frequency:
     description: The frequency of the exposure.
     range: QuantityValue
+  allele:
+    description: The allele present in a fish.
+    range: Allele
+  gene:
+    description: The gene associated with the allele.
+    range: Gene
+  symbol:
+    description: The symbol of the NamedThing.
+  variation_type:
+    description: The variation_type of the allele.
 
 enums:
   ExposureTypeEnum:
