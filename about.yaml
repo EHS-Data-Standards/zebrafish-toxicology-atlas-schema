@@ -1,0 +1,5 @@
+---
+name: zebrafish-toxicology-atlas-schema
+author: Sierra Moxon <smoxon@lbl.gov>
+description: Zebrafish Toxicology Atlas Schema
+source_schema_path: src/zebrafish_toxicology_atlas_schema/schema/zebrafish_toxicology_atlas_schema.yaml

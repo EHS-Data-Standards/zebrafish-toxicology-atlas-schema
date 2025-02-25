@@ -45,4 +45,3 @@ gen-project: $(PYMODEL)
 		-d $(DEST) $(SOURCE_SCHEMA_PATH)
 	$(RUN) gen-pydantic --version 2 src/zebrafish_toxicology_atlas_schema/schema/zebrafish_toxicology_atlas_schema.yaml > $(PYMODEL)/pydanticmodel_v2.py
 	$(RUN) gen-owl --mergeimports --no-metaclasses --no-type-objects --add-root-classes --mixins-as-expressions src/zebrafish_toxicology_atlas_schema/schema/zebrafish_toxicology_atlas_schema.yaml > $(DEST)/owl/zebrafish_toxicology_atlas_schema.owl.ttl
-	$(MAKE) infores
