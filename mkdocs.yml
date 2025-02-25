@@ -1,34 +1,25 @@
 ---
-site_name: "zebrafish-toxicology-atlas-schema"
+site_name: "Zebrafish Toxicology Atlas Schema Documentation"
 theme:
   name: material
-  # palette:
-  #  scheme: slate
-  #  primary: cyan
+  palette:
+    scheme: black
+    primary: black
+  logo: images/biolink-logo.png
   features:
     - content.tabs.link
 plugins:
   - search
   - mermaid2
-  - mknotebooks:
-      execute: false
-  - mermaid2:
-      version: 10.9.0
 nav:
   # - Home: home.md
-  - Index: index.md
-  - About: about.md
+  - Overview: index.md
 site_url: https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema
 repo_url: https://github.com/sierra-moxon/zebrafish-toxicology-atlas-schema
-markdown_extensions:
-  - tables
-extra_javascript:
-  - https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js
-  - javascripts/tablesort.js
+extra_css:
+  - style.css
+extra:
+  analytics:
+    provider: google
+    property: G-J23SCD6JB8
 
-# Uncomment this block to enable use of Google Analytics.
-# Replace the property value with your own ID.
-# extra:
-#   analytics:
-#     provider: google
-#     property: G-XXXXXXXXXX

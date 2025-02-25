@@ -1,0 +1,25 @@
+# {{ schema.name }}
+
+## Classes
+
+| Class | Description |
+| --- | --- |
+{% for c in schemaview.all_classes(ordered_by="lexical").values()|sort(attribute='name') -%}
+| {{gen.link(c)}} | {{c.description}} |
+{% endfor %}
+
+## Slots
+
+| Property | Description |
+| --- | --- |
+{% for np in schemaview.all_slots(ordered_by="lexical").values()|sort(attribute='name') -%}
+| {{gen.link(np)}} | {{np.description}} |
+{% endfor %}
+
+## Enumerations
+
+| Enumeration | Description |
+| --- | --- |
+{% for e in schemaview.all_enums().values()|sort(attribute='name') -%}
+| {{gen.link(e)}} | {{e.description}} |
+{% endfor %}
