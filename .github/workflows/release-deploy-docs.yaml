@@ -13,6 +13,8 @@ on:
 jobs:
   build-docs:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Allows pushing to the repo
     steps:
       - name: Checkout
         uses: actions/checkout@v3
