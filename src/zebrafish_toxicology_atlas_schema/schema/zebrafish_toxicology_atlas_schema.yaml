@@ -254,5 +254,3 @@ enums:
       relationship_types:
         - "rdfs:subClassOf"
       include_self: true
-
-
