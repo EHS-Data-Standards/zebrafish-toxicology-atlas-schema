@@ -22,75 +22,211 @@ imports:
   - linkml:types
 
 classes:
-
   NamedThing:
-    description: >-
-      A generic grouping for any identifiable entity
+    abstract: true
+    description: A named entity.
     slots:
       - id
       - name
-      - description
-    class_uri: schema:Thing
-
-  Genotype:
-    is_a: NamedThing
-    description: >-
-      Represents a Genotype
-    slots:
-      - primary_email
-      - birth_date
-      - age_in_years
-      - vital_status
     slot_usage:
-      primary_email:
-        pattern: "^\\S+@[\\S+\\.]+\\S+"
+      id:
+        description: Unique identifier for the entity.
+        range: string
+      name:
+        description: Name or label of the entity.
+        range: string
 
-  GenotypeCollection:
-    tree_root: true
+  Fish:
+    is_a: NamedThing
+    description: A representation of the zebrafish used in the toxicology study.
+    slots:
+      - background
+      - allele
+      - zygosity
+    slot_usage:
+      id:
+        description: Unique identifier for the zebrafish.
+        pattern: "^ZDB:FISH:\\d{6}-\\d$"
+      background:
+        description: The genetic background of the fish.
+        range: string
+
+  Allele:
+    is_a: NamedThing
+    description: A representation of the genetic background of the fish.
+    slots:
+      - name
+      - gene
+      - variation
+    slot_usage:
+      id:
+        description: ZFIN identifier for the allele.
+        pattern: "^ZFIN:ZDB-GENO-\\d{6}-\\d$"
+      name:
+        description: Name of the allele.
+
+  Exposure:
+    is_a: NamedThing
+    description: An instance of a toxicological exposure event in the study.
+    slots:
+      - toxicant
+      - concentration
+      - exposure_regime
+      - start_stage
+      - end_stage
+      - duration
+    exact_mappings:
+      - biolink:ExposureEvent
+    slot_usage:
+      toxicant:
+        description: The chemical substance used in the exposure.
+        range: Chemical
+      concentration:
+        description: The concentration of the toxicant used.
+        range: Concentration
+      exposure_regime:
+        description: The exposure regime type.
+        range: ExposureRegime
+      start_stage:
+        description: The stage at which exposure starts.
+        range: DevelopmentalStage
+      end_stage:
+        description: The stage at which exposure ends.
+        range: DevelopmentalStage
+
+  ChemicalEntity:
+    is_a: NamedThing
+    description: A chemical compound used as a toxicant in the study.
+    slots:
+      - name
+    exact_mappings:
+      - biolink:ChemicalEntity
+    slot_usage:
+      id:
+        description: CHEBI identifier for the chemical.
+        pattern: "^CHEBI:\\d+$"
+      name:
+        description: Name of the chemical.
+
+  Phenotype:
+    is_a: NamedThing
+    description: A phenotype observed in the fish as a result of exposure.
+    slots:
+      - name
+    slot_usage:
+      id:
+        description: ZP identifier for the phenotype.
+        pattern: "^ZP:\\d+$"
+      name:
+        description: Name of the phenotype.
+
+  Annotation:
     description: >-
-      A holder for Genotype objects
-    attributes:
-      entries:
-        range: Genotype
-        multivalued: true
-        inlined: true
+      Root class for entity annotations.
+    abstract: true
+
+  QuantityValue:
+    is_a: Annotation
+    description: >-
+      A value of an attribute that is quantitative and measurable,
+      expressed as a combination of a unit and a numeric value
+    slots:
+      - has_unit
+      - has_numeric_value
+
+  ExposureRegime:
+    is_a: NamedThing
+    description: The type of exposure regime used in the study.
+    slots:
+      - name
+    slot_usage:
+      id:
+        description: ECTO identifier for the exposure regime.
+        pattern: "^ECTO:\\d+$"
+      name:
+        description: Description of the exposure regime.
+
+  DevelopmentalStage:
+    is_a: NamedThing
+    description: A zebrafish developmental stage.
+    slots:
+      - name
+    slot_usage:
+      id:
+        description: ZFS identifier for the developmental stage.
+        pattern: "^ZFS:\\d+$"
+      name:
+        description: Name of the developmental stage.
+
+  FishExposurePhenotype:
+    is_a: NamedThing
+    description: A representation of the phenotype observed in the fish as a result of exposure.
+    slots:
+      - fish
+      - exposure
+      - phenotype
+    slot_usage:
+      fish:
+        description: The fish exposed to the toxicant.
+        range: Fish
+      exposure:
+        description: The exposure event.
+        range: Exposure
+      phenotype:
+        description: The phenotype observed in the fish.
+        range: Phenotype
 
 slots:
   id:
     identifier: true
-    slot_uri: schema:identifier
     range: uriorcurie
-    description: A unique identifier for a thing
   name:
-    slot_uri: schema:name
-    description: A human-readable name for a thing
-  description:
-    slot_uri: schema:description
-    description: A human-readable description for a thing
-  primary_email:
-    slot_uri: schema:email
-    description: The main email address of a person
-  birth_date:
-    slot_uri: schema:birthDate
-    range: date
-    description: Date on which a person is born
-  age_in_years:
-    range: integer
-    description: Number of years since birth
-  vital_status:
-    range: PersonStatus
-    description: living or dead status
+    description: Name or label of an entity.
+  background:
+    description: The genetic background of the fish.
+    range: uriorcurie
+  exposure_regime:
+    description: The exposure regime type.
+    range: uriorcurie
+  start_stage:
+    description: The stage at which exposure starts.
+    range: uriorcurie
+  end_stage:
+    description: The stage at which exposure ends.
+    range: uriorcurie
+  has_unit:
+    description: The unit of the quantity value.
+  has_numeric_value:
+    description: The numeric value of the quantity value.
+  treated_with:
+    description: The chemical used in the exposure.
+    range: uriorcurie
+  has_phenotype:
+    description: The phenotype observed in the fish.
+    range: uriorcurie
+  toxicant:
+    description: The chemical used in the exposure.
+    range: uriorcurie
+  concentration:
+    description: The concentration of the toxicant.
+  zygosity:
+    description: The zygosity of the fish.
+    range: uriorcurie
+  duration:
+    description: The duration of the exposure.
+    range: QuantityValue
+  exposure:
+    description: The exposure event.
+    range: Exposure
+  fish:
+    description: The fish exposed to the toxicant.
+    range: Fish
+  phenotype:
+    description: The phenotype observed in the fish.
+    range: Phenotype
 
 enums:
-  PersonStatus:
+  ExposureRegimeTypeEnum:
     permissible_values:
-      ALIVE:
-        description: the person is living
-        meaning: PATO:0001421
-      DEAD:
-        description: the person is deceased
-        meaning: PATO:0001422
-      UNKNOWN:
-        description: the vital status is not known
-        todos:
-          - map this to an ontology
+      reachable_from: ECTO:0000001
+
