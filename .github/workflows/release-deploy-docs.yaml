@@ -6,6 +6,9 @@ on:
     types: [created]
   workflow_dispatch:
     types: trigger-deploy-docs
+  push:
+    branches:
+      - main
 
 jobs:
   build-docs:
