@@ -2,226 +2,226 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/</loc>
-         <lastmod>2025-02-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/Allele/</loc>
-         <lastmod>2025-02-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/Annotation/</loc>
-         <lastmod>2025-02-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/Boolean/</loc>
-         <lastmod>2025-02-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/ChemicalEntity/</loc>
-         <lastmod>2025-02-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/Concentration/</loc>
-         <lastmod>2025-02-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/Curie/</loc>
-         <lastmod>2025-02-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/Date/</loc>
-         <lastmod>2025-02-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/DateOrDatetime/</loc>
-         <lastmod>2025-02-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/Datetime/</loc>
-         <lastmod>2025-02-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/Decimal/</loc>
-         <lastmod>2025-02-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/DevelopmentalStage/</loc>
-         <lastmod>2025-02-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/Double/</loc>
-         <lastmod>2025-02-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/ExposureEvent/</loc>
-         <lastmod>2025-02-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/ExposureTypeEnum/</loc>
-         <lastmod>2025-02-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/Fish/</loc>
-         <lastmod>2025-02-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/FishExposureOutcome/</loc>
-         <lastmod>2025-02-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/Float/</loc>
-         <lastmod>2025-02-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/Gene/</loc>
-         <lastmod>2025-02-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/Integer/</loc>
-         <lastmod>2025-02-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/Jsonpath/</loc>
-         <lastmod>2025-02-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/Jsonpointer/</loc>
-         <lastmod>2025-02-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/NamedThing/</loc>
-         <lastmod>2025-02-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/Ncname/</loc>
-         <lastmod>2025-02-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/Nodeidentifier/</loc>
-         <lastmod>2025-02-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/Objectidentifier/</loc>
-         <lastmod>2025-02-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/Phenotype/</loc>
-         <lastmod>2025-02-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/QuantityValue/</loc>
-         <lastmod>2025-02-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/Sparqlpath/</loc>
-         <lastmod>2025-02-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/String/</loc>
-         <lastmod>2025-02-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/Time/</loc>
-         <lastmod>2025-02-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/Uri/</loc>
-         <lastmod>2025-02-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/Uriorcurie/</loc>
-         <lastmod>2025-02-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/allele/</loc>
-         <lastmod>2025-02-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/background/</loc>
-         <lastmod>2025-02-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/concentration/</loc>
-         <lastmod>2025-02-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/duration/</loc>
-         <lastmod>2025-02-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/end_stage/</loc>
-         <lastmod>2025-02-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/exposure_event/</loc>
-         <lastmod>2025-02-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/exposure_substance/</loc>
-         <lastmod>2025-02-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/exposure_type/</loc>
-         <lastmod>2025-02-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/fish/</loc>
-         <lastmod>2025-02-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/frequency/</loc>
-         <lastmod>2025-02-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/gene/</loc>
-         <lastmod>2025-02-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/has_numeric_value/</loc>
-         <lastmod>2025-02-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/has_unit/</loc>
-         <lastmod>2025-02-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/id/</loc>
-         <lastmod>2025-02-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/name/</loc>
-         <lastmod>2025-02-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/outcome/</loc>
-         <lastmod>2025-02-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/start_stage/</loc>
-         <lastmod>2025-02-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/symbol/</loc>
-         <lastmod>2025-02-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/treated_with/</loc>
-         <lastmod>2025-02-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/variation_type/</loc>
-         <lastmod>2025-02-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/zebrafish-toxicology-atlas-schema/</loc>
-         <lastmod>2025-02-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/zygosity/</loc>
-         <lastmod>2025-02-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
     </url>
     <url>
          <loc>https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/files/about/</loc>
-         <lastmod>2025-02-25</lastmod>
+         <lastmod>2025-05-28</lastmod>
     </url>
 </urlset>

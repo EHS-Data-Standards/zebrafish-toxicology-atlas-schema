@@ -302,7 +302,7 @@
 <tr>
 <td><a href="../exposure_substance/">exposure_substance</a></td>
 <td>0..1 <br/> <a href="../ChemicalEntity/">ChemicalEntity</a></td>
-<td>The chemical substance used in the exposure</td>
+<td>The chemical substance used in the exposure or experimental treatment</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -314,19 +314,19 @@
 <tr>
 <td><a href="../concentration/">concentration</a></td>
 <td>0..1 <br/> <a href="../Concentration/">Concentration</a></td>
-<td>The concentration of the chemical used</td>
+<td>The concentration of the chemical used in the exposure or experimental treatm...</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../start_stage/">start_stage</a></td>
 <td>0..1 <br/> <a href="../DevelopmentalStage/">DevelopmentalStage</a></td>
-<td>The stage at which exposure starts</td>
+<td>The developmental stage of the fish at the beginning of the exposure or exper...</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../end_stage/">end_stage</a></td>
 <td>0..1 <br/> <a href="../DevelopmentalStage/">DevelopmentalStage</a></td>
-<td>The stage at which exposure ends</td>
+<td>The developmental stage of the fish at the end of the exposure or experimenta...</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -424,22 +424,25 @@ slots:
 slot_usage:
   exposure_substance:
     name: exposure_substance
-    description: The chemical substance used in the exposure.
+    description: The chemical substance used in the exposure or experimental treatment.
     comments:
     - '# TODO: as Sabrina these questions: Will all exposures be chemicals represented
       by ChEBI (e.g., what about complex mixtures/drugs)? Will all exposures be toxic?'
     range: ChemicalEntity
   concentration:
     name: concentration
-    description: The concentration of the chemical used.
+    description: The concentration of the chemical used in the exposure or experimental
+      treatment.
     range: Concentration
   start_stage:
     name: start_stage
-    description: The stage at which exposure starts.
+    description: The developmental stage of the fish at the beginning of the exposure
+      or experimental treatment.
     range: DevelopmentalStage
   end_stage:
     name: end_stage
-    description: The stage at which exposure ends.
+    description: The developmental stage of the fish at the end of the exposure or
+      experimental treatment.
     range: DevelopmentalStage
 
 </code></pre>
@@ -456,27 +459,30 @@ is_a: NamedThing
 slot_usage:
   exposure_substance:
     name: exposure_substance
-    description: The chemical substance used in the exposure.
+    description: The chemical substance used in the exposure or experimental treatment.
     comments:
     - '# TODO: as Sabrina these questions: Will all exposures be chemicals represented
       by ChEBI (e.g., what about complex mixtures/drugs)? Will all exposures be toxic?'
     range: ChemicalEntity
   concentration:
     name: concentration
-    description: The concentration of the chemical used.
+    description: The concentration of the chemical used in the exposure or experimental
+      treatment.
     range: Concentration
   start_stage:
     name: start_stage
-    description: The stage at which exposure starts.
+    description: The developmental stage of the fish at the beginning of the exposure
+      or experimental treatment.
     range: DevelopmentalStage
   end_stage:
     name: end_stage
-    description: The stage at which exposure ends.
+    description: The developmental stage of the fish at the end of the exposure or
+      experimental treatment.
     range: DevelopmentalStage
 attributes:
   exposure_substance:
     name: exposure_substance
-    description: The chemical substance used in the exposure.
+    description: The chemical substance used in the exposure or experimental treatment.
     comments:
     - '# TODO: as Sabrina these questions: Will all exposures be chemicals represented
       by ChEBI (e.g., what about complex mixtures/drugs)? Will all exposures be toxic?'
@@ -499,7 +505,8 @@ attributes:
     range: ExposureTypeEnum
   concentration:
     name: concentration
-    description: The concentration of the chemical used.
+    description: The concentration of the chemical used in the exposure or experimental
+      treatment.
     from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
     rank: 1000
     alias: concentration
@@ -509,7 +516,8 @@ attributes:
     range: Concentration
   start_stage:
     name: start_stage
-    description: The stage at which exposure starts.
+    description: The developmental stage of the fish at the beginning of the exposure
+      or experimental treatment.
     from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
     rank: 1000
     alias: start_stage
@@ -519,7 +527,8 @@ attributes:
     range: DevelopmentalStage
   end_stage:
     name: end_stage
-    description: The stage at which exposure ends.
+    description: The developmental stage of the fish at the end of the exposure or
+      experimental treatment.
     from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
     rank: 1000
     alias: end_stage
