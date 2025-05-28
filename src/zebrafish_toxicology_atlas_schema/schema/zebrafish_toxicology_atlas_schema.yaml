@@ -95,25 +95,25 @@ classes:
       - biolink:ExposureEvent
     slot_usage:
       exposure_substance:
-        description: The chemical substance used in the exposure.
+        description: The chemical substance used in the exposure or experimental treatment.
         comments: >-
           # TODO: as Sabrina these questions:
           Will all exposures be chemicals represented by ChEBI (e.g., what about complex mixtures/drugs)?
           Will all exposures be toxic?
         range: ChemicalEntity
       concentration:
-        description: The concentration of the chemical used.
+        description: The concentration of the chemical used in the exposure or experimental treatment.
         range: Concentration
       start_stage:
-        description: The stage at which exposure starts.
+        description: The developmental stage of the fish at the beginning of the exposure or experimental treatment.
         range: DevelopmentalStage
       end_stage:
-        description: The stage at which exposure ends.
+        description: The developmental stage of the fish at the end of the exposure or experimental treatment.
         range: DevelopmentalStage
 
   ChemicalEntity:
     is_a: NamedThing
-    description: A chemical compound used as a toxicant in the study.
+    description: A chemical compound used as a toxicant in the exposure or experimental treatment.
     slots:
       - name
     exact_mappings:
@@ -127,7 +127,7 @@ classes:
 
   Phenotype:
     is_a: NamedThing
-    description: A phenotype observed in the fish as a result of exposure.
+    description: A phenotype observed in the fish as a result of exposure in an experimental treatment.
     slot_usage:
       id:
         description: ZP identifier for the phenotype.
@@ -151,7 +151,7 @@ classes:
 
   Concentration:
     is_a: QuantityValue
-    description: The concentration of a chemical.
+    description: The amount of a chemical introduced as part of the exposure or experimental treatment.
     slots:
       - has_unit
       - has_numeric_value
@@ -164,7 +164,7 @@ classes:
 
   DevelopmentalStage:
     is_a: NamedThing
-    description: A zebrafish developmental stage.
+    description: The specific phase in the zebrafish's developmental process.
     slots:
       - name
     slot_usage:
@@ -198,10 +198,10 @@ slots:
     description: The exposure type.
     range: ExposureTypeEnum
   start_stage:
-    description: The stage at which exposure starts.
+    description: The developmental stage of the fish at the beginning of the exposure or experimental treatment.
     range: uriorcurie
   end_stage:
-    description: The stage at which exposure ends.
+    description: The developmental stage of the fish at the end of the exposure or experimental treatment.
     range: uriorcurie
   has_unit:
     description: The unit of the quantity value.
