@@ -89,7 +89,7 @@ classes:
       - has_additional_exposure_conditions
     exact_mappings:
       - biolink:ExposureEvent
-
+      
   Regimen:
     description: The regimen of exposure events.
     slots:
@@ -114,7 +114,7 @@ classes:
       - uuid
     exact_mappings:
       - biolink:ChemicalEntity
-
+      
   Image:
     description: An image associated with a phenotype observation.
     slots:
@@ -137,6 +137,7 @@ classes:
       - has_unit
       - has_numeric_value
 
+  
 slots:
   id:
     identifier: true
