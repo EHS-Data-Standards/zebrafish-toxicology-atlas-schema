@@ -144,51 +144,13 @@ slots:
   publication_id:
     description: The publication identifier (e.g., PMID, DOI) for the study.
     range: uriorcurie
-  experiments:
-    description: The experiments in the study.
-    range: Experiment
-    multivalued: true
-  name:
-    description: Name or label of an entity.
-  background:
-    description: The genetic background of the fish.
-    range: uriorcurie
   exposure_type:
     description: The exposure type.
     range: ExposureTypeEnum
-  start_stage:
-    description: The stage at which exposure starts.
-    range: uriorcurie
-  end_stage:
-    description: The stage at which exposure ends.
-    range: uriorcurie
   has_unit:
     description: The unit of the quantity value.
   has_numeric_value:
     description: The numeric value of the quantity value.
-  treated_with:
-    description: The chemical used in the exposure.
-    range: uriorcurie
-  exposure_substance:
-    description: The substance used in the exposure.
-    range: uriorcurie
-  duration:
-    description: The duration of the exposure.
-    range: QuantityValue
-  exposure_event:
-    description: The exposure event.
-    range: ExposureEvent
-  fish:
-    description: The fish exposed to the toxicant.
-    range: Fish
-  outcome:
-    description: >-
-      An outcome is a list of the observed phenotypes in the fish exposed to the toxicant.
-    range: Phenotype
-    multivalued: true
-  frequency:
-    description: The frequency of the exposure.
-    range: QuantityValue
   has_experiments:
     description: The experiments in this study.
     range: Experiment
