@@ -144,6 +144,8 @@ slots:
   publication_id:
     description: The publication identifier (e.g., PMID, DOI) for the study.
     range: uriorcurie
+  name:
+    description: Name or label of an entity.
   exposure_type:
     description: The exposure type.
     range: ExposureTypeEnum
