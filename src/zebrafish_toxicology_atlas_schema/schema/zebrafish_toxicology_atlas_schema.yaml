@@ -89,13 +89,14 @@ classes:
       - has_additional_exposure_conditions
     exact_mappings:
       - biolink:ExposureEvent
-      
+
   Regimen:
     description: The regimen of exposure events.
     slots:
       - interval_between_indv_exposures
       - time_btwn_1_and_last_indv_exposure
       - indv_exposure_duration
+      - repeats
 
   Stressor:
     description: A chemical stressor used in exposure experiments.
@@ -114,7 +115,7 @@ classes:
       - uuid
     exact_mappings:
       - biolink:ChemicalEntity
-      
+
   Image:
     description: An image associated with a phenotype observation.
     slots:
@@ -137,7 +138,7 @@ classes:
       - has_unit
       - has_numeric_value
 
-  
+
 slots:
   id:
     identifier: true
@@ -202,6 +203,9 @@ slots:
   standard_rearing_conditions:
     description: Whether standard rearing conditions were used.
     range: boolean
+  repeats:
+    description: Number of repeats in the regimen.
+    range: int
   rearing_condition_comments:
     description: Comments about rearing conditions.
     range: string
