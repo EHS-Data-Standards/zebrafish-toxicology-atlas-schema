@@ -205,7 +205,7 @@ slots:
     range: boolean
   repeats:
     description: Number of repeats in the regimen.
-    range: int
+    range: integer
   rearing_condition_comments:
     description: Comments about rearing conditions.
     range: string
