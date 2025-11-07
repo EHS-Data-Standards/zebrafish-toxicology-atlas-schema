@@ -9,8 +9,15 @@ set dotenv-filename := x'${LINKML_ENVIRONMENT_FILENAME:-config.public.mk}'
 
 
 # List all commands as default command. The prefix "_" hides the command.
-_default: _status
+_default:
     @just --list
+    @echo ""
+    @echo "Main targets:"
+    @echo "  install    -- install dependencies"
+    @echo "  test       -- runs tests including spelling checks and linting checks"
+    @echo "  lint       -- perform schema linting"
+    @echo "  testdoc    -- builds docs and runs local test server"
+    @echo ""
 
 # Set cross-platform Python shebang line (assumes presence of launcher on Windows)
 shebang := if os() == 'windows' {
@@ -20,8 +27,8 @@ shebang := if os() == 'windows' {
 }
 
 # Environment variables with defaults
-schema_name := env_var_or_default("LINKML_SCHEMA_NAME", "")
-source_schema_path := env_var_or_default("LINKML_SCHEMA_SOURCE_PATH", "")
+schema_name := env_var_or_default("LINKML_SCHEMA_NAME", "zebrafish_toxicology_atlas_schema")
+source_schema_path := env_var_or_default("LINKML_SCHEMA_SOURCE_PATH", "src/zebrafish_toxicology_atlas_schema/schema/zebrafish_toxicology_atlas_schema.yaml")
 
 use_schemasheets := env_var_or_default("LINKML_USE_SCHEMASHEETS", "No")
 sheet_module := env_var_or_default("LINKML_SCHEMA_GOOGLE_SHEET_MODULE", "")
@@ -45,6 +52,7 @@ dest := "project"
 pymodel := src / schema_name / "datamodel"
 docdir := "docs"
 exampledir := "examples"
+templatedir := "doc-templates"
 
 # Show current project status
 _status: _check-config
@@ -52,11 +60,11 @@ _status: _check-config
     @echo "Source: {{source_schema_path}}"
 
 # Run initial setup (run this first)
-setup: _check-config _git-init install _gen-project _gen-examples _gendoc _git-add _git-commit
+setup: _check-config _git-init install gen-project _gen-examples gendoc _git-add _git-commit
 
 # Install project dependencies
 install:
-    poetry install
+    uv sync
 
 # Check project configuration
 _check-config:
@@ -77,7 +85,7 @@ _update-template:
 
 # Update LinkML to latest version
 _update-linkml:
-    poetry add -D linkml@latest
+    uv add --dev linkml
 
 # Create data harmonizer
 _create-data-harmonizer:
@@ -87,15 +95,14 @@ _create-data-harmonizer:
 alias all := site
 
 # Generate site locally
-site: _gen-project _gendoc
+site: gen-project gendoc
 
 # Deploy site
-deploy: site
-  mkd-gh-deploy
+deploy: site mkd-gh-deploy
 
 _compile_sheets:
     @if [ "{{use_schemasheets}}" != "No" ]; then \
-        poetry run sheets2linkml --gsheet-id {{sheet_ID}} {{sheet_tabs}} > {{sheet_module_path}}.tmp && \
+        uv run sheets2linkml --gsheet-id {{sheet_ID}} {{sheet_tabs}} > {{sheet_module_path}}.tmp && \
         mv {{sheet_module_path}}.tmp {{sheet_module_path}}; \
     fi
 
@@ -104,35 +111,26 @@ _gen-examples:
     mkdir -p {{exampledir}}
     cp -r src/data/examples/* {{exampledir}}
 
-# Generate project files
-_gen-project: _ensure_pymodel_dir _compile_sheets
-    poetry run gen-project {{config_yaml}} -d {{dest}} {{source_schema_path}} && \
-    mv {{dest}}/*.py {{pymodel}}
-    @if [ ! -z "${{gen_owl_args}}" ]; then \
-      mkdir -p {{dest}}/owl || true && \
-      poetry run gen-owl {{gen_owl_args}} {{source_schema_path}} > {{dest}}/owl/{{schema_name}}.owl.ttl || true ; \
-    fi
-    @if [ ! ${{gen_java_args}} ]; then \
-      poetry run gen-java {{gen_java_args}} --output-directory {{dest}}/java/ {{source_schema_path}} || true ; \
-    fi
-    @if [ ! ${{gen_ts_args}} ]; then \
-      poetry run gen-typescript {{gen_ts_args}} {{source_schema_path}} > {{dest}}/typescript/{{schema_name}}.ts || true ; \
-    fi
-
 # Run all tests
 test: _test-schema _test-python _test-examples
 
+# Run PR tests (pytest, codespell, yamllint)
+test_pr:
+    uv run pytest
+    uv run codespell
+    uv run yamllint -c .yamllint-config src/zebrafish_toxicology_atlas_schema/schema/*.yaml
+
 # Test schema generation
 _test-schema:
-    poetry run gen-project {{config_yaml}} -d tmp {{source_schema_path}}
+    uv run gen-project {{config_yaml}} -d tmp {{source_schema_path}}
 
 # Run Python unit tests with pytest
 _test-python:
-    poetry run python -m pytest
+    uv run pytest
 
 # Run example tests
 _test-examples: _ensure_examples_output
-    poetry run linkml-run-examples \
+    uv run linkml-run-examples \
         --output-formats json \
         --output-formats yaml \
         --counter-example-input-directory src/data/examples/invalid \
@@ -140,24 +138,11 @@ _test-examples: _ensure_examples_output
         --output-directory examples/output \
         --schema {{source_schema_path}} > examples/output/README.md
 
-# Run linting
-lint:
-    poetry run linkml-lint {{source_schema_path}}
 
-# Generate documentation
-_gendoc: _ensure_docdir
-    cp -r {{src}}/docs/files/* {{docdir}}
-    poetry run gen-doc {{gen_doc_args}} -d {{docdir}} {{source_schema_path}}
 
-# Build docs and run test server
-testdoc: _gendoc _serve
-
-# Run documentation server
-_serve:
-    poetry run mkdocs serve
 
 # Initialize and add everything to git
-_git-init-add: _git-init _git-add _git-commit _git-status
+_git-init-add: _git-init _git-add _git-commit
 
 # Initialize git repository
 _git-init:
@@ -171,10 +156,6 @@ _git-add:
 # Commit files to git
 _git-commit:
     git commit -m 'chore: make setup was run' -a
-
-# Show git status
-_git-status:
-    git status
 
 # Clean all generated files
 clean:
@@ -193,4 +174,8 @@ _ensure_docdir:
 _ensure_examples_output:
     -mkdir -p examples/output
 
+# Import modular justfiles
+import "linkml.justfile"
+import "documentation.justfile"
+import "validation.justfile"
 import "project.justfile"

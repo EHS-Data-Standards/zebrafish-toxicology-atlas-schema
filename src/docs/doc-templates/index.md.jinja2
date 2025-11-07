@@ -1,11 +1,16 @@
 # {{ schema.name }}
 
+## Documentation
+
+This documentation is hosted under `/docs/`. If you are not automatically redirected,
+visit [here](/docs/).
+
 ## Classes
 
 | Class | Description |
 | --- | --- |
 {% for c in schemaview.all_classes(ordered_by="lexical").values()|sort(attribute='name') -%}
-| {{gen.link(c)}} | {{c.description}} |
+| [{{ c.name }}](/docs/{{ gen.link(c) }}) | {{ c.description }} |
 {% endfor %}
 
 ## Slots
@@ -13,7 +18,7 @@
 | Property | Description |
 | --- | --- |
 {% for np in schemaview.all_slots(ordered_by="lexical").values()|sort(attribute='name') -%}
-| {{gen.link(np)}} | {{np.description}} |
+| [{{ np.name }}](/docs/{{ gen.link(np) }}) | {{ np.description }} |
 {% endfor %}
 
 ## Enumerations
@@ -21,5 +26,5 @@
 | Enumeration | Description |
 | --- | --- |
 {% for e in schemaview.all_enums().values()|sort(attribute='name') -%}
-| {{gen.link(e)}} | {{e.description}} |
+| [{{ e.name }}](/docs/{{ gen.link(e) }}) | {{ e.description }} |
 {% endfor %}

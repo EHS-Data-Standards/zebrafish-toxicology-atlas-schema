@@ -1,0 +1,8 @@
+---
+uuid: "phenotype-001"
+stage: "ZFIN:ZDB-STAGE-050211-5"
+phenotype_term_id: "PATO:0001236"
+severity: "moderate"
+prevalence:
+  unit: "percent"
+  numeric_value: "75"

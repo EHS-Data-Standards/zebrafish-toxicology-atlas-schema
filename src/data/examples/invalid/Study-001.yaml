@@ -1,0 +1,5 @@
+# Example for an invalid Study object (unknown field)
+---
+uuid: "study-001"
+publication: "PMID:12345678"
+unknown_field: "this field does not exist in the schema"
