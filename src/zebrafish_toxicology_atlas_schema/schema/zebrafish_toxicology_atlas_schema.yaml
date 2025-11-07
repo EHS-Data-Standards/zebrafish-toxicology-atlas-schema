@@ -29,7 +29,14 @@ imports:
 
 classes:
 
+  Entity:
+    description: The base class for all entities in the Zebrafish Toxicology Atlas Schema.
+    is_abstract: true
+    slots:
+      - id
+
   Study:
+    is_a: Entity
     description: A toxicology study containing experiments.
     slots:
       - has_experiments
@@ -39,15 +46,16 @@ classes:
       - id
 
   Experiment:
+    is_a: Entity
     description: An experiment within a study.
     slots:
       - has_phenotype_observations
       - has_controls
 
   PhenotypeObservation:
+    is_a: Entity
     description: An observation of phenotypes resulting from exposure experiments.
     slots:
-      - id
       - has_exposure_experiments
       - has_images
       - has_phenotype
@@ -63,6 +71,7 @@ classes:
               required: false
 
   Phenotype:
+    is_a: Entity
     description: A phenotype observed in the fish as a result of exposure.
     slots:
       - stage
@@ -71,6 +80,7 @@ classes:
       - phenotype_term_id
 
   ExposureExperiment:
+    is_a: Entity
     description: An experiment exposing fish to chemical stressors.
     slots:
       - has_subject
@@ -79,6 +89,7 @@ classes:
       - rearing_condition_comments
 
   ExposureEvent:
+    is_a: Entity
     description: >-
       An instance of a toxicological exposure event in the study.
     slots:
@@ -95,6 +106,7 @@ classes:
       - biolink:ExposureEvent
 
   Regimen:
+    is_a: Entity
     description: The regimen of exposure events.
     slots:
       - interval_between_indv_exposures
@@ -103,6 +115,7 @@ classes:
       - repeats
 
   Stressor:
+    is_a: Entity
     description: A chemical stressor used in exposure experiments.
     slots:
       - chemical
@@ -111,6 +124,7 @@ classes:
       - comments
 
   ChemicalEntity:
+    is_a: Entity
     description: A chemical compound used as a toxicant in the study.
     slots:
       - chebi_id
@@ -121,6 +135,7 @@ classes:
       - biolink:ChemicalEntity
 
   Image:
+    is_a: Entity
     description: An image associated with a phenotype observation.
     slots:
       - uuid
@@ -129,9 +144,9 @@ classes:
       - scale_bar
 
   Fish:
+    is_a: Entity
     description: A representation of the zebrafish used in the toxicology study.
     slots:
-        - id
         - name
 
   QuantityValue:
@@ -191,9 +206,13 @@ slots:
   has_prevalence:
     description: The prevalence of the phenotype.
     range: QuantityValue
+    inlined_as_list: true
+    inlined: true
   has_severity:
     description: The severity of the phenotype.
     range: QuantityValue
+    inlined_as_list: true
+    inlined: true
   phenotype_term_id:
     description: The phenotype ontology term identifier.
     range: uriorcurie
