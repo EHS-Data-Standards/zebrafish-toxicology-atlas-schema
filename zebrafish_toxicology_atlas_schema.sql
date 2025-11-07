@@ -145,7 +145,7 @@ CREATE TABLE "ChemicalEntity_synonym" (
 	synonym TEXT,
 	PRIMARY KEY ("ChemicalEntity_uuid", synonym),
 	FOREIGN KEY("ChemicalEntity_uuid") REFERENCES "ChemicalEntity" (uuid)
-);CREATE INDEX "ix_ChemicalEntity_synonym_synonym" ON "ChemicalEntity_synonym" (synonym);CREATE INDEX "ix_ChemicalEntity_synonym_ChemicalEntity_uuid" ON "ChemicalEntity_synonym" ("ChemicalEntity_uuid");
+);CREATE INDEX "ix_ChemicalEntity_synonym_ChemicalEntity_uuid" ON "ChemicalEntity_synonym" ("ChemicalEntity_uuid");CREATE INDEX "ix_ChemicalEntity_synonym_synonym" ON "ChemicalEntity_synonym" (synonym);
 CREATE TABLE "PhenotypeObservation" (
 	control BOOLEAN,
 	uuid TEXT NOT NULL,
@@ -206,5 +206,5 @@ CREATE TABLE "ExposureEvent_vehicle" (
 	vehicle VARCHAR(10),
 	PRIMARY KEY ("ExposureEvent_uuid", vehicle),
 	FOREIGN KEY("ExposureEvent_uuid") REFERENCES "ExposureEvent" (uuid)
-);CREATE INDEX "ix_ExposureEvent_vehicle_vehicle" ON "ExposureEvent_vehicle" (vehicle);CREATE INDEX "ix_ExposureEvent_vehicle_ExposureEvent_uuid" ON "ExposureEvent_vehicle" ("ExposureEvent_uuid");
+);CREATE INDEX "ix_ExposureEvent_vehicle_ExposureEvent_uuid" ON "ExposureEvent_vehicle" ("ExposureEvent_uuid");CREATE INDEX "ix_ExposureEvent_vehicle_vehicle" ON "ExposureEvent_vehicle" (vehicle);
 
