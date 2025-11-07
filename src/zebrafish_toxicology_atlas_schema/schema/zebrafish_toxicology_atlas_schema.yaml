@@ -210,9 +210,7 @@ slots:
     inlined: true
   has_severity:
     description: The severity of the phenotype.
-    range: QuantityValue
-    inlined_as_list: true
-    inlined: true
+    range: SeverityEnum
   phenotype_term_id:
     description: The phenotype ontology term identifier.
     range: uriorcurie
@@ -310,6 +308,17 @@ slots:
     pattern: "^ZFIN:ZDB-LAB-[0-9]+-[0-9]+$"
 
 enums:
+
+  SeverityEnum:
+    description: An enumeration of severity levels for phenotypes.
+    permissible_values:
+      mild:
+        description: Mild severity
+      moderate:
+        description: Moderate severity
+      severe:
+        description: Severe severity
+        
   ExposureTypeEnum:
     description: An enumeration of exposure types derived from the ECTO ontology.
     reachable_from:
