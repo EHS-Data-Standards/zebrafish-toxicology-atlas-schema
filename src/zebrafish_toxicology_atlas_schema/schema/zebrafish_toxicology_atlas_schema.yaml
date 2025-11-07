@@ -31,7 +31,7 @@ classes:
 
   Entity:
     description: The base class for all entities in the Zebrafish Toxicology Atlas Schema.
-    is_abstract: true
+    abstract: true
     slots:
       - id
 
