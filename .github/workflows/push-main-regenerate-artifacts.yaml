@@ -30,18 +30,15 @@ jobs:
           # Version range or exact version of a Python version to use, using SemVer's version range syntax.
           python-version: '3.11'
 
-      - name: Setup build environment
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y build-essential git wget curl
-          pip install poetry
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
 
       - name: Generate zebrafish-toxicology-atlas-schema Artifacts
         run: |
-          poetry install
-          make gen-project
-          make test_pr
-          make gendoc
+          uv sync
+          just gen-project
+          just test_pr
+          just gendoc
           if [ $? -eq 0 ]; then
             git config --local user.email "action@github.com"
             git config --local user.name "GitHub Action"
@@ -51,5 +48,5 @@ jobs:
             git commit -m "Regenerate artifacts from zebrafish-toxicology-atlas-schema.yaml"
             git push
           else
-            echo "'make' gen-project failed to finish successfully"
+            echo "'just' gen-project failed to finish successfully"
           fi
