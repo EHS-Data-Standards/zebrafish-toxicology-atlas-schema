@@ -1,4 +1,7 @@
 # Example for a valid Study object
 ---
-id: "https://example.org/study/001"
-publication_id: "https://pubmed.ncbi.nlm.nih.gov/12345678"
+uuid: "study-001"
+publication: "PMID:12345678"
+lab: "ZFIN:ZDB-LAB-000000-1"
+contributor:
+  - "ORCID:0000-0001-2345-6789"

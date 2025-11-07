@@ -1,0 +1,11 @@
+---
+uuid: "stressor-001"
+chemical:
+  uuid: "chemical-001"
+  chebi_id: "CHEBI:15377"
+  chemical_name: "ethanol"
+manufacturer: "Sigma-Aldrich"
+dose:
+  unit: "mg/L"
+  numeric_value: "10.5"
+comments: "High purity grade"

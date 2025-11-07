@@ -1,0 +1,13 @@
+---
+uuid: "phenotype-observation-001"
+control: false
+phenotype:
+  uuid: "phenotype-001"
+  phenotype_term_id: "PATO:0001236"
+  severity: "moderate"
+exposure_experiment:
+  - uuid: "exposure-experiment-001"
+    standard_rearing_conditions: true
+image:
+  - uuid: "image-001"
+    magnification: "10x"

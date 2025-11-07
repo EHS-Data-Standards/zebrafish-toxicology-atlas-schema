@@ -5,33 +5,34 @@
 --     * Slot: lab Description: The lab where the experiment originated.
 --     * Slot: uuid Description: UUID identifier.
 -- # Class: Experiment Description: An experiment within a study.
+--     * Slot: control Description: Whether this is a control observation.
 --     * Slot: uuid Description: UUID identifier.
 -- # Class: PhenotypeObservation Description: An observation of phenotypes resulting from exposure experiments.
---     * Slot: has_phenotype Description: The phenotype observed.
---     * Slot: is_control Description: Whether this is a control observation.
+--     * Slot: phenotype Description: The phenotype observed.
+--     * Slot: control Description: Whether this is a control observation.
 --     * Slot: uuid Description: UUID identifier.
 -- # Class: Phenotype Description: A phenotype observed in the fish as a result of exposure.
 --     * Slot: stage Description: The developmental stage.
---     * Slot: has_severity Description: The severity of the phenotype.
+--     * Slot: severity Description: The severity of the phenotype.
 --     * Slot: phenotype_term_id Description: The phenotype ontology term identifier.
 --     * Slot: uuid Description: UUID identifier.
---     * Slot: has_prevalence_id Description: The prevalence of the phenotype.
+--     * Slot: prevalence_id Description: The prevalence of the phenotype.
 -- # Class: ExposureExperiment Description: An experiment exposing fish to chemical stressors.
---     * Slot: has_subject Description: The fish subject of the exposure experiment.
+--     * Slot: subject Description: The fish subject of the exposure experiment.
 --     * Slot: standard_rearing_conditions Description: Whether standard rearing conditions were used.
 --     * Slot: rearing_condition_comments Description: Comments about rearing conditions.
 --     * Slot: uuid Description: UUID identifier.
 -- # Class: ExposureEvent Description: An instance of a toxicological exposure event in the study.
---     * Slot: has_route Description: The route of exposure.
---     * Slot: has_regimen Description: The regimen for the exposure.
+--     * Slot: route Description: The route of exposure.
+--     * Slot: regimen Description: The regimen for the exposure.
 --     * Slot: exposure_start_stage Description: The developmental stage at exposure start.
 --     * Slot: exposure_end_stage Description: The developmental stage at exposure end.
 --     * Slot: comments Description: Additional comments.
 --     * Slot: exposure_type Description: The exposure type.
---     * Slot: has_additional_exposure_conditions Description: Additional exposure conditions.
+--     * Slot: additional_exposure_conditions Description: Additional exposure conditions.
 --     * Slot: uuid Description: UUID identifier.
 -- # Class: Regimen Description: The regimen of exposure events.
---     * Slot: repeats Description: Number of repeats in the regimen.
+--     * Slot: number_of_repeats Description: Number of repeats in the regimen.
 --     * Slot: uuid Description: UUID identifier.
 --     * Slot: interval_between_exposures_id Description: Interval between individual exposures.
 --     * Slot: time_between_first_and_last_exposure_id Description: Time between first and last individual exposure.
@@ -57,38 +58,35 @@
 --     * Slot: uuid Description: UUID identifier.
 -- # Class: QuantityValue Description: A value of an attribute that is quantitative and measurable, expressed as a combination of a unit and a numeric value
 --     * Slot: id
---     * Slot: has_unit Description: The unit of the quantity value.
---     * Slot: has_numeric_value Description: The numeric value of the quantity value.
--- # Class: Study_has_experiments
+--     * Slot: unit Description: The unit of the quantity value.
+--     * Slot: numeric_value Description: The numeric value of the quantity value.
+-- # Class: Study_experiment
 --     * Slot: Study_uuid Description: Autocreated FK slot
---     * Slot: has_experiments_uuid Description: The experiments in this study.
--- # Class: Study_contributors
+--     * Slot: experiment_uuid Description: The experiments in this study.
+-- # Class: Study_contributor
 --     * Slot: Study_uuid Description: Autocreated FK slot
---     * Slot: contributors Description: The contributors of the study.
--- # Class: Experiment_has_phenotype_observations
+--     * Slot: contributor Description: The contributors of the study.
+-- # Class: Experiment_phenotype_observation
 --     * Slot: Experiment_uuid Description: Autocreated FK slot
---     * Slot: has_phenotype_observations_uuid Description: The phenotype observations from this experiment.
--- # Class: Experiment_has_controls
---     * Slot: Experiment_uuid Description: Autocreated FK slot
---     * Slot: has_controls_uuid Description: The control phenotype observations.
--- # Class: PhenotypeObservation_has_exposure_experiments
+--     * Slot: phenotype_observation_uuid Description: The phenotype observations from this experiment.
+-- # Class: PhenotypeObservation_exposure_experiment
 --     * Slot: PhenotypeObservation_uuid Description: Autocreated FK slot
---     * Slot: has_exposure_experiments_uuid Description: The exposure experiments for this observation.
--- # Class: PhenotypeObservation_has_images
+--     * Slot: exposure_experiment_uuid Description: The exposure experiments for this observation.
+-- # Class: PhenotypeObservation_image
 --     * Slot: PhenotypeObservation_uuid Description: Autocreated FK slot
---     * Slot: has_images_uuid Description: Images associated with this observation.
--- # Class: ExposureExperiment_has_exposure_events
+--     * Slot: image_uuid Description: Images associated with this observation.
+-- # Class: ExposureExperiment_exposure_event
 --     * Slot: ExposureExperiment_uuid Description: Autocreated FK slot
---     * Slot: has_exposure_events_uuid Description: The exposure events in this experiment.
--- # Class: ExposureEvent_has_stressor_chemicals
+--     * Slot: exposure_event_uuid Description: The exposure events in this experiment.
+-- # Class: ExposureEvent_stressor_chemical
 --     * Slot: ExposureEvent_uuid Description: Autocreated FK slot
---     * Slot: has_stressor_chemicals_uuid Description: The stressor chemicals used.
--- # Class: ExposureEvent_has_vehicles
+--     * Slot: stressor_chemical_uuid Description: The stressor chemicals used.
+-- # Class: ExposureEvent_vehicle
 --     * Slot: ExposureEvent_uuid Description: Autocreated FK slot
---     * Slot: has_vehicles Description: The vehicles used in the exposure.
--- # Class: ChemicalEntity_synonyms
+--     * Slot: vehicle Description: The vehicles used in the exposure.
+-- # Class: ChemicalEntity_synonym
 --     * Slot: ChemicalEntity_uuid Description: Autocreated FK slot
---     * Slot: synonyms
+--     * Slot: synonym
 
 CREATE TABLE "Entity" (
 	uuid TEXT NOT NULL,
@@ -101,6 +99,7 @@ CREATE TABLE "Study" (
 	PRIMARY KEY (uuid)
 );CREATE INDEX "ix_Study_uuid" ON "Study" (uuid);
 CREATE TABLE "Experiment" (
+	control BOOLEAN,
 	uuid TEXT NOT NULL,
 	PRIMARY KEY (uuid)
 );CREATE INDEX "ix_Experiment_uuid" ON "Experiment" (uuid);
@@ -125,29 +124,29 @@ CREATE TABLE "Fish" (
 );CREATE INDEX "ix_Fish_uuid" ON "Fish" (uuid);
 CREATE TABLE "QuantityValue" (
 	id INTEGER NOT NULL,
-	has_unit TEXT,
-	has_numeric_value TEXT,
+	unit TEXT,
+	numeric_value TEXT,
 	PRIMARY KEY (id)
 );CREATE INDEX "ix_QuantityValue_id" ON "QuantityValue" (id);
 CREATE TABLE "Phenotype" (
 	stage TEXT,
-	has_severity VARCHAR(8),
+	severity VARCHAR(8),
 	phenotype_term_id TEXT,
 	uuid TEXT NOT NULL,
-	has_prevalence_id INTEGER,
+	prevalence_id INTEGER,
 	PRIMARY KEY (uuid),
-	FOREIGN KEY(has_prevalence_id) REFERENCES "QuantityValue" (id)
+	FOREIGN KEY(prevalence_id) REFERENCES "QuantityValue" (id)
 );CREATE INDEX "ix_Phenotype_uuid" ON "Phenotype" (uuid);
 CREATE TABLE "ExposureExperiment" (
-	has_subject TEXT,
+	subject TEXT,
 	standard_rearing_conditions BOOLEAN,
 	rearing_condition_comments TEXT,
 	uuid TEXT NOT NULL,
 	PRIMARY KEY (uuid),
-	FOREIGN KEY(has_subject) REFERENCES "Fish" (uuid)
+	FOREIGN KEY(subject) REFERENCES "Fish" (uuid)
 );CREATE INDEX "ix_ExposureExperiment_uuid" ON "ExposureExperiment" (uuid);
 CREATE TABLE "Regimen" (
-	repeats INTEGER,
+	number_of_repeats INTEGER,
 	uuid TEXT NOT NULL,
 	interval_between_exposures_id INTEGER,
 	time_between_first_and_last_exposure_id INTEGER,
@@ -167,90 +166,83 @@ CREATE TABLE "Stressor" (
 	FOREIGN KEY(chemical) REFERENCES "ChemicalEntity" (uuid),
 	FOREIGN KEY(dose_id) REFERENCES "QuantityValue" (id)
 );CREATE INDEX "ix_Stressor_uuid" ON "Stressor" (uuid);
-CREATE TABLE "Study_has_experiments" (
+CREATE TABLE "Study_experiment" (
 	"Study_uuid" TEXT,
-	has_experiments_uuid TEXT,
-	PRIMARY KEY ("Study_uuid", has_experiments_uuid),
+	experiment_uuid TEXT,
+	PRIMARY KEY ("Study_uuid", experiment_uuid),
 	FOREIGN KEY("Study_uuid") REFERENCES "Study" (uuid),
-	FOREIGN KEY(has_experiments_uuid) REFERENCES "Experiment" (uuid)
-);CREATE INDEX "ix_Study_has_experiments_Study_uuid" ON "Study_has_experiments" ("Study_uuid");CREATE INDEX "ix_Study_has_experiments_has_experiments_uuid" ON "Study_has_experiments" (has_experiments_uuid);
-CREATE TABLE "Study_contributors" (
+	FOREIGN KEY(experiment_uuid) REFERENCES "Experiment" (uuid)
+);CREATE INDEX "ix_Study_experiment_Study_uuid" ON "Study_experiment" ("Study_uuid");CREATE INDEX "ix_Study_experiment_experiment_uuid" ON "Study_experiment" (experiment_uuid);
+CREATE TABLE "Study_contributor" (
 	"Study_uuid" TEXT,
-	contributors TEXT,
-	PRIMARY KEY ("Study_uuid", contributors),
+	contributor TEXT,
+	PRIMARY KEY ("Study_uuid", contributor),
 	FOREIGN KEY("Study_uuid") REFERENCES "Study" (uuid)
-);CREATE INDEX "ix_Study_contributors_contributors" ON "Study_contributors" (contributors);CREATE INDEX "ix_Study_contributors_Study_uuid" ON "Study_contributors" ("Study_uuid");
-CREATE TABLE "ChemicalEntity_synonyms" (
+);CREATE INDEX "ix_Study_contributor_contributor" ON "Study_contributor" (contributor);CREATE INDEX "ix_Study_contributor_Study_uuid" ON "Study_contributor" ("Study_uuid");
+CREATE TABLE "ChemicalEntity_synonym" (
 	"ChemicalEntity_uuid" TEXT,
-	synonyms TEXT,
-	PRIMARY KEY ("ChemicalEntity_uuid", synonyms),
+	synonym TEXT,
+	PRIMARY KEY ("ChemicalEntity_uuid", synonym),
 	FOREIGN KEY("ChemicalEntity_uuid") REFERENCES "ChemicalEntity" (uuid)
-);CREATE INDEX "ix_ChemicalEntity_synonyms_synonyms" ON "ChemicalEntity_synonyms" (synonyms);CREATE INDEX "ix_ChemicalEntity_synonyms_ChemicalEntity_uuid" ON "ChemicalEntity_synonyms" ("ChemicalEntity_uuid");
+);CREATE INDEX "ix_ChemicalEntity_synonym_synonym" ON "ChemicalEntity_synonym" (synonym);CREATE INDEX "ix_ChemicalEntity_synonym_ChemicalEntity_uuid" ON "ChemicalEntity_synonym" ("ChemicalEntity_uuid");
 CREATE TABLE "PhenotypeObservation" (
-	has_phenotype TEXT,
-	is_control BOOLEAN,
+	phenotype TEXT,
+	control BOOLEAN,
 	uuid TEXT NOT NULL,
 	PRIMARY KEY (uuid),
-	FOREIGN KEY(has_phenotype) REFERENCES "Phenotype" (uuid)
+	FOREIGN KEY(phenotype) REFERENCES "Phenotype" (uuid)
 );CREATE INDEX "ix_PhenotypeObservation_uuid" ON "PhenotypeObservation" (uuid);
 CREATE TABLE "ExposureEvent" (
-	has_route VARCHAR,
-	has_regimen TEXT,
+	route VARCHAR,
+	regimen TEXT,
 	exposure_start_stage TEXT,
 	exposure_end_stage TEXT,
 	comments TEXT,
 	exposure_type VARCHAR,
-	has_additional_exposure_conditions TEXT,
+	additional_exposure_conditions TEXT,
 	uuid TEXT NOT NULL,
 	PRIMARY KEY (uuid),
-	FOREIGN KEY(has_regimen) REFERENCES "Regimen" (uuid)
+	FOREIGN KEY(regimen) REFERENCES "Regimen" (uuid)
 );CREATE INDEX "ix_ExposureEvent_uuid" ON "ExposureEvent" (uuid);
-CREATE TABLE "Experiment_has_phenotype_observations" (
+CREATE TABLE "Experiment_phenotype_observation" (
 	"Experiment_uuid" TEXT,
-	has_phenotype_observations_uuid TEXT,
-	PRIMARY KEY ("Experiment_uuid", has_phenotype_observations_uuid),
+	phenotype_observation_uuid TEXT,
+	PRIMARY KEY ("Experiment_uuid", phenotype_observation_uuid),
 	FOREIGN KEY("Experiment_uuid") REFERENCES "Experiment" (uuid),
-	FOREIGN KEY(has_phenotype_observations_uuid) REFERENCES "PhenotypeObservation" (uuid)
-);CREATE INDEX "ix_Experiment_has_phenotype_observations_has_phenotype_observations_uuid" ON "Experiment_has_phenotype_observations" (has_phenotype_observations_uuid);CREATE INDEX "ix_Experiment_has_phenotype_observations_Experiment_uuid" ON "Experiment_has_phenotype_observations" ("Experiment_uuid");
-CREATE TABLE "Experiment_has_controls" (
-	"Experiment_uuid" TEXT,
-	has_controls_uuid TEXT,
-	PRIMARY KEY ("Experiment_uuid", has_controls_uuid),
-	FOREIGN KEY("Experiment_uuid") REFERENCES "Experiment" (uuid),
-	FOREIGN KEY(has_controls_uuid) REFERENCES "PhenotypeObservation" (uuid)
-);CREATE INDEX "ix_Experiment_has_controls_Experiment_uuid" ON "Experiment_has_controls" ("Experiment_uuid");CREATE INDEX "ix_Experiment_has_controls_has_controls_uuid" ON "Experiment_has_controls" (has_controls_uuid);
-CREATE TABLE "PhenotypeObservation_has_exposure_experiments" (
+	FOREIGN KEY(phenotype_observation_uuid) REFERENCES "PhenotypeObservation" (uuid)
+);CREATE INDEX "ix_Experiment_phenotype_observation_Experiment_uuid" ON "Experiment_phenotype_observation" ("Experiment_uuid");CREATE INDEX "ix_Experiment_phenotype_observation_phenotype_observation_uuid" ON "Experiment_phenotype_observation" (phenotype_observation_uuid);
+CREATE TABLE "PhenotypeObservation_exposure_experiment" (
 	"PhenotypeObservation_uuid" TEXT,
-	has_exposure_experiments_uuid TEXT,
-	PRIMARY KEY ("PhenotypeObservation_uuid", has_exposure_experiments_uuid),
+	exposure_experiment_uuid TEXT,
+	PRIMARY KEY ("PhenotypeObservation_uuid", exposure_experiment_uuid),
 	FOREIGN KEY("PhenotypeObservation_uuid") REFERENCES "PhenotypeObservation" (uuid),
-	FOREIGN KEY(has_exposure_experiments_uuid) REFERENCES "ExposureExperiment" (uuid)
-);CREATE INDEX "ix_PhenotypeObservation_has_exposure_experiments_has_exposure_experiments_uuid" ON "PhenotypeObservation_has_exposure_experiments" (has_exposure_experiments_uuid);CREATE INDEX "ix_PhenotypeObservation_has_exposure_experiments_PhenotypeObservation_uuid" ON "PhenotypeObservation_has_exposure_experiments" ("PhenotypeObservation_uuid");
-CREATE TABLE "PhenotypeObservation_has_images" (
+	FOREIGN KEY(exposure_experiment_uuid) REFERENCES "ExposureExperiment" (uuid)
+);CREATE INDEX "ix_PhenotypeObservation_exposure_experiment_PhenotypeObservation_uuid" ON "PhenotypeObservation_exposure_experiment" ("PhenotypeObservation_uuid");CREATE INDEX "ix_PhenotypeObservation_exposure_experiment_exposure_experiment_uuid" ON "PhenotypeObservation_exposure_experiment" (exposure_experiment_uuid);
+CREATE TABLE "PhenotypeObservation_image" (
 	"PhenotypeObservation_uuid" TEXT,
-	has_images_uuid TEXT,
-	PRIMARY KEY ("PhenotypeObservation_uuid", has_images_uuid),
+	image_uuid TEXT,
+	PRIMARY KEY ("PhenotypeObservation_uuid", image_uuid),
 	FOREIGN KEY("PhenotypeObservation_uuid") REFERENCES "PhenotypeObservation" (uuid),
-	FOREIGN KEY(has_images_uuid) REFERENCES "Image" (uuid)
-);CREATE INDEX "ix_PhenotypeObservation_has_images_PhenotypeObservation_uuid" ON "PhenotypeObservation_has_images" ("PhenotypeObservation_uuid");CREATE INDEX "ix_PhenotypeObservation_has_images_has_images_uuid" ON "PhenotypeObservation_has_images" (has_images_uuid);
-CREATE TABLE "ExposureExperiment_has_exposure_events" (
+	FOREIGN KEY(image_uuid) REFERENCES "Image" (uuid)
+);CREATE INDEX "ix_PhenotypeObservation_image_PhenotypeObservation_uuid" ON "PhenotypeObservation_image" ("PhenotypeObservation_uuid");CREATE INDEX "ix_PhenotypeObservation_image_image_uuid" ON "PhenotypeObservation_image" (image_uuid);
+CREATE TABLE "ExposureExperiment_exposure_event" (
 	"ExposureExperiment_uuid" TEXT,
-	has_exposure_events_uuid TEXT,
-	PRIMARY KEY ("ExposureExperiment_uuid", has_exposure_events_uuid),
+	exposure_event_uuid TEXT,
+	PRIMARY KEY ("ExposureExperiment_uuid", exposure_event_uuid),
 	FOREIGN KEY("ExposureExperiment_uuid") REFERENCES "ExposureExperiment" (uuid),
-	FOREIGN KEY(has_exposure_events_uuid) REFERENCES "ExposureEvent" (uuid)
-);CREATE INDEX "ix_ExposureExperiment_has_exposure_events_has_exposure_events_uuid" ON "ExposureExperiment_has_exposure_events" (has_exposure_events_uuid);CREATE INDEX "ix_ExposureExperiment_has_exposure_events_ExposureExperiment_uuid" ON "ExposureExperiment_has_exposure_events" ("ExposureExperiment_uuid");
-CREATE TABLE "ExposureEvent_has_stressor_chemicals" (
+	FOREIGN KEY(exposure_event_uuid) REFERENCES "ExposureEvent" (uuid)
+);CREATE INDEX "ix_ExposureExperiment_exposure_event_exposure_event_uuid" ON "ExposureExperiment_exposure_event" (exposure_event_uuid);CREATE INDEX "ix_ExposureExperiment_exposure_event_ExposureExperiment_uuid" ON "ExposureExperiment_exposure_event" ("ExposureExperiment_uuid");
+CREATE TABLE "ExposureEvent_stressor_chemical" (
 	"ExposureEvent_uuid" TEXT,
-	has_stressor_chemicals_uuid TEXT,
-	PRIMARY KEY ("ExposureEvent_uuid", has_stressor_chemicals_uuid),
+	stressor_chemical_uuid TEXT,
+	PRIMARY KEY ("ExposureEvent_uuid", stressor_chemical_uuid),
 	FOREIGN KEY("ExposureEvent_uuid") REFERENCES "ExposureEvent" (uuid),
-	FOREIGN KEY(has_stressor_chemicals_uuid) REFERENCES "Stressor" (uuid)
-);CREATE INDEX "ix_ExposureEvent_has_stressor_chemicals_ExposureEvent_uuid" ON "ExposureEvent_has_stressor_chemicals" ("ExposureEvent_uuid");CREATE INDEX "ix_ExposureEvent_has_stressor_chemicals_has_stressor_chemicals_uuid" ON "ExposureEvent_has_stressor_chemicals" (has_stressor_chemicals_uuid);
-CREATE TABLE "ExposureEvent_has_vehicles" (
+	FOREIGN KEY(stressor_chemical_uuid) REFERENCES "Stressor" (uuid)
+);CREATE INDEX "ix_ExposureEvent_stressor_chemical_ExposureEvent_uuid" ON "ExposureEvent_stressor_chemical" ("ExposureEvent_uuid");CREATE INDEX "ix_ExposureEvent_stressor_chemical_stressor_chemical_uuid" ON "ExposureEvent_stressor_chemical" (stressor_chemical_uuid);
+CREATE TABLE "ExposureEvent_vehicle" (
 	"ExposureEvent_uuid" TEXT,
-	has_vehicles VARCHAR(10),
-	PRIMARY KEY ("ExposureEvent_uuid", has_vehicles),
+	vehicle VARCHAR(10),
+	PRIMARY KEY ("ExposureEvent_uuid", vehicle),
 	FOREIGN KEY("ExposureEvent_uuid") REFERENCES "ExposureEvent" (uuid)
-);CREATE INDEX "ix_ExposureEvent_has_vehicles_ExposureEvent_uuid" ON "ExposureEvent_has_vehicles" ("ExposureEvent_uuid");CREATE INDEX "ix_ExposureEvent_has_vehicles_has_vehicles" ON "ExposureEvent_has_vehicles" (has_vehicles);
+);CREATE INDEX "ix_ExposureEvent_vehicle_vehicle" ON "ExposureEvent_vehicle" (vehicle);CREATE INDEX "ix_ExposureEvent_vehicle_ExposureEvent_uuid" ON "ExposureEvent_vehicle" ("ExposureEvent_uuid");
 

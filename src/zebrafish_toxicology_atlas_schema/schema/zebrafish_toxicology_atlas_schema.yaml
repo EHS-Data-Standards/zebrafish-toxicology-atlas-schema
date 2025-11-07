@@ -41,7 +41,7 @@ classes:
     slots:
       - experiment
       - publication
-      - contributors
+      - contributor
       - lab
 
   Experiment:
@@ -148,6 +148,12 @@ classes:
     description: A representation of the zebrafish used in the toxicology study.
     slots:
         - name
+        - id
+    slot_usage:
+        name:
+          required: true
+        id:
+          pattern: "^ZFIN:ZDB-FISH-[0-9]{4}-[0-9]{6}-[0-9]+$"
 
   QuantityValue:
     description: >-
@@ -159,6 +165,9 @@ classes:
 
 
 slots:
+  id:
+    range: uriorcurie
+    required: true
   publication:
     description: The publication identifier (e.g., PMID, DOI) for the study, or "not published".
     range: string
