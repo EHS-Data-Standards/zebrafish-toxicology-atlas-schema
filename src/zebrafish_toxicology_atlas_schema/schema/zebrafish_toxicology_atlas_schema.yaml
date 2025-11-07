@@ -33,7 +33,7 @@ classes:
     description: The base class for all entities in the Zebrafish Toxicology Atlas Schema.
     abstract: true
     slots:
-      - id
+      - uuid
 
   Study:
     is_a: Entity
@@ -43,7 +43,6 @@ classes:
       - publication
       - contributors
       - lab
-      - id
 
   Experiment:
     is_a: Entity
@@ -160,9 +159,6 @@ classes:
 
 
 slots:
-  id:
-    identifier: true
-    range: string
   publication:
     description: The publication identifier (e.g., PMID, DOI) for the study, or "not published".
     range: string
@@ -248,12 +244,15 @@ slots:
   has_regimen:
     description: The regimen for the exposure.
     range: Regimen
+    multivalued: false
   exposure_start_stage:
     description: The developmental stage at exposure start.
     range: uriorcurie
+    multivalued: false
   exposure_end_stage:
     description: The developmental stage at exposure end.
     range: uriorcurie
+    multivalued: false
   comments:
     description: Additional comments.
     range: string
@@ -270,8 +269,10 @@ slots:
     description: Name of the chemical.
     range: string
   uuid:
+    identifier: true
     description: UUID identifier.
     range: string
+    required: true
   chemical:
     description: Chemical identifier (CHEBI, CAS, or UUID).
     range: ChemicalEntity
