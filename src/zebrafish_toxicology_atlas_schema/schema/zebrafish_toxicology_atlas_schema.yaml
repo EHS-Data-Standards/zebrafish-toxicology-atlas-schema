@@ -40,7 +40,7 @@ classes:
     description: A toxicology study containing experiments.
     slots:
       - has_experiments
-      - publication_id
+      - publication
       - contributors
       - lab
       - id
@@ -161,10 +161,10 @@ classes:
 slots:
   id:
     identifier: true
-    range: uriorcurie
-  publication_id:
-    description: The publication identifier (e.g., PMID, DOI) for the study.
-    range: uriorcurie
+    range: string
+  publication:
+    description: The publication identifier (e.g., PMID, DOI) for the study, or "not published".
+    range: string
   name:
     description: Name or label of an entity.
   exposure_type:
@@ -284,10 +284,10 @@ slots:
   interval_between_indv_exposures:
     description: Interval between individual exposures.
     range: QuantityValue
-  time_btwn_1_and_last_indv_exposure:
+  time_btwn_first_and_last_exposure:
     description: Time between first and last individual exposure.
     range: QuantityValue
-  indv_exposure_duration:
+  individual_exposure_duration:
     description: Individual exposure duration.
     range: QuantityValue
   magnification:
