@@ -55,6 +55,7 @@
 --     * Slot: scale_bar Description: Scale bar information.
 -- # Class: Fish Description: A representation of the zebrafish used in the toxicology study.
 --     * Slot: name Description: Name or label of an entity.
+--     * Slot: id
 --     * Slot: uuid Description: UUID identifier.
 -- # Class: QuantityValue Description: A value of an attribute that is quantitative and measurable, expressed as a combination of a unit and a numeric value
 --     * Slot: id
@@ -118,7 +119,8 @@ CREATE TABLE "Image" (
 	PRIMARY KEY (uuid)
 );CREATE INDEX "ix_Image_uuid" ON "Image" (uuid);
 CREATE TABLE "Fish" (
-	name TEXT,
+	name TEXT NOT NULL,
+	id TEXT NOT NULL,
 	uuid TEXT NOT NULL,
 	PRIMARY KEY (uuid)
 );CREATE INDEX "ix_Fish_uuid" ON "Fish" (uuid);
@@ -172,13 +174,13 @@ CREATE TABLE "Study_experiment" (
 	PRIMARY KEY ("Study_uuid", experiment_uuid),
 	FOREIGN KEY("Study_uuid") REFERENCES "Study" (uuid),
 	FOREIGN KEY(experiment_uuid) REFERENCES "Experiment" (uuid)
-);CREATE INDEX "ix_Study_experiment_Study_uuid" ON "Study_experiment" ("Study_uuid");CREATE INDEX "ix_Study_experiment_experiment_uuid" ON "Study_experiment" (experiment_uuid);
+);CREATE INDEX "ix_Study_experiment_experiment_uuid" ON "Study_experiment" (experiment_uuid);CREATE INDEX "ix_Study_experiment_Study_uuid" ON "Study_experiment" ("Study_uuid");
 CREATE TABLE "Study_contributor" (
 	"Study_uuid" TEXT,
 	contributor TEXT,
 	PRIMARY KEY ("Study_uuid", contributor),
 	FOREIGN KEY("Study_uuid") REFERENCES "Study" (uuid)
-);CREATE INDEX "ix_Study_contributor_contributor" ON "Study_contributor" (contributor);CREATE INDEX "ix_Study_contributor_Study_uuid" ON "Study_contributor" ("Study_uuid");
+);CREATE INDEX "ix_Study_contributor_Study_uuid" ON "Study_contributor" ("Study_uuid");CREATE INDEX "ix_Study_contributor_contributor" ON "Study_contributor" (contributor);
 CREATE TABLE "ChemicalEntity_synonym" (
 	"ChemicalEntity_uuid" TEXT,
 	synonym TEXT,
@@ -210,28 +212,28 @@ CREATE TABLE "Experiment_phenotype_observation" (
 	PRIMARY KEY ("Experiment_uuid", phenotype_observation_uuid),
 	FOREIGN KEY("Experiment_uuid") REFERENCES "Experiment" (uuid),
 	FOREIGN KEY(phenotype_observation_uuid) REFERENCES "PhenotypeObservation" (uuid)
-);CREATE INDEX "ix_Experiment_phenotype_observation_Experiment_uuid" ON "Experiment_phenotype_observation" ("Experiment_uuid");CREATE INDEX "ix_Experiment_phenotype_observation_phenotype_observation_uuid" ON "Experiment_phenotype_observation" (phenotype_observation_uuid);
+);CREATE INDEX "ix_Experiment_phenotype_observation_phenotype_observation_uuid" ON "Experiment_phenotype_observation" (phenotype_observation_uuid);CREATE INDEX "ix_Experiment_phenotype_observation_Experiment_uuid" ON "Experiment_phenotype_observation" ("Experiment_uuid");
 CREATE TABLE "PhenotypeObservation_exposure_experiment" (
 	"PhenotypeObservation_uuid" TEXT,
 	exposure_experiment_uuid TEXT,
 	PRIMARY KEY ("PhenotypeObservation_uuid", exposure_experiment_uuid),
 	FOREIGN KEY("PhenotypeObservation_uuid") REFERENCES "PhenotypeObservation" (uuid),
 	FOREIGN KEY(exposure_experiment_uuid) REFERENCES "ExposureExperiment" (uuid)
-);CREATE INDEX "ix_PhenotypeObservation_exposure_experiment_PhenotypeObservation_uuid" ON "PhenotypeObservation_exposure_experiment" ("PhenotypeObservation_uuid");CREATE INDEX "ix_PhenotypeObservation_exposure_experiment_exposure_experiment_uuid" ON "PhenotypeObservation_exposure_experiment" (exposure_experiment_uuid);
+);CREATE INDEX "ix_PhenotypeObservation_exposure_experiment_exposure_experiment_uuid" ON "PhenotypeObservation_exposure_experiment" (exposure_experiment_uuid);CREATE INDEX "ix_PhenotypeObservation_exposure_experiment_PhenotypeObservation_uuid" ON "PhenotypeObservation_exposure_experiment" ("PhenotypeObservation_uuid");
 CREATE TABLE "PhenotypeObservation_image" (
 	"PhenotypeObservation_uuid" TEXT,
 	image_uuid TEXT,
 	PRIMARY KEY ("PhenotypeObservation_uuid", image_uuid),
 	FOREIGN KEY("PhenotypeObservation_uuid") REFERENCES "PhenotypeObservation" (uuid),
 	FOREIGN KEY(image_uuid) REFERENCES "Image" (uuid)
-);CREATE INDEX "ix_PhenotypeObservation_image_PhenotypeObservation_uuid" ON "PhenotypeObservation_image" ("PhenotypeObservation_uuid");CREATE INDEX "ix_PhenotypeObservation_image_image_uuid" ON "PhenotypeObservation_image" (image_uuid);
+);CREATE INDEX "ix_PhenotypeObservation_image_image_uuid" ON "PhenotypeObservation_image" (image_uuid);CREATE INDEX "ix_PhenotypeObservation_image_PhenotypeObservation_uuid" ON "PhenotypeObservation_image" ("PhenotypeObservation_uuid");
 CREATE TABLE "ExposureExperiment_exposure_event" (
 	"ExposureExperiment_uuid" TEXT,
 	exposure_event_uuid TEXT,
 	PRIMARY KEY ("ExposureExperiment_uuid", exposure_event_uuid),
 	FOREIGN KEY("ExposureExperiment_uuid") REFERENCES "ExposureExperiment" (uuid),
 	FOREIGN KEY(exposure_event_uuid) REFERENCES "ExposureEvent" (uuid)
-);CREATE INDEX "ix_ExposureExperiment_exposure_event_exposure_event_uuid" ON "ExposureExperiment_exposure_event" (exposure_event_uuid);CREATE INDEX "ix_ExposureExperiment_exposure_event_ExposureExperiment_uuid" ON "ExposureExperiment_exposure_event" ("ExposureExperiment_uuid");
+);CREATE INDEX "ix_ExposureExperiment_exposure_event_ExposureExperiment_uuid" ON "ExposureExperiment_exposure_event" ("ExposureExperiment_uuid");CREATE INDEX "ix_ExposureExperiment_exposure_event_exposure_event_uuid" ON "ExposureExperiment_exposure_event" (exposure_event_uuid);
 CREATE TABLE "ExposureEvent_stressor_chemical" (
 	"ExposureEvent_uuid" TEXT,
 	stressor_chemical_uuid TEXT,
@@ -244,5 +246,5 @@ CREATE TABLE "ExposureEvent_vehicle" (
 	vehicle VARCHAR(10),
 	PRIMARY KEY ("ExposureEvent_uuid", vehicle),
 	FOREIGN KEY("ExposureEvent_uuid") REFERENCES "ExposureEvent" (uuid)
-);CREATE INDEX "ix_ExposureEvent_vehicle_vehicle" ON "ExposureEvent_vehicle" (vehicle);CREATE INDEX "ix_ExposureEvent_vehicle_ExposureEvent_uuid" ON "ExposureEvent_vehicle" ("ExposureEvent_uuid");
+);CREATE INDEX "ix_ExposureEvent_vehicle_ExposureEvent_uuid" ON "ExposureEvent_vehicle" ("ExposureEvent_uuid");CREATE INDEX "ix_ExposureEvent_vehicle_vehicle" ON "ExposureEvent_vehicle" (vehicle);
 

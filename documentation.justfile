@@ -4,6 +4,8 @@
 gendoc:
     mkdir -p {{docdir}}
     uv run gen-doc -d {{docdir}} {{source_schema_path}}
+    mkdir -p {{dest}}/jsonschema
+    uv run gen-jsonschema {{source_schema_path}} > {{dest}}/jsonschema/{{schema_name}}.schema.json
     cp {{dest}}/owl/{{schema_name}}.owl.ttl {{docdir}}/{{schema_name}}.owl.ttl
     cp {{dest}}/jsonld/{{schema_name}}.context.jsonld {{docdir}}/{{schema_name}}.context.jsonld
     cp {{dest}}/jsonld/{{schema_name}}.context.jsonld {{docdir}}/context.jsonld
