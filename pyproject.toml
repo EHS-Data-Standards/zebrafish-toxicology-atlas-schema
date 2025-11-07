@@ -30,6 +30,7 @@ dev = [
 docs = [
     "linkml>=1.8.1",
     "mkdocs-material>=8.2.8",
+    "mkdocs-mermaid2-plugin>=1.1.1",
 ]
 
 [tool.hatch.build.targets.wheel]

@@ -45,7 +45,6 @@ jobs:
           mkdir -p docs
           touch docs/.nojekyll
           just gendoc
-          ([ ! -f docs/about.md ] && cp src/docs/about.md docs/) || true
           just mkd-gh-deploy
       
 
