@@ -1,0 +1,4 @@
+# Example for a valid Study object
+---
+id: "https://example.org/study/001"
+publication_id: "https://pubmed.ncbi.nlm.nih.gov/12345678"

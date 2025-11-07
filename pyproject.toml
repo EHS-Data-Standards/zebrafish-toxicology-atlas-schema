@@ -16,6 +16,7 @@ dependencies = [
     "linkml>=1.8.1",
     "yamllint>=1.35.1",
     "codespell>=2.4.1",
+    "eralchemy2>=1.4.1",
 ]
 
 [project.optional-dependencies]

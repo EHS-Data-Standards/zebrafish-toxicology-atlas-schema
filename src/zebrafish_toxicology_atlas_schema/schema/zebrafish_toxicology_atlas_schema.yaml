@@ -109,9 +109,9 @@ classes:
     is_a: Entity
     description: The regimen of exposure events.
     slots:
-      - interval_between_indv_exposures
-      - time_btwn_1_and_last_indv_exposure
-      - indv_exposure_duration
+      - interval_between_exposures
+      - time_between_first_and_last_exposure
+      - individual_exposure_duration
       - repeats
 
   Stressor:
@@ -283,10 +283,10 @@ slots:
     description: The dose of the chemical.
     range: QuantityValue
     required: true
-  interval_between_indv_exposures:
+  interval_between_exposures:
     description: Interval between individual exposures.
     range: QuantityValue
-  time_btwn_first_and_last_exposure:
+  time_between_first_and_last_exposure:
     description: Time between first and last individual exposure.
     range: QuantityValue
   individual_exposure_duration:

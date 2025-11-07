@@ -23,6 +23,17 @@ gendoc:
     echo "This diagram shows the entity-relationship model of the Zebrafish Toxicology Atlas Schema." >> {{docdir}}/schema_diagram.md
     echo "" >> {{docdir}}/schema_diagram.md
     cat {{docdir}}/schema_diagram.mmd >> {{docdir}}/schema_diagram.md
+    mkdir -p {{dest}}/sqlddl
+    uv run gen-sqlddl {{source_schema_path}} > {{dest}}/sqlddl/{{schema_name}}.sql
+    rm -f {{docdir}}/temp.db
+    sqlite3 {{docdir}}/temp.db < {{dest}}/sqlddl/{{schema_name}}.sql
+    uv run eralchemy2 -i "sqlite:///{{docdir}}/temp.db" -o {{docdir}}/sql_er_diagram.png
+    echo "# SQL Entity-Relationship Diagram" > {{docdir}}/sql_er_diagram.md
+    echo "" >> {{docdir}}/sql_er_diagram.md
+    echo "This diagram shows the database table structure generated from the SQL DDL, including primary keys, foreign keys, and table relationships." >> {{docdir}}/sql_er_diagram.md
+    echo "" >> {{docdir}}/sql_er_diagram.md
+    echo "![SQL ER Diagram](sql_er_diagram.png)" >> {{docdir}}/sql_er_diagram.md
+    cp {{dest}}/sqlddl/{{schema_name}}.sql {{docdir}}/{{schema_name}}.sql
     uv run gen-doc -d {{docdir}} --template-directory {{src}}/{{templatedir}} {{source_schema_path}}
 
 # Build docs and run test server
