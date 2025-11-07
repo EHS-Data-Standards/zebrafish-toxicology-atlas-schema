@@ -46,15 +46,13 @@ jobs:
           uv sync
           just gen-project
           just test_pr
-          just gendoc
           if [ $? -eq 0 ]; then
             git config --local user.email "action@github.com"
             git config --local user.name "GitHub Action"
             git add project/*
             git add src/*
-            git add docs/*
-            git commit -m "Regenerate artifacts from zebrafish-toxicology-atlas-schema.yaml" || echo "No changes to commit"
-            git push
+            git diff --staged --quiet || git commit -m "Regenerate artifacts from zebrafish-toxicology-atlas-schema.yaml"
+            git diff --staged --quiet || git push
           else
             echo "'just' gen-project failed to finish successfully"
           fi
