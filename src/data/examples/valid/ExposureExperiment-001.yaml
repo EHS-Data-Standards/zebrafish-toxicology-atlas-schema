@@ -1,13 +1,7 @@
 ---
 uuid: "exposure-experiment-001"
-subject:
-  uuid: "fish-001"
-  name: "AB wildtype"
-  id: "ZFIN:ZDB-FISH-2024-000001-1"
+subject: "fish-001"
 standard_rearing_conditions: true
 rearing_condition_comments: "Standard Westerfield conditions"
 exposure_event:
-  - uuid: "exposure-event-001"
-    route: "EXO:0000002"
-    exposure_start_stage: "ZFIN:ZDB-STAGE-050211-5"
-    exposure_end_stage: "ZFIN:ZDB-STAGE-050211-6"
+  - "exposure-event-001"

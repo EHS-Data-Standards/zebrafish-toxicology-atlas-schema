@@ -2,5 +2,4 @@
 uuid: "experiment-001"
 control: false
 phenotype_observation:
-  - uuid: "phenotype-observation-001"
-    control: false
+  - "phenotype-observation-001"

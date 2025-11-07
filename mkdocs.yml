@@ -17,6 +17,7 @@ nav:
   - Overview: index.md
   - Schema Diagram: schema_diagram.md
   - SQL ER Diagram: sql_er_diagram.md
+  - JSON Schema: zebrafish_toxicology_atlas_schema.json
 site_url: https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema
 repo_url: https://github.com/sierra-moxon/zebrafish-toxicology-atlas-schema
 extra_css:
