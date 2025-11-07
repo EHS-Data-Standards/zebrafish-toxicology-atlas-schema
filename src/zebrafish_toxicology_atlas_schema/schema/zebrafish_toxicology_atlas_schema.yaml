@@ -87,7 +87,7 @@ classes:
       - standard_rearing_conditions
       - rearing_condition_comments
 
-  ExposureEvent:
+  ToxicExposureEvent:
     is_a: Entity
     description: >-
       An instance of a toxicological exposure event in the study.
