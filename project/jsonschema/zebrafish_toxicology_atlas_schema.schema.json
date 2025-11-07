@@ -59,7 +59,7 @@
                 "phenotype_observation": {
                     "description": "The phenotype observations from this experiment.",
                     "items": {
-                        "type": "string"
+                        "$ref": "#/$defs/PhenotypeObservation"
                     },
                     "type": [
                         "array",
@@ -114,11 +114,15 @@
                     "description": "The exposure type."
                 },
                 "regimen": {
-                    "description": "The regimen for the exposure.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Regimen"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "The regimen for the exposure."
                 },
                 "route": {
                     "$ref": "#/$defs/ExposureRouteEnum",
@@ -127,7 +131,7 @@
                 "stressor_chemical": {
                     "description": "The stressor chemicals used.",
                     "items": {
-                        "type": "string"
+                        "$ref": "#/$defs/Stressor"
                     },
                     "type": [
                         "array",
@@ -162,7 +166,7 @@
                 "exposure_event": {
                     "description": "The exposure events in this experiment.",
                     "items": {
-                        "type": "string"
+                        "$ref": "#/$defs/ExposureEvent"
                     },
                     "type": [
                         "array",
@@ -184,11 +188,15 @@
                     ]
                 },
                 "subject": {
-                    "description": "The fish subject of the exposure experiment.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Fish"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "The fish subject of the exposure experiment."
                 },
                 "uuid": {
                     "description": "UUID identifier.",
@@ -200,6 +208,15 @@
             ],
             "title": "ExposureExperiment",
             "type": "object"
+        },
+        "ExposureRegimenTypeEnum": {
+            "description": "An enumeration of exposure regimen types.",
+            "enum": [
+                "continuous",
+                "repeated"
+            ],
+            "title": "ExposureRegimenTypeEnum",
+            "type": "string"
         },
         "ExposureRouteEnum": {
             "description": "An enumeration of exposure routes derived from the EXO ontology.",
@@ -338,7 +355,7 @@
                 "exposure_experiment": {
                     "description": "The exposure experiments for this observation.",
                     "items": {
-                        "type": "string"
+                        "$ref": "#/$defs/ExposureExperiment"
                     },
                     "type": [
                         "array",
@@ -348,7 +365,7 @@
                 "image": {
                     "description": "Images associated with this observation.",
                     "items": {
-                        "type": "string"
+                        "$ref": "#/$defs/Image"
                     },
                     "type": [
                         "array",
@@ -356,11 +373,15 @@
                     ]
                 },
                 "phenotype": {
-                    "description": "The phenotype observed.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Phenotype"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "The phenotype observed."
                 },
                 "uuid": {
                     "description": "UUID identifier.",
@@ -404,6 +425,10 @@
             "additionalProperties": false,
             "description": "The regimen of exposure events.",
             "properties": {
+                "exposure_regimen_type": {
+                    "$ref": "#/$defs/ExposureRegimenTypeEnum",
+                    "description": "The type of exposure regimen (e.g., continuous or repeated)."
+                },
                 "individual_exposure_duration": {
                     "anyOf": [
                         {
@@ -470,8 +495,8 @@
             "description": "A chemical stressor used in exposure experiments.",
             "properties": {
                 "chemical": {
-                    "description": "Chemical identifier (CHEBI, CAS, or UUID).",
-                    "type": "string"
+                    "$ref": "#/$defs/ChemicalEntity",
+                    "description": "Chemical identifier (CHEBI, CAS, or UUID)."
                 },
                 "comments": {
                     "description": "Additional comments.",
@@ -522,7 +547,7 @@
                 "experiment": {
                     "description": "The experiments in this study.",
                     "items": {
-                        "type": "string"
+                        "$ref": "#/$defs/Experiment"
                     },
                     "type": [
                         "array",

@@ -202,9 +202,7 @@ slots:
   exposure_experiment:
     description: The exposure experiments for this observation.
     range: ExposureExperiment
-    multivalued: true
-    inlined_as_list: true
-    inlined: true
+    multivalued: false
   image:
     description: Images associated with this observation.
     range: Image
@@ -216,6 +214,7 @@ slots:
     range: Phenotype
     inlined_as_list: true
     inlined: true
+    multivalued: true
   stage:
     description: The developmental stage.
     range: uriorcurie
