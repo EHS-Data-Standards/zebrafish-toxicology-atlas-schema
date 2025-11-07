@@ -1,0 +1,13 @@
+---
+uuid: "regimen-001"
+exposure_regimen_type: "repeated"
+number_of_repeats: 3
+interval_between_exposures:
+  unit: "hours"
+  numeric_value: "24"
+time_between_first_and_last_exposure:
+  unit: "hours"
+  numeric_value: "72"
+individual_exposure_duration:
+  unit: "hours"
+  numeric_value: "6"

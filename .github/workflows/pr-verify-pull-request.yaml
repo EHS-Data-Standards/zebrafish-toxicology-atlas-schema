@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python: [ "3.10", "3.11", "3.12" ]
+        python: [ "3.9", "3.10", "3.11", "3.12", "3.13" ]
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -29,18 +29,23 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
 
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y graphviz graphviz-dev
+
       - name: Install dependencies
         run: |
           pip install --upgrade pip
-          pip install poetry
-          poetry install 
+          pip install uv
+          uv sync
+
+      - name: Install just
+        uses: extractions/setup-just@v2
 
       - name: Run tests, codespell, and yamllint
         run: |
-          make test_pr
-
-      - name: Validate YAML file
-        run: yamllint -c .yamllint-config src/zebrafish_toxicology_atlas_schema/schema/zebrafish_toxicology_atlas_schema.yaml
+          just test_pr
 
 #      - name: Codespell
 #        uses: codespell-project/actions-codespell@v1

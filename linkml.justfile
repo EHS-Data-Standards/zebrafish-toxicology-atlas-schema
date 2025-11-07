@@ -1,0 +1,26 @@
+# LinkML-specific recipes
+
+# Generate infores catalog
+infores:
+    uv run gen-python {{source_schema_path}} > {{pymodel}}/{{schema_name}}.py
+
+# Generate all project files
+gen-project:
+    uv run gen-project \
+        --exclude excel \
+        --include graphql \
+        --include jsonld \
+        --exclude markdown \
+        --include prefixmap \
+        --include proto \
+        --include shacl \
+        --include shex \
+        --exclude sqlddl \
+        --include jsonldcontext \
+        --include jsonschema \
+        --exclude owl \
+        --include python \
+        --include rdf \
+        -d {{dest}} {{source_schema_path}}
+    uv run gen-pydantic --version 2 {{source_schema_path}} > {{pymodel}}/pydanticmodel_v2.py
+    uv run gen-owl --mergeimports --no-metaclasses --no-type-objects --add-root-classes --mixins-as-expressions {{source_schema_path}} > {{dest}}/owl/{{schema_name}}.owl.ttl
