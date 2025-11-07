@@ -10,8 +10,13 @@
       
         <link rel="canonical" href="https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/">
       
+      
+      
+        <link rel="next" href="schema_diagram/">
+      
+      
       <link rel="icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-8.5.10">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.23">
     
     
       
@@ -19,19 +24,17 @@
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.975780f9.min.css">
+      <link rel="stylesheet" href="assets/stylesheets/main.84d31ad4.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.2505c338.min.css">
-        
-          
-          
-          <meta name="theme-color" content="#000000">
-        
+        <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
       
       
 
+
     
+    
+      
     
     
       
@@ -45,7 +48,7 @@
     
       <link rel="stylesheet" href="style.css">
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -54,9 +57,7 @@
   
   
 
-
-  <script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-J23SCD6JB8"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-J23SCD6JB8",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-J23SCD6JB8",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
-
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-J23SCD6JB8"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-J23SCD6JB8",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-J23SCD6JB8",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
   
     <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
   
@@ -72,9 +73,8 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="black" data-md-color-primary="black" data-md-color-accent="">
+    <body dir="ltr" data-md-color-scheme="black" data-md-color-primary="black" data-md-color-accent="indigo">
   
-    
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -94,7 +94,9 @@
     
       
 
-<header class="md-header" data-md-component="header">
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="." title="Zebrafish Toxicology Atlas Schema Documentation" class="md-header__button md-logo" aria-label="Zebrafish Toxicology Atlas Schema Documentation" data-md-component="logo">
       
@@ -102,7 +104,8 @@
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
     </label>
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
@@ -121,47 +124,57 @@
       </div>
     </div>
     
+      
     
     
-      <label class="md-header__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
-      </label>
-      <div class="md-search" data-md-component="search" role="dialog">
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
       <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
       </label>
       <nav class="md-search__options" aria-label="Search">
         
         <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
       </nav>
       
     </form>
     <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
             Initializing search
           </div>
-          <ol class="md-search-result__list"></ol>
+          <ol class="md-search-result__list" role="presentation"></ol>
         </div>
       </div>
     </div>
   </div>
 </div>
+      
     
     
       <div class="md-header__source">
         <a href="https://github.com/sierra-moxon/zebrafish-toxicology-atlas-schema" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
     GitHub
@@ -191,6 +204,7 @@
                     
 
 
+
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="." title="Zebrafish Toxicology Atlas Schema Documentation" class="md-nav__button md-logo" aria-label="Zebrafish Toxicology Atlas Schema Documentation" data-md-component="logo">
@@ -205,7 +219,7 @@
       <a href="https://github.com/sierra-moxon/zebrafish-toxicology-atlas-schema" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
     GitHub
@@ -217,28 +231,43 @@
     
       
       
-      
-
   
   
     
   
   
+  
     <li class="md-nav__item md-nav__item--active">
       
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
         
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Overview
+          
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="." class="md-nav__link md-nav__link--active">
-        Overview
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
       </a>
       
         
@@ -258,35 +287,45 @@
       
         <li class="md-nav__item">
   <a href="#classes" class="md-nav__link">
-    Classes
+    <span class="md-ellipsis">
+      Classes
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#slots" class="md-nav__link">
-    Slots
+    <span class="md-ellipsis">
+      Slots
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#enumerations" class="md-nav__link">
-    Enumerations
+    <span class="md-ellipsis">
+      Enumerations
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#types" class="md-nav__link">
-    Types
+    <span class="md-ellipsis">
+      Types
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#subsets" class="md-nav__link">
-    Subsets
+    <span class="md-ellipsis">
+      Subsets
+    </span>
   </a>
   
 </li>
@@ -295,6 +334,72 @@
   
 </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="schema_diagram/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Schema Diagram
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sql_er_diagram/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SQL ER Diagram
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="zebrafish_toxicology_atlas_schema.json" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    JSON Schema
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -327,35 +432,45 @@
       
         <li class="md-nav__item">
   <a href="#classes" class="md-nav__link">
-    Classes
+    <span class="md-ellipsis">
+      Classes
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#slots" class="md-nav__link">
-    Slots
+    <span class="md-ellipsis">
+      Slots
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#enumerations" class="md-nav__link">
-    Enumerations
+    <span class="md-ellipsis">
+      Enumerations
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#types" class="md-nav__link">
-    Types
+    <span class="md-ellipsis">
+      Types
+    </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#subsets" class="md-nav__link">
-    Subsets
+    <span class="md-ellipsis">
+      Subsets
+    </span>
   </a>
   
 </li>
@@ -374,10 +489,9 @@
                 
                   
 
-  <a href="https://github.com/sierra-moxon/zebrafish-toxicology-atlas-schema/edit/master/docs/index.md" title="Edit this page" class="md-content__button md-icon">
-    
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
-  </a>
+
+  
+  
 
 
 <h1 id="zebrafish-toxicology-atlas-schema">zebrafish-toxicology-atlas-schema</h1>
@@ -394,52 +508,56 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="Annotation/">Annotation</a></td>
-<td>Root class for entity annotations.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="QuantityValue/">QuantityValue</a></td>
-<td>A value of an attribute that is quantitative and measurable, expressed as a combination of a unit and a numeric value</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Concentration/">Concentration</a></td>
-<td>The amount of a chemical introduced as part of the exposure or experimental treatment.</td>
-</tr>
-<tr>
-<td><a href="FishExposureOutcome/">FishExposureOutcome</a></td>
-<td>A representation of the phenotype observed in the fish as a result of exposure.</td>
-</tr>
-<tr>
-<td><a href="NamedThing/">NamedThing</a></td>
-<td>A named entity.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Allele/">Allele</a></td>
-<td>A representation of the genetic background of the fish.</td>
+<td><a href="Entity/">Entity</a></td>
+<td>The base class for all entities in the Zebrafish Toxicology Atlas Schema</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ChemicalEntity/">ChemicalEntity</a></td>
-<td>A chemical compound used as a toxicant in the exposure or experimental treatment.</td>
+<td>A chemical compound used as a toxicant in the study</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="DevelopmentalStage/">DevelopmentalStage</a></td>
-<td>The specific phase in the zebrafish's developmental process.</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Experiment/">Experiment</a></td>
+<td>An experiment within a study</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ExposureEvent/">ExposureEvent</a></td>
-<td>An instance of a toxicological exposure event in the study.  According to ECTO,  an exposure</td>
+<td>An instance of a toxicological exposure event in the study</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ExposureExperiment/">ExposureExperiment</a></td>
+<td>An experiment exposing fish to chemical stressors</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Fish/">Fish</a></td>
-<td>A representation of the zebrafish used in the toxicology study.</td>
+<td>A representation of the zebrafish used in the toxicology study</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Gene/">Gene</a></td>
-<td>A representation of a gene.</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Image/">Image</a></td>
+<td>An image associated with a phenotype observation</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Phenotype/">Phenotype</a></td>
-<td>A phenotype observed in the fish as a result of exposure in an experimental treatment.</td>
+<td>A phenotype observed in the fish as a result of exposure</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="PhenotypeObservation/">PhenotypeObservation</a></td>
+<td>An observation of phenotypes resulting from exposure experiments</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Regimen/">Regimen</a></td>
+<td>The regimen of exposure events</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Stressor/">Stressor</a></td>
+<td>A chemical stressor used in exposure experiments</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Study/">Study</a></td>
+<td>A toxicology study containing experiments</td>
+</tr>
+<tr>
+<td><a href="QuantityValue/">QuantityValue</a></td>
+<td>A value of an attribute that is quantitative and measurable, expressed as a c...</td>
 </tr>
 </tbody>
 </table>
@@ -453,88 +571,188 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="allele/">allele</a></td>
-<td>The allele present in a fish</td>
+<td><a href="additional_exposure_conditions/">additional_exposure_conditions</a></td>
+<td>Additional exposure conditions</td>
 </tr>
 <tr>
-<td><a href="background/">background</a></td>
-<td>The genetic background of the fish</td>
+<td><a href="cas_id/">cas_id</a></td>
+<td>CAS identifier for the chemical</td>
 </tr>
 <tr>
-<td><a href="concentration/">concentration</a></td>
-<td>The concentration of the toxicant</td>
+<td><a href="chebi_id/">chebi_id</a></td>
+<td>CHEBI identifier for the chemical</td>
 </tr>
 <tr>
-<td><a href="duration/">duration</a></td>
-<td>The duration of the exposure</td>
+<td><a href="chemical/">chemical</a></td>
+<td>Chemical identifier (CHEBI, CAS, or UUID)</td>
 </tr>
 <tr>
-<td><a href="end_stage/">end_stage</a></td>
-<td>The developmental stage of the fish at the end of the exposure or experimenta...</td>
+<td><a href="chemical_name/">chemical_name</a></td>
+<td>Name of the chemical</td>
+</tr>
+<tr>
+<td><a href="comments/">comments</a></td>
+<td>Additional comments</td>
+</tr>
+<tr>
+<td><a href="contributor/">contributor</a></td>
+<td>The contributors of the study</td>
+</tr>
+<tr>
+<td><a href="control/">control</a></td>
+<td>Whether this is a control observation</td>
+</tr>
+<tr>
+<td><a href="dose/">dose</a></td>
+<td>The dose of the chemical</td>
+</tr>
+<tr>
+<td><a href="experiment/">experiment</a></td>
+<td>The experiments in this study</td>
+</tr>
+<tr>
+<td><a href="exposure_end_stage/">exposure_end_stage</a></td>
+<td>The developmental stage at exposure end</td>
 </tr>
 <tr>
 <td><a href="exposure_event/">exposure_event</a></td>
-<td>The exposure event</td>
+<td>The exposure events in this experiment</td>
 </tr>
 <tr>
-<td><a href="exposure_substance/">exposure_substance</a></td>
-<td>The substance used in the exposure</td>
+<td><a href="exposure_experiment/">exposure_experiment</a></td>
+<td>The exposure experiments for this observation</td>
+</tr>
+<tr>
+<td><a href="exposure_regimen_type/">exposure_regimen_type</a></td>
+<td>The type of exposure regimen (e</td>
+</tr>
+<tr>
+<td><a href="exposure_start_stage/">exposure_start_stage</a></td>
+<td>The developmental stage at exposure start</td>
 </tr>
 <tr>
 <td><a href="exposure_type/">exposure_type</a></td>
 <td>The exposure type</td>
 </tr>
 <tr>
-<td><a href="fish/">fish</a></td>
-<td>The fish exposed to the toxicant</td>
-</tr>
-<tr>
-<td><a href="frequency/">frequency</a></td>
-<td>The frequency of the exposure</td>
-</tr>
-<tr>
-<td><a href="gene/">gene</a></td>
-<td>The gene associated with the allele</td>
-</tr>
-<tr>
-<td><a href="has_numeric_value/">has_numeric_value</a></td>
-<td>The numeric value of the quantity value</td>
-</tr>
-<tr>
-<td><a href="has_unit/">has_unit</a></td>
-<td>The unit of the quantity value</td>
-</tr>
-<tr>
 <td><a href="id/">id</a></td>
 <td></td>
+</tr>
+<tr>
+<td><a href="image/">image</a></td>
+<td>Images associated with this observation</td>
+</tr>
+<tr>
+<td><a href="individual_exposure_duration/">individual_exposure_duration</a></td>
+<td>Individual exposure duration</td>
+</tr>
+<tr>
+<td><a href="interval_between_exposures/">interval_between_exposures</a></td>
+<td>Interval between individual exposures</td>
+</tr>
+<tr>
+<td><a href="lab/">lab</a></td>
+<td>The lab where the experiment originated</td>
+</tr>
+<tr>
+<td><a href="magnification/">magnification</a></td>
+<td>The magnification of the image</td>
+</tr>
+<tr>
+<td><a href="manufacturer/">manufacturer</a></td>
+<td>The manufacturer of the chemical</td>
 </tr>
 <tr>
 <td><a href="name/">name</a></td>
 <td>Name or label of an entity</td>
 </tr>
 <tr>
-<td><a href="outcome/">outcome</a></td>
-<td>An outcome is a list of the observed phenotypes in the fish exposed to the to...</td>
+<td><a href="number_of_repeats/">number_of_repeats</a></td>
+<td>Number of repeats in the regimen</td>
 </tr>
 <tr>
-<td><a href="start_stage/">start_stage</a></td>
-<td>The developmental stage of the fish at the beginning of the exposure or exper...</td>
+<td><a href="numeric_value/">numeric_value</a></td>
+<td>The numeric value of the quantity value</td>
 </tr>
 <tr>
-<td><a href="symbol/">symbol</a></td>
-<td>The symbol of the NamedThing</td>
+<td><a href="phenotype/">phenotype</a></td>
+<td>The phenotype observed</td>
 </tr>
 <tr>
-<td><a href="treated_with/">treated_with</a></td>
-<td>The chemical used in the exposure</td>
+<td><a href="phenotype_observation/">phenotype_observation</a></td>
+<td>The phenotype observations from this experiment</td>
 </tr>
 <tr>
-<td><a href="variation_type/">variation_type</a></td>
-<td>The variation_type of the allele</td>
+<td><a href="phenotype_term_id/">phenotype_term_id</a></td>
+<td>The phenotype ontology term identifier</td>
 </tr>
 <tr>
-<td><a href="zygosity/">zygosity</a></td>
-<td>The zygosity of the fish</td>
+<td><a href="prevalence/">prevalence</a></td>
+<td>The prevalence of the phenotype</td>
+</tr>
+<tr>
+<td><a href="publication/">publication</a></td>
+<td>The publication identifier (e</td>
+</tr>
+<tr>
+<td><a href="rearing_condition_comments/">rearing_condition_comments</a></td>
+<td>Comments about rearing conditions</td>
+</tr>
+<tr>
+<td><a href="regimen/">regimen</a></td>
+<td>The regimen for the exposure</td>
+</tr>
+<tr>
+<td><a href="resolution/">resolution</a></td>
+<td>The resolution of the image</td>
+</tr>
+<tr>
+<td><a href="route/">route</a></td>
+<td>The route of exposure</td>
+</tr>
+<tr>
+<td><a href="scale_bar/">scale_bar</a></td>
+<td>Scale bar information</td>
+</tr>
+<tr>
+<td><a href="severity/">severity</a></td>
+<td>The severity of the phenotype</td>
+</tr>
+<tr>
+<td><a href="stage/">stage</a></td>
+<td>The developmental stage</td>
+</tr>
+<tr>
+<td><a href="standard_rearing_conditions/">standard_rearing_conditions</a></td>
+<td>Whether standard rearing conditions were used</td>
+</tr>
+<tr>
+<td><a href="stressor_chemical/">stressor_chemical</a></td>
+<td>The stressor chemicals used</td>
+</tr>
+<tr>
+<td><a href="subject/">subject</a></td>
+<td>The fish subject of the exposure experiment</td>
+</tr>
+<tr>
+<td><a href="synonym/">synonym</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="time_between_first_and_last_exposure/">time_between_first_and_last_exposure</a></td>
+<td>Time between first and last individual exposure</td>
+</tr>
+<tr>
+<td><a href="unit/">unit</a></td>
+<td>The unit of the quantity value</td>
+</tr>
+<tr>
+<td><a href="uuid/">uuid</a></td>
+<td>UUID identifier</td>
+</tr>
+<tr>
+<td><a href="vehicle/">vehicle</a></td>
+<td>The vehicles used in the exposure</td>
 </tr>
 </tbody>
 </table>
@@ -548,8 +766,24 @@
 </thead>
 <tbody>
 <tr>
+<td><a href="ExposureRegimenTypeEnum/">ExposureRegimenTypeEnum</a></td>
+<td>An enumeration of exposure regimen types</td>
+</tr>
+<tr>
+<td><a href="ExposureRouteEnum/">ExposureRouteEnum</a></td>
+<td>An enumeration of exposure routes derived from the EXO ontology</td>
+</tr>
+<tr>
 <td><a href="ExposureTypeEnum/">ExposureTypeEnum</a></td>
 <td>An enumeration of exposure types derived from the ECTO ontology</td>
+</tr>
+<tr>
+<td><a href="SeverityEnum/">SeverityEnum</a></td>
+<td>An enumeration of severity levels for phenotypes</td>
+</tr>
+<tr>
+<td><a href="VehicleEnumeration/">VehicleEnumeration</a></td>
+<td>An enumeration of vehicles used in exposures</td>
 </tr>
 </tbody>
 </table>
@@ -657,6 +891,13 @@
 </table>
 
 
+
+
+
+
+
+
+
   
 
 
@@ -667,8 +908,9 @@
             </div>
           
           
-  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
 
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
       </main>
@@ -696,12 +938,14 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": ".", "features": ["content.tabs.link"], "search": "assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="assets/javascripts/bundle.5a2dcb6a.min.js"></script>
       
+      <script id="__config" type="application/json">{"base": ".", "features": ["content.tabs.link"], "search": "assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
+    
+      <script src="assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
     
   </body>
 </html>

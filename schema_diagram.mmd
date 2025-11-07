@@ -1,0 +1,91 @@
+```mermaid
+erDiagram
+ChemicalEntity {
+    uriorcurie chebi_id  
+    string cas_id  
+    string chemical_name  
+    string uuid  
+    stringList synonym  
+}
+Entity {
+    string uuid  
+}
+Experiment {
+    boolean control  
+    string uuid  
+}
+ExposureEvent {
+    VehicleEnumerationList vehicle  
+    ExposureRouteEnum route  
+    uriorcurie exposure_start_stage  
+    uriorcurie exposure_end_stage  
+    string comments  
+    ExposureTypeEnum exposure_type  
+    string additional_exposure_conditions  
+    string uuid  
+}
+ExposureExperiment {
+    boolean standard_rearing_conditions  
+    string rearing_condition_comments  
+    string uuid  
+}
+Fish {
+    string name  
+    uriorcurie id  
+    string uuid  
+}
+Image {
+    string uuid  
+    string magnification  
+    string resolution  
+    string scale_bar  
+}
+Phenotype {
+    uriorcurie stage  
+    SeverityEnum severity  
+    uriorcurie phenotype_term_id  
+    string uuid  
+}
+PhenotypeObservation {
+    boolean control  
+    string uuid  
+}
+QuantityValue {
+    string unit  
+    string numeric_value  
+}
+Regimen {
+    ExposureRegimenTypeEnum exposure_regimen_type  
+    integer number_of_repeats  
+    string uuid  
+}
+Stressor {
+    string manufacturer  
+    string comments  
+    string uuid  
+}
+Study {
+    string publication  
+    uriorcurieList contributor  
+    uriorcurie lab  
+    string uuid  
+}
+
+Experiment ||--}o PhenotypeObservation : "phenotype_observation"
+ExposureEvent ||--|o Regimen : "regimen"
+ExposureEvent ||--}o Stressor : "stressor_chemical"
+ExposureExperiment ||--|o Fish : "subject"
+ExposureExperiment ||--}o ExposureEvent : "exposure_event"
+Phenotype ||--|o QuantityValue : "prevalence"
+PhenotypeObservation ||--|o ExposureExperiment : "exposure_experiment"
+PhenotypeObservation ||--}o Image : "image"
+PhenotypeObservation ||--}o Phenotype : "phenotype"
+Regimen ||--|o QuantityValue : "individual_exposure_duration"
+Regimen ||--|o QuantityValue : "interval_between_exposures"
+Regimen ||--|o QuantityValue : "time_between_first_and_last_exposure"
+Stressor ||--|| ChemicalEntity : "chemical"
+Stressor ||--|| QuantityValue : "dose"
+Study ||--}o Experiment : "experiment"
+
+```
+
