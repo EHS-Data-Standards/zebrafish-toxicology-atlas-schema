@@ -131,6 +131,7 @@ classes:
       - cas_id
       - chemical_name
       - uuid
+      - synonyms
     exact_mappings:
       - biolink:ChemicalEntity
 
@@ -165,6 +166,9 @@ slots:
   publication:
     description: The publication identifier (e.g., PMID, DOI) for the study, or "not published".
     range: string
+  synonyms:
+    range: string
+    multivalued: true
   name:
     description: Name or label of an entity.
   exposure_type:
@@ -318,7 +322,7 @@ enums:
         description: Moderate severity
       severe:
         description: Severe severity
-        
+
   ExposureTypeEnum:
     description: An enumeration of exposure types derived from the ECTO ontology.
     reachable_from:
