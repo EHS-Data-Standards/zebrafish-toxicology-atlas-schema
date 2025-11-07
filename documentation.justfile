@@ -17,6 +17,12 @@ gendoc:
     cp -r {{src}}/docs/images {{docdir}}/images
     cp {{src}}/docs/*.css {{docdir}}
     uv run gen-plantuml {{source_schema_path}} > {{docdir}}/schema_diagram.puml
+    uv run gen-erdiagram {{source_schema_path}} > {{docdir}}/schema_diagram.mmd
+    echo "# Schema Entity-Relationship Diagram" > {{docdir}}/schema_diagram.md
+    echo "" >> {{docdir}}/schema_diagram.md
+    echo "This diagram shows the entity-relationship model of the Zebrafish Toxicology Atlas Schema." >> {{docdir}}/schema_diagram.md
+    echo "" >> {{docdir}}/schema_diagram.md
+    cat {{docdir}}/schema_diagram.mmd >> {{docdir}}/schema_diagram.md
     uv run gen-doc -d {{docdir}} --template-directory {{src}}/{{templatedir}} {{source_schema_path}}
 
 # Build docs and run test server

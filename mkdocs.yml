@@ -10,11 +10,12 @@ theme:
     - content.tabs.link
 plugins:
   - search
-  - mermaid2
+  - mermaid2:
+      version: 10.6.1
 nav:
   # - Home: home.md
   - Overview: index.md
-  - Harmonizer: harmonizer.html
+  - Schema Diagram: schema_diagram.md
 site_url: https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema
 repo_url: https://github.com/sierra-moxon/zebrafish-toxicology-atlas-schema
 extra_css:
