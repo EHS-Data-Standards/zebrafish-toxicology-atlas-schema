@@ -1,145 +1,109 @@
 {
     "$defs": {
-        "Allele": {
-            "additionalProperties": false,
-            "description": "A representation of the genetic background of the fish.",
-            "properties": {
-                "gene": {
-                    "description": "The gene associated with the allele.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "id": {
-                    "description": "ZFIN identifier for the allele.",
-                    "pattern": "^ZFIN:ZDB-GENO-\\d{6}-\\d$",
-                    "type": "string"
-                },
-                "name": {
-                    "description": "Name of the allele.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "variation_type": {
-                    "description": "The variation_type of the allele.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                }
-            },
-            "required": [
-                "id"
-            ],
-            "title": "Allele",
-            "type": "object"
-        },
         "ChemicalEntity": {
             "additionalProperties": false,
             "description": "A chemical compound used as a toxicant in the study.",
             "properties": {
-                "id": {
-                    "description": "CHEBI identifier for the chemical.",
-                    "pattern": "^CHEBI:\\d+$",
-                    "type": "string"
+                "cas_id": {
+                    "description": "CAS identifier for the chemical.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
-                "name": {
+                "chebi_id": {
+                    "description": "CHEBI identifier for the chemical.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "chemical_name": {
                     "description": "Name of the chemical.",
                     "type": [
                         "string",
                         "null"
                     ]
+                },
+                "synonym": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "uuid": {
+                    "description": "UUID identifier.",
+                    "type": "string"
                 }
             },
             "required": [
-                "id"
+                "uuid"
             ],
             "title": "ChemicalEntity",
             "type": "object"
         },
-        "Concentration": {
+        "Experiment": {
             "additionalProperties": false,
-            "description": "The concentration of a chemical.",
+            "description": "An experiment within a study.",
             "properties": {
-                "has_numeric_value": {
-                    "description": "The numeric value of the concentration.",
+                "control": {
+                    "description": "Whether this is a control observation.",
                     "type": [
-                        "string",
+                        "boolean",
                         "null"
                     ]
                 },
-                "has_unit": {
-                    "description": "The unit of the concentration value.",
+                "phenotype_observation": {
+                    "description": "The phenotype observations from this experiment.",
+                    "items": {
+                        "type": "string"
+                    },
                     "type": [
-                        "string",
+                        "array",
                         "null"
                     ]
-                }
-            },
-            "title": "Concentration",
-            "type": "object"
-        },
-        "DevelopmentalStage": {
-            "additionalProperties": false,
-            "description": "A zebrafish developmental stage.",
-            "properties": {
-                "id": {
-                    "description": "ZFS identifier for the developmental stage.",
-                    "pattern": "^ZFS:\\d+$",
+                },
+                "uuid": {
+                    "description": "UUID identifier.",
                     "type": "string"
-                },
-                "name": {
-                    "description": "Name of the developmental stage.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
                 }
             },
             "required": [
-                "id"
+                "uuid"
             ],
-            "title": "DevelopmentalStage",
+            "title": "Experiment",
             "type": "object"
         },
         "ExposureEvent": {
             "additionalProperties": false,
-            "description": "An instance of a toxicological exposure event in the study.  According to ECTO,  an exposure",
+            "description": "An instance of a toxicological exposure event in the study.",
             "properties": {
-                "concentration": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/Concentration"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "description": "The concentration of the chemical used."
-                },
-                "duration": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/QuantityValue"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "description": "The duration of the exposure."
-                },
-                "end_stage": {
-                    "description": "The stage at which exposure ends.",
+                "additional_exposure_conditions": {
+                    "description": "Additional exposure conditions.",
                     "type": [
                         "string",
                         "null"
                     ]
                 },
-                "exposure_substance": {
-                    "description": "The chemical substance used in the exposure.",
+                "comments": {
+                    "description": "Additional comments.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "exposure_end_stage": {
+                    "description": "The developmental stage at exposure end.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "exposure_start_stage": {
+                    "description": "The developmental stage at exposure start.",
                     "type": [
                         "string",
                         "null"
@@ -149,41 +113,98 @@
                     "$ref": "#/$defs/ExposureTypeEnum",
                     "description": "The exposure type."
                 },
-                "frequency": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/QuantityValue"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "description": "The frequency of the exposure."
-                },
-                "id": {
-                    "description": "Unique identifier for the entity.",
-                    "type": "string"
-                },
-                "name": {
-                    "description": "Name or label of the entity.",
+                "regimen": {
+                    "description": "The regimen for the exposure.",
                     "type": [
                         "string",
                         "null"
                     ]
                 },
-                "start_stage": {
-                    "description": "The stage at which exposure starts.",
+                "route": {
+                    "$ref": "#/$defs/ExposureRouteEnum",
+                    "description": "The route of exposure."
+                },
+                "stressor_chemical": {
+                    "description": "The stressor chemicals used.",
+                    "items": {
+                        "type": "string"
+                    },
                     "type": [
-                        "string",
+                        "array",
+                        "null"
+                    ]
+                },
+                "uuid": {
+                    "description": "UUID identifier.",
+                    "type": "string"
+                },
+                "vehicle": {
+                    "description": "The vehicles used in the exposure.",
+                    "items": {
+                        "$ref": "#/$defs/VehicleEnumeration"
+                    },
+                    "type": [
+                        "array",
                         "null"
                     ]
                 }
             },
             "required": [
-                "id"
+                "uuid"
             ],
             "title": "ExposureEvent",
             "type": "object"
+        },
+        "ExposureExperiment": {
+            "additionalProperties": false,
+            "description": "An experiment exposing fish to chemical stressors.",
+            "properties": {
+                "exposure_event": {
+                    "description": "The exposure events in this experiment.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "rearing_condition_comments": {
+                    "description": "Comments about rearing conditions.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "standard_rearing_conditions": {
+                    "description": "Whether standard rearing conditions were used.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "subject": {
+                    "description": "The fish subject of the exposure experiment.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "uuid": {
+                    "description": "UUID identifier.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "uuid"
+            ],
+            "title": "ExposureExperiment",
+            "type": "object"
+        },
+        "ExposureRouteEnum": {
+            "description": "An enumeration of exposure routes derived from the EXO ontology.",
+            "title": "ExposureRouteEnum",
+            "type": "string"
         },
         "ExposureTypeEnum": {
             "description": "An enumeration of exposure types derived from the ECTO ontology.",
@@ -194,69 +215,128 @@
             "additionalProperties": false,
             "description": "A representation of the zebrafish used in the toxicology study.",
             "properties": {
-                "allele": {
-                    "description": "The allele present in a fish.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "background": {
-                    "description": "The genetic background of the fish.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
                 "id": {
-                    "description": "Unique identifier for the zebrafish.",
-                    "pattern": "^ZDB:FISH:\\d{6}-\\d$",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "pattern": "^ZFIN:ZDB-FISH-[0-9]{4}-[0-9]{6}-[0-9]+$",
+                    "type": "string"
                 },
                 "name": {
-                    "description": "Name or label of the entity.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "description": "Name or label of an entity.",
+                    "type": "string"
                 },
-                "zygosity": {
-                    "description": "The zygosity of the fish.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                "uuid": {
+                    "description": "UUID identifier.",
+                    "type": "string"
                 }
             },
             "required": [
-                "id"
+                "name",
+                "id",
+                "uuid"
             ],
             "title": "Fish",
             "type": "object"
         },
-        "FishExposureOutcome": {
+        "Image": {
             "additionalProperties": false,
-            "description": "A representation of the phenotype observed in the fish as a result of exposure.",
+            "description": "An image associated with a phenotype observation.",
             "properties": {
-                "exposure_event": {
-                    "description": "The exposure event.",
+                "magnification": {
+                    "description": "The magnification of the image.",
                     "type": [
                         "string",
                         "null"
                     ]
                 },
-                "fish": {
-                    "description": "The fish exposed to the toxicant.",
+                "resolution": {
+                    "description": "The resolution of the image.",
                     "type": [
                         "string",
                         "null"
                     ]
                 },
-                "outcome": {
-                    "description": "An outcome is a list of the observed phenotypes in the fish exposed to the toxicant.",
+                "scale_bar": {
+                    "description": "Scale bar information.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "uuid": {
+                    "description": "UUID identifier.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "uuid"
+            ],
+            "title": "Image",
+            "type": "object"
+        },
+        "Phenotype": {
+            "additionalProperties": false,
+            "description": "A phenotype observed in the fish as a result of exposure.",
+            "properties": {
+                "phenotype_term_id": {
+                    "description": "The phenotype ontology term identifier.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "prevalence": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/QuantityValue"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "The prevalence of the phenotype."
+                },
+                "severity": {
+                    "$ref": "#/$defs/SeverityEnum",
+                    "description": "The severity of the phenotype."
+                },
+                "stage": {
+                    "description": "The developmental stage.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "uuid": {
+                    "description": "UUID identifier.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "uuid"
+            ],
+            "title": "Phenotype",
+            "type": "object"
+        },
+        "PhenotypeObservation": {
+            "additionalProperties": false,
+            "description": "An observation of phenotypes resulting from exposure experiments.",
+            "if": {
+                "properties": {
+                    "control": {}
+                },
+                "required": [
+                    "control"
+                ]
+            },
+            "properties": {
+                "control": {
+                    "description": "Whether this is a control observation.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "exposure_experiment": {
+                    "description": "The exposure experiments for this observation.",
                     "items": {
                         "type": "string"
                     },
@@ -264,76 +344,52 @@
                         "array",
                         "null"
                     ]
-                }
-            },
-            "title": "FishExposureOutcome",
-            "type": "object"
-        },
-        "Gene": {
-            "additionalProperties": false,
-            "description": "A representation of a gene.",
-            "properties": {
-                "id": {
-                    "description": "ZFIN identifier for the gene.",
-                    "pattern": "^ZFIN:ZDB-GENE-\\d{6}-\\d$",
+                },
+                "image": {
+                    "description": "Images associated with this observation.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "phenotype": {
+                    "description": "The phenotype observed.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "uuid": {
+                    "description": "UUID identifier.",
                     "type": "string"
-                },
-                "name": {
-                    "description": "Name of the gene.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "symbol": {
-                    "description": "The symbol of the NamedThing.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
                 }
             },
             "required": [
-                "id"
+                "uuid"
             ],
-            "title": "Gene",
-            "type": "object"
-        },
-        "Phenotype": {
-            "additionalProperties": false,
-            "description": "A phenotype observed in the fish as a result of exposure.",
-            "properties": {
-                "id": {
-                    "description": "ZP identifier for the phenotype.",
-                    "pattern": "^ZP:\\d+$",
-                    "type": "string"
-                },
-                "name": {
-                    "description": "Name of the phenotype.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+            "then": {
+                "properties": {
+                    "phenotype": {}
                 }
             },
-            "required": [
-                "id"
-            ],
-            "title": "Phenotype",
+            "title": "PhenotypeObservation",
             "type": "object"
         },
         "QuantityValue": {
             "additionalProperties": false,
             "description": "A value of an attribute that is quantitative and measurable, expressed as a combination of a unit and a numeric value",
             "properties": {
-                "has_numeric_value": {
+                "numeric_value": {
                     "description": "The numeric value of the quantity value.",
                     "type": [
                         "string",
                         "null"
                     ]
                 },
-                "has_unit": {
+                "unit": {
                     "description": "The unit of the quantity value.",
                     "type": [
                         "string",
@@ -343,6 +399,171 @@
             },
             "title": "QuantityValue",
             "type": "object"
+        },
+        "Regimen": {
+            "additionalProperties": false,
+            "description": "The regimen of exposure events.",
+            "properties": {
+                "individual_exposure_duration": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/QuantityValue"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Individual exposure duration."
+                },
+                "interval_between_exposures": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/QuantityValue"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Interval between individual exposures."
+                },
+                "number_of_repeats": {
+                    "description": "Number of repeats in the regimen.",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "time_between_first_and_last_exposure": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/QuantityValue"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Time between first and last individual exposure."
+                },
+                "uuid": {
+                    "description": "UUID identifier.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "uuid"
+            ],
+            "title": "Regimen",
+            "type": "object"
+        },
+        "SeverityEnum": {
+            "description": "An enumeration of severity levels for phenotypes.",
+            "enum": [
+                "mild",
+                "moderate",
+                "severe"
+            ],
+            "title": "SeverityEnum",
+            "type": "string"
+        },
+        "Stressor": {
+            "additionalProperties": false,
+            "description": "A chemical stressor used in exposure experiments.",
+            "properties": {
+                "chemical": {
+                    "description": "Chemical identifier (CHEBI, CAS, or UUID).",
+                    "type": "string"
+                },
+                "comments": {
+                    "description": "Additional comments.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "dose": {
+                    "$ref": "#/$defs/QuantityValue",
+                    "description": "The dose of the chemical."
+                },
+                "manufacturer": {
+                    "description": "The manufacturer of the chemical.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "uuid": {
+                    "description": "UUID identifier.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "chemical",
+                "dose",
+                "uuid"
+            ],
+            "title": "Stressor",
+            "type": "object"
+        },
+        "Study": {
+            "additionalProperties": false,
+            "description": "A toxicology study containing experiments.",
+            "properties": {
+                "contributor": {
+                    "description": "The contributors of the study.",
+                    "items": {
+                        "pattern": "^ORCID:[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[0-9X]$",
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "experiment": {
+                    "description": "The experiments in this study.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "lab": {
+                    "description": "The lab where the experiment originated.",
+                    "pattern": "^ZFIN:ZDB-LAB-[0-9]+-[0-9]+$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "publication": {
+                    "description": "The publication identifier (e.g., PMID, DOI) for the study, or \"not published\".",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "uuid": {
+                    "description": "UUID identifier.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "uuid"
+            ],
+            "title": "Study",
+            "type": "object"
+        },
+        "VehicleEnumeration": {
+            "description": "An enumeration of vehicles used in exposures.",
+            "enum": [
+                "ethanol",
+                "dmso",
+                "fish_water"
+            ],
+            "title": "VehicleEnumeration",
+            "type": "string"
         }
     },
     "$id": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
@@ -353,3 +574,4 @@
     "type": "object",
     "version": null
 }
+

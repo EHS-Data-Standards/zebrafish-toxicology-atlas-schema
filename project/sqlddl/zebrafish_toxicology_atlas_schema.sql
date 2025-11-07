@@ -186,7 +186,7 @@ CREATE TABLE "ChemicalEntity_synonym" (
 	synonym TEXT,
 	PRIMARY KEY ("ChemicalEntity_uuid", synonym),
 	FOREIGN KEY("ChemicalEntity_uuid") REFERENCES "ChemicalEntity" (uuid)
-);CREATE INDEX "ix_ChemicalEntity_synonym_synonym" ON "ChemicalEntity_synonym" (synonym);CREATE INDEX "ix_ChemicalEntity_synonym_ChemicalEntity_uuid" ON "ChemicalEntity_synonym" ("ChemicalEntity_uuid");
+);CREATE INDEX "ix_ChemicalEntity_synonym_ChemicalEntity_uuid" ON "ChemicalEntity_synonym" ("ChemicalEntity_uuid");CREATE INDEX "ix_ChemicalEntity_synonym_synonym" ON "ChemicalEntity_synonym" (synonym);
 CREATE TABLE "PhenotypeObservation" (
 	phenotype TEXT,
 	control BOOLEAN,
@@ -226,14 +226,14 @@ CREATE TABLE "PhenotypeObservation_image" (
 	PRIMARY KEY ("PhenotypeObservation_uuid", image_uuid),
 	FOREIGN KEY("PhenotypeObservation_uuid") REFERENCES "PhenotypeObservation" (uuid),
 	FOREIGN KEY(image_uuid) REFERENCES "Image" (uuid)
-);CREATE INDEX "ix_PhenotypeObservation_image_image_uuid" ON "PhenotypeObservation_image" (image_uuid);CREATE INDEX "ix_PhenotypeObservation_image_PhenotypeObservation_uuid" ON "PhenotypeObservation_image" ("PhenotypeObservation_uuid");
+);CREATE INDEX "ix_PhenotypeObservation_image_PhenotypeObservation_uuid" ON "PhenotypeObservation_image" ("PhenotypeObservation_uuid");CREATE INDEX "ix_PhenotypeObservation_image_image_uuid" ON "PhenotypeObservation_image" (image_uuid);
 CREATE TABLE "ExposureExperiment_exposure_event" (
 	"ExposureExperiment_uuid" TEXT,
 	exposure_event_uuid TEXT,
 	PRIMARY KEY ("ExposureExperiment_uuid", exposure_event_uuid),
 	FOREIGN KEY("ExposureExperiment_uuid") REFERENCES "ExposureExperiment" (uuid),
 	FOREIGN KEY(exposure_event_uuid) REFERENCES "ExposureEvent" (uuid)
-);CREATE INDEX "ix_ExposureExperiment_exposure_event_ExposureExperiment_uuid" ON "ExposureExperiment_exposure_event" ("ExposureExperiment_uuid");CREATE INDEX "ix_ExposureExperiment_exposure_event_exposure_event_uuid" ON "ExposureExperiment_exposure_event" (exposure_event_uuid);
+);CREATE INDEX "ix_ExposureExperiment_exposure_event_exposure_event_uuid" ON "ExposureExperiment_exposure_event" (exposure_event_uuid);CREATE INDEX "ix_ExposureExperiment_exposure_event_ExposureExperiment_uuid" ON "ExposureExperiment_exposure_event" ("ExposureExperiment_uuid");
 CREATE TABLE "ExposureEvent_stressor_chemical" (
 	"ExposureEvent_uuid" TEXT,
 	stressor_chemical_uuid TEXT,
