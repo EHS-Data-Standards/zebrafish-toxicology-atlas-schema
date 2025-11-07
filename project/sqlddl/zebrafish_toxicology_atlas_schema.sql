@@ -12,18 +12,18 @@
 --     * Slot: control Description: Whether this is a control observation.
 --     * Slot: uuid Description: UUID identifier.
 --     * Slot: Experiment_uuid Description: Autocreated FK slot
---     * Slot: phenotype_uuid Description: The phenotype observed.
+--     * Slot: exposure_experiment_uuid Description: The exposure experiments for this observation.
 -- # Class: Phenotype Description: A phenotype observed in the fish as a result of exposure.
 --     * Slot: stage Description: The developmental stage.
 --     * Slot: severity Description: The severity of the phenotype.
 --     * Slot: phenotype_term_id Description: The phenotype ontology term identifier.
 --     * Slot: uuid Description: UUID identifier.
+--     * Slot: PhenotypeObservation_uuid Description: Autocreated FK slot
 --     * Slot: prevalence_id Description: The prevalence of the phenotype.
 -- # Class: ExposureExperiment Description: An experiment exposing fish to chemical stressors.
 --     * Slot: standard_rearing_conditions Description: Whether standard rearing conditions were used.
 --     * Slot: rearing_condition_comments Description: Comments about rearing conditions.
 --     * Slot: uuid Description: UUID identifier.
---     * Slot: PhenotypeObservation_uuid Description: Autocreated FK slot
 --     * Slot: subject_uuid Description: The fish subject of the exposure experiment.
 -- # Class: ExposureEvent Description: An instance of a toxicological exposure event in the study.
 --     * Slot: route Description: The route of exposure.
@@ -114,15 +114,14 @@ CREATE TABLE "Experiment" (
 	PRIMARY KEY (uuid),
 	FOREIGN KEY("Study_uuid") REFERENCES "Study" (uuid)
 );CREATE INDEX "ix_Experiment_uuid" ON "Experiment" (uuid);
-CREATE TABLE "Phenotype" (
-	stage TEXT,
-	severity VARCHAR(8),
-	phenotype_term_id TEXT,
+CREATE TABLE "ExposureExperiment" (
+	standard_rearing_conditions BOOLEAN,
+	rearing_condition_comments TEXT,
 	uuid TEXT NOT NULL,
-	prevalence_id INTEGER,
+	subject_uuid TEXT,
 	PRIMARY KEY (uuid),
-	FOREIGN KEY(prevalence_id) REFERENCES "QuantityValue" (id)
-);CREATE INDEX "ix_Phenotype_uuid" ON "Phenotype" (uuid);
+	FOREIGN KEY(subject_uuid) REFERENCES "Fish" (uuid)
+);CREATE INDEX "ix_ExposureExperiment_uuid" ON "ExposureExperiment" (uuid);
 CREATE TABLE "Regimen" (
 	exposure_regimen_type VARCHAR(10),
 	number_of_repeats INTEGER,
@@ -140,41 +139,22 @@ CREATE TABLE "Study_contributor" (
 	contributor TEXT,
 	PRIMARY KEY ("Study_uuid", contributor),
 	FOREIGN KEY("Study_uuid") REFERENCES "Study" (uuid)
-);CREATE INDEX "ix_Study_contributor_contributor" ON "Study_contributor" (contributor);CREATE INDEX "ix_Study_contributor_Study_uuid" ON "Study_contributor" ("Study_uuid");
+);CREATE INDEX "ix_Study_contributor_Study_uuid" ON "Study_contributor" ("Study_uuid");CREATE INDEX "ix_Study_contributor_contributor" ON "Study_contributor" (contributor);
 CREATE TABLE "ChemicalEntity_synonym" (
 	"ChemicalEntity_uuid" TEXT,
 	synonym TEXT,
 	PRIMARY KEY ("ChemicalEntity_uuid", synonym),
 	FOREIGN KEY("ChemicalEntity_uuid") REFERENCES "ChemicalEntity" (uuid)
-);CREATE INDEX "ix_ChemicalEntity_synonym_synonym" ON "ChemicalEntity_synonym" (synonym);CREATE INDEX "ix_ChemicalEntity_synonym_ChemicalEntity_uuid" ON "ChemicalEntity_synonym" ("ChemicalEntity_uuid");
+);CREATE INDEX "ix_ChemicalEntity_synonym_ChemicalEntity_uuid" ON "ChemicalEntity_synonym" ("ChemicalEntity_uuid");CREATE INDEX "ix_ChemicalEntity_synonym_synonym" ON "ChemicalEntity_synonym" (synonym);
 CREATE TABLE "PhenotypeObservation" (
 	control BOOLEAN,
 	uuid TEXT NOT NULL,
 	"Experiment_uuid" TEXT,
-	phenotype_uuid TEXT,
+	exposure_experiment_uuid TEXT,
 	PRIMARY KEY (uuid),
 	FOREIGN KEY("Experiment_uuid") REFERENCES "Experiment" (uuid),
-	FOREIGN KEY(phenotype_uuid) REFERENCES "Phenotype" (uuid)
+	FOREIGN KEY(exposure_experiment_uuid) REFERENCES "ExposureExperiment" (uuid)
 );CREATE INDEX "ix_PhenotypeObservation_uuid" ON "PhenotypeObservation" (uuid);
-CREATE TABLE "ExposureExperiment" (
-	standard_rearing_conditions BOOLEAN,
-	rearing_condition_comments TEXT,
-	uuid TEXT NOT NULL,
-	"PhenotypeObservation_uuid" TEXT,
-	subject_uuid TEXT,
-	PRIMARY KEY (uuid),
-	FOREIGN KEY("PhenotypeObservation_uuid") REFERENCES "PhenotypeObservation" (uuid),
-	FOREIGN KEY(subject_uuid) REFERENCES "Fish" (uuid)
-);CREATE INDEX "ix_ExposureExperiment_uuid" ON "ExposureExperiment" (uuid);
-CREATE TABLE "Image" (
-	uuid TEXT NOT NULL,
-	magnification TEXT,
-	resolution TEXT,
-	scale_bar TEXT,
-	"PhenotypeObservation_uuid" TEXT,
-	PRIMARY KEY (uuid),
-	FOREIGN KEY("PhenotypeObservation_uuid") REFERENCES "PhenotypeObservation" (uuid)
-);CREATE INDEX "ix_Image_uuid" ON "Image" (uuid);
 CREATE TABLE "ExposureEvent" (
 	route VARCHAR,
 	exposure_start_stage TEXT,
@@ -189,6 +169,17 @@ CREATE TABLE "ExposureEvent" (
 	FOREIGN KEY("ExposureExperiment_uuid") REFERENCES "ExposureExperiment" (uuid),
 	FOREIGN KEY(regimen_uuid) REFERENCES "Regimen" (uuid)
 );CREATE INDEX "ix_ExposureEvent_uuid" ON "ExposureEvent" (uuid);
+CREATE TABLE "Phenotype" (
+	stage TEXT,
+	severity VARCHAR(8),
+	phenotype_term_id TEXT,
+	uuid TEXT NOT NULL,
+	"PhenotypeObservation_uuid" TEXT,
+	prevalence_id INTEGER,
+	PRIMARY KEY (uuid),
+	FOREIGN KEY("PhenotypeObservation_uuid") REFERENCES "PhenotypeObservation" (uuid),
+	FOREIGN KEY(prevalence_id) REFERENCES "QuantityValue" (id)
+);CREATE INDEX "ix_Phenotype_uuid" ON "Phenotype" (uuid);
 CREATE TABLE "Stressor" (
 	manufacturer TEXT,
 	comments TEXT,
@@ -201,10 +192,19 @@ CREATE TABLE "Stressor" (
 	FOREIGN KEY(chemical_uuid) REFERENCES "ChemicalEntity" (uuid),
 	FOREIGN KEY(dose_id) REFERENCES "QuantityValue" (id)
 );CREATE INDEX "ix_Stressor_uuid" ON "Stressor" (uuid);
+CREATE TABLE "Image" (
+	uuid TEXT NOT NULL,
+	magnification TEXT,
+	resolution TEXT,
+	scale_bar TEXT,
+	"PhenotypeObservation_uuid" TEXT,
+	PRIMARY KEY (uuid),
+	FOREIGN KEY("PhenotypeObservation_uuid") REFERENCES "PhenotypeObservation" (uuid)
+);CREATE INDEX "ix_Image_uuid" ON "Image" (uuid);
 CREATE TABLE "ExposureEvent_vehicle" (
 	"ExposureEvent_uuid" TEXT,
 	vehicle VARCHAR(10),
 	PRIMARY KEY ("ExposureEvent_uuid", vehicle),
 	FOREIGN KEY("ExposureEvent_uuid") REFERENCES "ExposureEvent" (uuid)
-);CREATE INDEX "ix_ExposureEvent_vehicle_vehicle" ON "ExposureEvent_vehicle" (vehicle);CREATE INDEX "ix_ExposureEvent_vehicle_ExposureEvent_uuid" ON "ExposureEvent_vehicle" ("ExposureEvent_uuid");
+);CREATE INDEX "ix_ExposureEvent_vehicle_ExposureEvent_uuid" ON "ExposureEvent_vehicle" ("ExposureEvent_uuid");CREATE INDEX "ix_ExposureEvent_vehicle_vehicle" ON "ExposureEvent_vehicle" (vehicle);
 

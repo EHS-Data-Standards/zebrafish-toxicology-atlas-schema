@@ -203,6 +203,7 @@ slots:
     description: The exposure experiments for this observation.
     range: ExposureExperiment
     multivalued: false
+    inlined: true
   image:
     description: Images associated with this observation.
     range: Image

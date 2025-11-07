@@ -353,14 +353,15 @@
                     ]
                 },
                 "exposure_experiment": {
-                    "description": "The exposure experiments for this observation.",
-                    "items": {
-                        "$ref": "#/$defs/ExposureExperiment"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/ExposureExperiment"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "The exposure experiments for this observation."
                 },
                 "image": {
                     "description": "Images associated with this observation.",
@@ -373,15 +374,14 @@
                     ]
                 },
                 "phenotype": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/Phenotype"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "description": "The phenotype observed."
+                    "description": "The phenotype observed.",
+                    "items": {
+                        "$ref": "#/$defs/Phenotype"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "uuid": {
                     "description": "UUID identifier.",
