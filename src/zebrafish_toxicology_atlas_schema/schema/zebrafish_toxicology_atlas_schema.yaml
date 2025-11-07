@@ -19,6 +19,8 @@ prefixes:
   CAS: https://commonchemistry.cas.org/detail?cas_rn=
   ECTO: http://purl.obolibrary.org/obo/ECTO_
   EXO: http://purl.obolibrary.org/obo/EXO_
+  ORCID: https://orcid.org/
+  ZFIN: https://zfin.org/
 default_prefix: zebrafish_toxicology_atlas_schema
 default_range: string
 
@@ -32,6 +34,8 @@ classes:
     slots:
       - has_experiments
       - publication_id
+      - contributors
+      - lab
       - id
 
   Experiment:
@@ -101,7 +105,7 @@ classes:
   Stressor:
     description: A chemical stressor used in exposure experiments.
     slots:
-      - chemical_id
+      - chemical
       - manufacturer
       - dose
       - comments
@@ -247,15 +251,17 @@ slots:
   uuid:
     description: UUID identifier.
     range: string
-  chemical_id:
+  chemical:
     description: Chemical identifier (CHEBI, CAS, or UUID).
-    range: string
+    range: ChemicalEntity
+    required: true
   manufacturer:
     description: The manufacturer of the chemical.
     range: string
   dose:
     description: The dose of the chemical.
     range: QuantityValue
+    required: true
   interval_between_indv_exposures:
     description: Interval between individual exposures.
     range: QuantityValue
@@ -274,6 +280,15 @@ slots:
   scale_bar:
     description: Scale bar information.
     range: string
+  contributors:
+    description: The contributors of the study.
+    range: uriorcurie
+    multivalued: true
+    pattern: "^ORCID:[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[0-9X]$"
+  lab:
+    description: The lab where the experiment originated.
+    range: uriorcurie
+    pattern: "^ZFIN:ZDB-LAB-[0-9]+-[0-9]+$"
 
 enums:
   ExposureTypeEnum:
