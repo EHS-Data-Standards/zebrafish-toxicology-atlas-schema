@@ -3101,6 +3101,7 @@ dev = [
 docs = [
     { name = "linkml" },
     { name = "mkdocs-material" },
+    { name = "mkdocs-mermaid2-plugin" },
 ]
 
 [package.metadata]
@@ -3116,6 +3117,7 @@ requires-dist = [
     { name = "mkdocs-material", marker = "extra == 'dev'", specifier = ">=8.2.8" },
     { name = "mkdocs-material", marker = "extra == 'docs'", specifier = ">=8.2.8" },
     { name = "mkdocs-mermaid2-plugin", marker = "extra == 'dev'", specifier = ">=1.1.1" },
+    { name = "mkdocs-mermaid2-plugin", marker = "extra == 'docs'", specifier = ">=1.1.1" },
     { name = "schemasheets", marker = "extra == 'dev'", specifier = ">=0.1.14" },
     { name = "sqlalchemy", specifier = ">=1.4.32,!=1.4.46,<2.0" },
     { name = "yamllint", specifier = ">=1.35.1" },
