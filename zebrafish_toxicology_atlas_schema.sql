@@ -145,7 +145,7 @@ CREATE TABLE "ChemicalEntity_synonym" (
 	synonym TEXT,
 	PRIMARY KEY ("ChemicalEntity_uuid", synonym),
 	FOREIGN KEY("ChemicalEntity_uuid") REFERENCES "ChemicalEntity" (uuid)
-);CREATE INDEX "ix_ChemicalEntity_synonym_ChemicalEntity_uuid" ON "ChemicalEntity_synonym" ("ChemicalEntity_uuid");CREATE INDEX "ix_ChemicalEntity_synonym_synonym" ON "ChemicalEntity_synonym" (synonym);
+);CREATE INDEX "ix_ChemicalEntity_synonym_synonym" ON "ChemicalEntity_synonym" (synonym);CREATE INDEX "ix_ChemicalEntity_synonym_ChemicalEntity_uuid" ON "ChemicalEntity_synonym" ("ChemicalEntity_uuid");
 CREATE TABLE "PhenotypeObservation" (
 	control BOOLEAN,
 	uuid TEXT NOT NULL,
