@@ -564,7 +564,7 @@
                     ]
                 },
                 "publication": {
-                    "description": "The publication identifier (e.g., PMID, DOI) for the study.",
+                    "description": "The publication identifier (e.g., PMID, DOI) for the study or \"not published\" if the study is unpublished.",
                     "type": [
                         "string",
                         "null"

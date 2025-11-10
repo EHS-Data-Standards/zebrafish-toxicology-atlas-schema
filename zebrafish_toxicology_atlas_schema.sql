@@ -1,7 +1,7 @@
 -- # Abstract Class: Entity Description: The base class for all entities in the Zebrafish Toxicology Atlas Schema.
 --     * Slot: uuid Description: UUID identifier.
 -- # Class: Study Description: A toxicological investigation, including the experimental conditions and phenotypic outcomes, with information provenance.
---     * Slot: publication Description: The publication identifier (e.g., PMID, DOI) for the study.
+--     * Slot: publication Description: The publication identifier (e.g., PMID, DOI) for the study or "not published" if the study is unpublished.
 --     * Slot: lab Description: The lab where the experiment originated.
 --     * Slot: uuid Description: UUID identifier.
 -- # Class: ObservationSet Description: Group of observations (phenotypic outcomes and their control) that are linked by a common experiment and subject that are part of a study.
@@ -139,13 +139,13 @@ CREATE TABLE "Study_annotator" (
 	annotator TEXT,
 	PRIMARY KEY ("Study_uuid", annotator),
 	FOREIGN KEY("Study_uuid") REFERENCES "Study" (uuid)
-);CREATE INDEX "ix_Study_annotator_Study_uuid" ON "Study_annotator" ("Study_uuid");CREATE INDEX "ix_Study_annotator_annotator" ON "Study_annotator" (annotator);
+);CREATE INDEX "ix_Study_annotator_annotator" ON "Study_annotator" (annotator);CREATE INDEX "ix_Study_annotator_Study_uuid" ON "Study_annotator" ("Study_uuid");
 CREATE TABLE "ChemicalEntity_synonym" (
 	"ChemicalEntity_uuid" TEXT,
 	synonym TEXT,
 	PRIMARY KEY ("ChemicalEntity_uuid", synonym),
 	FOREIGN KEY("ChemicalEntity_uuid") REFERENCES "ChemicalEntity" (uuid)
-);CREATE INDEX "ix_ChemicalEntity_synonym_synonym" ON "ChemicalEntity_synonym" (synonym);CREATE INDEX "ix_ChemicalEntity_synonym_ChemicalEntity_uuid" ON "ChemicalEntity_synonym" ("ChemicalEntity_uuid");
+);CREATE INDEX "ix_ChemicalEntity_synonym_ChemicalEntity_uuid" ON "ChemicalEntity_synonym" ("ChemicalEntity_uuid");CREATE INDEX "ix_ChemicalEntity_synonym_synonym" ON "ChemicalEntity_synonym" (synonym);
 CREATE TABLE "PhenotypeObservation" (
 	control BOOLEAN,
 	uuid TEXT NOT NULL,
@@ -206,5 +206,5 @@ CREATE TABLE "ExposureEvent_vehicle" (
 	vehicle VARCHAR(10),
 	PRIMARY KEY ("ExposureEvent_uuid", vehicle),
 	FOREIGN KEY("ExposureEvent_uuid") REFERENCES "ExposureEvent" (uuid)
-);CREATE INDEX "ix_ExposureEvent_vehicle_vehicle" ON "ExposureEvent_vehicle" (vehicle);CREATE INDEX "ix_ExposureEvent_vehicle_ExposureEvent_uuid" ON "ExposureEvent_vehicle" ("ExposureEvent_uuid");
+);CREATE INDEX "ix_ExposureEvent_vehicle_ExposureEvent_uuid" ON "ExposureEvent_vehicle" ("ExposureEvent_uuid");CREATE INDEX "ix_ExposureEvent_vehicle_vehicle" ON "ExposureEvent_vehicle" (vehicle);
 
