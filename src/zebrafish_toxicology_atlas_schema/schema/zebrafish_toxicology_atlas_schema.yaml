@@ -90,7 +90,7 @@ classes:
   ExposureEvent:
     is_a: Entity
     description: >-
-      An occurance in a study where a subject is exposed to a stressor under defined conditions.
+      An occurrence in a study where a subject is exposed to a stressor under defined conditions.
     slots:
       - stressor
       - vehicle
@@ -308,7 +308,7 @@ slots:
     description: The manufacturer of the chemical.
     range: string
   concentration:
-    description: The dose or concentartion of the chemical to which the subject was exposed to.
+    description: The dose or concentration of the chemical to which the subject was exposed to.
     range: QuantityValue
     required: true
     inlined_as_list: true
