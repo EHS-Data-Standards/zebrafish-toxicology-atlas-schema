@@ -3,9 +3,9 @@
 uuid: "study-001"
 publication: "PMID:12345678"
 lab: "ZFIN:ZDB-LAB-000000-1"
-contributor:
+annotator:
   - "ORCID:0000-0001-2345-6789"
-experiment:
+observation_set:
   - uuid: "experiment-001"
     control: false
     phenotype_observation:
@@ -25,8 +25,8 @@ experiment:
             uuid: "fish-001"
             name: "AB"
             id: "ZFIN:ZDB-FISH-2024-000001-1"
-          standard_rearing_conditions: true
-          rearing_condition_comments: "Standard Westerfield conditions"
+          standard_rearing_condition: true
+          rearing_condition_comment: "Standard Westerfield conditions"
           exposure_event:
             - uuid: "exposure-event-001"
               route: "EXO:0000002"
@@ -38,19 +38,19 @@ experiment:
               regimen:
                 uuid: "regimen-001"
                 exposure_regimen_type: "repeated"
-                number_of_repeats: 3
-                interval_between_exposures:
+                number_of_individual_exposure: 3
+                interval_between_individual_exposures:
                   unit: "hours"
                   numeric_value: "24"
-                time_between_first_and_last_exposure:
+                total_exposure_duration:
                   unit: "hours"
                   numeric_value: "72"
                 individual_exposure_duration:
                   unit: "hours"
                   numeric_value: "6"
-              stressor_chemical:
+              stressor:
                 - uuid: "stressor-001"
-                  chemical:
+                  chemical_id:
                     uuid: "chemical-001"
                     chebi_id: "CHEBI:15377"
                     cas_id: "64-17-5"
@@ -59,12 +59,12 @@ experiment:
                       - "ethyl alcohol"
                       - "EtOH"
                   manufacturer: "Sigma-Aldrich"
-                  dose:
+                  concentration:
                     unit: "mg/L"
                     numeric_value: "10.5"
-                  comments: "High purity grade"
-              comments: "Standard exposure protocol"
-              additional_exposure_conditions: "Temperature maintained at 28°C"
+                  comment: "High purity grade"
+              comment: "Standard exposure protocol"
+              additional_exposure_condition: "Temperature maintained at 28°C"
         image:
           - uuid: "image-001"
             magnification: "10x"

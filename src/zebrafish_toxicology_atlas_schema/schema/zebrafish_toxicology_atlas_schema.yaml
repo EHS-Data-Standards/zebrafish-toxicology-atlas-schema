@@ -3,7 +3,7 @@ id: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
 name: zebrafish-toxicology-atlas-schema
 title: zebrafish-toxicology-atlas-schema
 description: |-
-  Schema to represent metadata associated with the Zebrafish Toxicology Atlas
+  Schema to represent metadatcha associated with the Zebrafish Toxicology Atlas
 license: MIT
 see_also:
   - https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema
