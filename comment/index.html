@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/additional_exposure_conditions/">
+        <link rel="canonical" href="https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/comment/">
       
       
       
@@ -18,7 +18,7 @@
     
     
       
-        <title>Slot: additional_exposure_conditions - Zebrafish Toxicology Atlas Schema Documentation</title>
+        <title>Slot: comment - Zebrafish Toxicology Atlas Schema Documentation</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-additional_exposure_conditions" class="md-skip">
+        <a href="#slot-comment" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: additional_exposure_conditions
+              Slot: comment
             
           </span>
         </div>
@@ -420,10 +420,10 @@
   
 
 
-<h1 id="slot-additional_exposure_conditions">Slot: additional_exposure_conditions</h1>
-<p><em>Additional exposure conditions.</em></p>
-<p>URI: <a href="https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/additional_exposure_conditions">zebrafish_toxicology_atlas_schema:additional_exposure_conditions</a>
-Alias: additional_exposure_conditions</p>
+<h1 id="slot-comment">Slot: comment</h1>
+<p><em>Additional comments.</em></p>
+<p>URI: <a href="https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/comment">zebrafish_toxicology_atlas_schema:comment</a>
+Alias: comment</p>
 <!-- no inheritance hierarchy -->
 
 <h2 id="applicable-classes">Applicable Classes</h2>
@@ -438,7 +438,12 @@ Alias: additional_exposure_conditions</p>
 <tbody>
 <tr>
 <td><a href="../ExposureEvent/">ExposureEvent</a></td>
-<td>An instance of a toxicological exposure event in the study</td>
+<td>An occurrence in a study where a subject is exposed to a stressor under defin...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../StressorChemical/">StressorChemical</a></td>
+<td>A chemical, that elicit a response (a phenotype) in a subject when when encou...</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -463,24 +468,25 @@ Alias: additional_exposure_conditions</p>
 <tbody>
 <tr>
 <td>self</td>
-<td>zebrafish_toxicology_atlas_schema:additional_exposure_conditions</td>
+<td>zebrafish_toxicology_atlas_schema:comment</td>
 </tr>
 <tr>
 <td>native</td>
-<td>zebrafish_toxicology_atlas_schema:additional_exposure_conditions</td>
+<td>zebrafish_toxicology_atlas_schema:comment</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: additional_exposure_conditions
-description: Additional exposure conditions.
+<pre><code class="language-yaml">name: comment
+description: Additional comments.
 from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
 rank: 1000
-alias: additional_exposure_conditions
+alias: comment
 domain_of:
 - ExposureEvent
+- StressorChemical
 range: string
 
 </code></pre>

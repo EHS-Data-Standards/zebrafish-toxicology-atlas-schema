@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/interval_between_exposures/">
+        <link rel="canonical" href="https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/stressor/">
       
       
       
@@ -18,7 +18,7 @@
     
     
       
-        <title>Slot: interval_between_exposures - Zebrafish Toxicology Atlas Schema Documentation</title>
+        <title>Slot: stressor - Zebrafish Toxicology Atlas Schema Documentation</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-interval_between_exposures" class="md-skip">
+        <a href="#slot-stressor" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: interval_between_exposures
+              Slot: stressor
             
           </span>
         </div>
@@ -420,10 +420,10 @@
   
 
 
-<h1 id="slot-interval_between_exposures">Slot: interval_between_exposures</h1>
-<p><em>Interval between individual exposures.</em></p>
-<p>URI: <a href="https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/interval_between_exposures">zebrafish_toxicology_atlas_schema:interval_between_exposures</a>
-Alias: interval_between_exposures</p>
+<h1 id="slot-stressor">Slot: stressor</h1>
+<p><em>Substance, chemical or toxicant, that elicit a response (a phenotype) in a subject when encountered through exposure.</em></p>
+<p>URI: <a href="https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/stressor">zebrafish_toxicology_atlas_schema:stressor</a>
+Alias: stressor</p>
 <!-- no inheritance hierarchy -->
 
 <h2 id="applicable-classes">Applicable Classes</h2>
@@ -437,15 +437,20 @@ Alias: interval_between_exposures</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../Regimen/">Regimen</a></td>
-<td>The regimen of exposure events</td>
+<td><a href="../ExposureEvent/">ExposureEvent</a></td>
+<td>An occurrence in a study where a subject is exposed to a stressor under defin...</td>
 <td>no</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>Range: <a href="../QuantityValue/">QuantityValue</a></li>
+<li>
+<p>Range: <a href="../StressorChemical/">StressorChemical</a></p>
+</li>
+<li>
+<p>Multivalued: True</p>
+</li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
@@ -463,25 +468,27 @@ Alias: interval_between_exposures</p>
 <tbody>
 <tr>
 <td>self</td>
-<td>zebrafish_toxicology_atlas_schema:interval_between_exposures</td>
+<td>zebrafish_toxicology_atlas_schema:stressor</td>
 </tr>
 <tr>
 <td>native</td>
-<td>zebrafish_toxicology_atlas_schema:interval_between_exposures</td>
+<td>zebrafish_toxicology_atlas_schema:stressor</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: interval_between_exposures
-description: Interval between individual exposures.
+<pre><code class="language-yaml">name: stressor
+description: Substance, chemical or toxicant, that elicit a response (a phenotype)
+  in a subject when encountered through exposure.
 from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
 rank: 1000
-alias: interval_between_exposures
+alias: stressor
 domain_of:
-- Regimen
-range: QuantityValue
+- ExposureEvent
+range: StressorChemical
+multivalued: true
 inlined: true
 inlined_as_list: true
 

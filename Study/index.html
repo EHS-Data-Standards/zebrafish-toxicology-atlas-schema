@@ -238,7 +238,7 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <h1 id="class-study">Class: Study</h1>
-<p><em>A toxicology study containing experiments.</em></p>
+<p><em>A toxicological investigation, including the experimental conditions and phenotypic outcomes, with information provenance.</em></p>
 <p>URI: <a href="https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/Study">zebrafish_toxicology_atlas_schema:Study</a></p>
 <div class="mermaid"> classDiagram
     class Study
@@ -246,20 +246,20 @@
       Entity &lt;|-- Study
         click Entity href "../Entity/"
 
-      Study : contributor
-
-      Study : experiment
-
-
-
-
-
-        Study --&gt; "*" Experiment : experiment
-        click Experiment href "../Experiment/"
-
-
+      Study : annotator
 
       Study : lab
+
+      Study : observation_set
+
+
+
+
+
+        Study --&gt; "*" ObservationSet : observation_set
+        click ObservationSet href "../ObservationSet/"
+
+
 
       Study : publication
 
@@ -286,9 +286,9 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../experiment/">experiment</a></td>
-<td>* <br/> <a href="../Experiment/">Experiment</a></td>
-<td>The experiments in this study</td>
+<td><a href="../observation_set/">observation_set</a></td>
+<td>* <br/> <a href="../ObservationSet/">ObservationSet</a></td>
+<td>The observation set in a study</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -298,9 +298,9 @@
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../contributor/">contributor</a></td>
+<td><a href="../annotator/">annotator</a></td>
 <td>* <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
-<td>The contributors of the study</td>
+<td>ORCID identifier of the indidvidual submitting the study data</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -346,13 +346,14 @@
 <h3 id="direct">Direct</h3>
 <details>
 <pre><code class="language-yaml">name: Study
-description: A toxicology study containing experiments.
+description: A toxicological investigation, including the experimental conditions
+  and phenotypic outcomes, with information provenance.
 from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
 is_a: Entity
 slots:
-- experiment
+- observation_set
 - publication
-- contributor
+- annotator
 - lab
 
 </code></pre>
@@ -360,27 +361,27 @@ slots:
 <h3 id="induced">Induced</h3>
 <details>
 <pre><code class="language-yaml">name: Study
-description: A toxicology study containing experiments.
+description: A toxicological investigation, including the experimental conditions
+  and phenotypic outcomes, with information provenance.
 from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
 is_a: Entity
 attributes:
-  experiment:
-    name: experiment
-    description: The experiments in this study.
+  observation_set:
+    name: observation_set
+    description: The observation set in a study.
     from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
     rank: 1000
-    alias: experiment
+    alias: observation_set
     owner: Study
     domain_of:
     - Study
-    range: Experiment
+    range: ObservationSet
     multivalued: true
     inlined: true
     inlined_as_list: true
   publication:
     name: publication
-    description: The publication identifier (e.g., PMID, DOI) for the study, or "not
-      published".
+    description: The publication identifier (e.g., PMID, DOI) for the study.
     from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
     rank: 1000
     alias: publication
@@ -388,12 +389,12 @@ attributes:
     domain_of:
     - Study
     range: string
-  contributor:
-    name: contributor
-    description: The contributors of the study.
+  annotator:
+    name: annotator
+    description: ORCID identifier of the indidvidual submitting the study data.
     from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
     rank: 1000
-    alias: contributor
+    alias: annotator
     owner: Study
     domain_of:
     - Study

@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/number_of_repeats/">
+        <link rel="canonical" href="https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/additional_exposure_condition/">
       
       
       
@@ -18,7 +18,7 @@
     
     
       
-        <title>Slot: number_of_repeats - Zebrafish Toxicology Atlas Schema Documentation</title>
+        <title>Slot: additional_exposure_condition - Zebrafish Toxicology Atlas Schema Documentation</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-number_of_repeats" class="md-skip">
+        <a href="#slot-additional_exposure_condition" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: number_of_repeats
+              Slot: additional_exposure_condition
             
           </span>
         </div>
@@ -420,10 +420,10 @@
   
 
 
-<h1 id="slot-number_of_repeats">Slot: number_of_repeats</h1>
-<p><em>Number of repeats in the regimen.</em></p>
-<p>URI: <a href="https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/number_of_repeats">zebrafish_toxicology_atlas_schema:number_of_repeats</a>
-Alias: number_of_repeats</p>
+<h1 id="slot-additional_exposure_condition">Slot: additional_exposure_condition</h1>
+<p><em>Additional information about the conditions under which exposure event occurred.</em></p>
+<p>URI: <a href="https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/additional_exposure_condition">zebrafish_toxicology_atlas_schema:additional_exposure_condition</a>
+Alias: additional_exposure_condition</p>
 <!-- no inheritance hierarchy -->
 
 <h2 id="applicable-classes">Applicable Classes</h2>
@@ -437,15 +437,15 @@ Alias: number_of_repeats</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../Regimen/">Regimen</a></td>
-<td>The regimen of exposure events</td>
+<td><a href="../ExposureEvent/">ExposureEvent</a></td>
+<td>An occurrence in a study where a subject is exposed to a stressor under defin...</td>
 <td>no</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>Range: <a href="../Integer/">Integer</a></li>
+<li>Range: <a href="../String/">String</a></li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
@@ -463,25 +463,26 @@ Alias: number_of_repeats</p>
 <tbody>
 <tr>
 <td>self</td>
-<td>zebrafish_toxicology_atlas_schema:number_of_repeats</td>
+<td>zebrafish_toxicology_atlas_schema:additional_exposure_condition</td>
 </tr>
 <tr>
 <td>native</td>
-<td>zebrafish_toxicology_atlas_schema:number_of_repeats</td>
+<td>zebrafish_toxicology_atlas_schema:additional_exposure_condition</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: number_of_repeats
-description: Number of repeats in the regimen.
+<pre><code class="language-yaml">name: additional_exposure_condition
+description: Additional information about the conditions under which exposure event
+  occurred.
 from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
 rank: 1000
-alias: number_of_repeats
+alias: additional_exposure_condition
 domain_of:
-- Regimen
-range: integer
+- ExposureEvent
+range: string
 
 </code></pre>
 

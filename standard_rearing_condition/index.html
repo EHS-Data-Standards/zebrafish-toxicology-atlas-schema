@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/contributor/">
+        <link rel="canonical" href="https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/standard_rearing_condition/">
       
       
       
@@ -18,7 +18,7 @@
     
     
       
-        <title>Slot: contributor - Zebrafish Toxicology Atlas Schema Documentation</title>
+        <title>Slot: standard_rearing_condition - Zebrafish Toxicology Atlas Schema Documentation</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-contributor" class="md-skip">
+        <a href="#slot-standard_rearing_condition" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: contributor
+              Slot: standard_rearing_condition
             
           </span>
         </div>
@@ -420,10 +420,10 @@
   
 
 
-<h1 id="slot-contributor">Slot: contributor</h1>
-<p><em>The contributors of the study.</em></p>
-<p>URI: <a href="https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/contributor">zebrafish_toxicology_atlas_schema:contributor</a>
-Alias: contributor</p>
+<h1 id="slot-standard_rearing_condition">Slot: standard_rearing_condition</h1>
+<p><em>An indication if the subject was maintained under standard conditions, which are the established, consistent environmental and husbandry parameters (such as temperature, lighting, diet, and housing) designed to minimize variability and ensure reproducibility in experiments.</em></p>
+<p>URI: <a href="https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/standard_rearing_condition">zebrafish_toxicology_atlas_schema:standard_rearing_condition</a>
+Alias: standard_rearing_condition</p>
 <!-- no inheritance hierarchy -->
 
 <h2 id="applicable-classes">Applicable Classes</h2>
@@ -437,23 +437,15 @@ Alias: contributor</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../Study/">Study</a></td>
-<td>A toxicology study containing experiments</td>
+<td><a href="../ExposureExperiment/">ExposureExperiment</a></td>
+<td>An experimental procedure in which a subject is exposed to a defined stressor...</td>
 <td>no</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>
-<p>Range: <a href="../Uriorcurie/">Uriorcurie</a></p>
-</li>
-<li>
-<p>Multivalued: True</p>
-</li>
-<li>
-<p>Regex pattern: <code>^ORCID:[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[0-9X]$</code></p>
-</li>
+<li>Range: <a href="../Boolean/">Boolean</a></li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
@@ -471,27 +463,28 @@ Alias: contributor</p>
 <tbody>
 <tr>
 <td>self</td>
-<td>zebrafish_toxicology_atlas_schema:contributor</td>
+<td>zebrafish_toxicology_atlas_schema:standard_rearing_condition</td>
 </tr>
 <tr>
 <td>native</td>
-<td>zebrafish_toxicology_atlas_schema:contributor</td>
+<td>zebrafish_toxicology_atlas_schema:standard_rearing_condition</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: contributor
-description: The contributors of the study.
+<pre><code class="language-yaml">name: standard_rearing_condition
+description: An indication if the subject was maintained under standard conditions,
+  which are the established, consistent environmental and husbandry parameters (such
+  as temperature, lighting, diet, and housing) designed to minimize variability and
+  ensure reproducibility in experiments.
 from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
 rank: 1000
-alias: contributor
+alias: standard_rearing_condition
 domain_of:
-- Study
-range: uriorcurie
-multivalued: true
-pattern: ^ORCID:[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[0-9X]$
+- ExposureExperiment
+range: boolean
 
 </code></pre>
 

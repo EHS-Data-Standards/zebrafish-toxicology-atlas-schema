@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/experiment/">
+        <link rel="canonical" href="https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/total_exposure_duration/">
       
       
       
@@ -18,7 +18,7 @@
     
     
       
-        <title>Slot: experiment - Zebrafish Toxicology Atlas Schema Documentation</title>
+        <title>Slot: total_exposure_duration - Zebrafish Toxicology Atlas Schema Documentation</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-experiment" class="md-skip">
+        <a href="#slot-total_exposure_duration" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: experiment
+              Slot: total_exposure_duration
             
           </span>
         </div>
@@ -420,10 +420,10 @@
   
 
 
-<h1 id="slot-experiment">Slot: experiment</h1>
-<p><em>The experiments in this study.</em></p>
-<p>URI: <a href="https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/experiment">zebrafish_toxicology_atlas_schema:experiment</a>
-Alias: experiment</p>
+<h1 id="slot-total_exposure_duration">Slot: total_exposure_duration</h1>
+<p><em>Time between first and last individual exposure.</em></p>
+<p>URI: <a href="https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/total_exposure_duration">zebrafish_toxicology_atlas_schema:total_exposure_duration</a>
+Alias: total_exposure_duration</p>
 <!-- no inheritance hierarchy -->
 
 <h2 id="applicable-classes">Applicable Classes</h2>
@@ -437,20 +437,15 @@ Alias: experiment</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../Study/">Study</a></td>
-<td>A toxicology study containing experiments</td>
+<td><a href="../Regimen/">Regimen</a></td>
+<td>The schedule and pattern of an exposure event</td>
 <td>no</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>
-<p>Range: <a href="../Experiment/">Experiment</a></p>
-</li>
-<li>
-<p>Multivalued: True</p>
-</li>
+<li>Range: <a href="../QuantityValue/">QuantityValue</a></li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
@@ -468,26 +463,25 @@ Alias: experiment</p>
 <tbody>
 <tr>
 <td>self</td>
-<td>zebrafish_toxicology_atlas_schema:experiment</td>
+<td>zebrafish_toxicology_atlas_schema:total_exposure_duration</td>
 </tr>
 <tr>
 <td>native</td>
-<td>zebrafish_toxicology_atlas_schema:experiment</td>
+<td>zebrafish_toxicology_atlas_schema:total_exposure_duration</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: experiment
-description: The experiments in this study.
+<pre><code class="language-yaml">name: total_exposure_duration
+description: Time between first and last individual exposure.
 from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
 rank: 1000
-alias: experiment
+alias: total_exposure_duration
 domain_of:
-- Study
-range: Experiment
-multivalued: true
+- Regimen
+range: QuantityValue
 inlined: true
 inlined_as_list: true
 

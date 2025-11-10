@@ -495,7 +495,7 @@
 
 
 <h1 id="zebrafish-toxicology-atlas-schema">zebrafish-toxicology-atlas-schema</h1>
-<p>Schema to represent metadata associated with the Zebrafish Toxicology Atlas</p>
+<p>Schema to represent metadatcha associated with the Zebrafish Toxicology Atlas</p>
 <p>URI: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema</p>
 <p>Name: zebrafish-toxicology-atlas-schema</p>
 <h2 id="classes">Classes</h2>
@@ -513,47 +513,47 @@
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ChemicalEntity/">ChemicalEntity</a></td>
-<td>A chemical compound used as a toxicant in the study</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Experiment/">Experiment</a></td>
-<td>An experiment within a study</td>
+<td>The chemical used as the stressor chemical in an exposure event</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ExposureEvent/">ExposureEvent</a></td>
-<td>An instance of a toxicological exposure event in the study</td>
+<td>An occurrence in a study where a subject is exposed to a stressor under defin...</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ExposureExperiment/">ExposureExperiment</a></td>
-<td>An experiment exposing fish to chemical stressors</td>
+<td>An experimental procedure in which a subject is exposed to a defined stressor...</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Fish/">Fish</a></td>
-<td>A representation of the zebrafish used in the toxicology study</td>
+<td>Zebrafish used as subject in the study</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Image/">Image</a></td>
 <td>An image associated with a phenotype observation</td>
 </tr>
 <tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ObservationSet/">ObservationSet</a></td>
+<td>Group of observations (phenotypic outcomes and their control) that are linked...</td>
+</tr>
+<tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Phenotype/">Phenotype</a></td>
-<td>A phenotype observed in the fish as a result of exposure</td>
+<td>Any measurable or visible trait change in the subject as a result of exposure</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="PhenotypeObservation/">PhenotypeObservation</a></td>
-<td>An observation of phenotypes resulting from exposure experiments</td>
+<td>A phenotypic outcome resulting from an exposure event</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Regimen/">Regimen</a></td>
-<td>The regimen of exposure events</td>
+<td>The schedule and pattern of an exposure event</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Stressor/">Stressor</a></td>
-<td>A chemical stressor used in exposure experiments</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="StressorChemical/">StressorChemical</a></td>
+<td>A chemical, that elicit a response (a phenotype) in a subject when when encou...</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Study/">Study</a></td>
-<td>A toxicology study containing experiments</td>
+<td>A toxicological investigation, including the experimental conditions and phen...</td>
 </tr>
 <tr>
 <td><a href="QuantityValue/">QuantityValue</a></td>
@@ -571,8 +571,12 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="additional_exposure_conditions/">additional_exposure_conditions</a></td>
-<td>Additional exposure conditions</td>
+<td><a href="additional_exposure_condition/">additional_exposure_condition</a></td>
+<td>Additional information about the conditions under which exposure event occurr...</td>
+</tr>
+<tr>
+<td><a href="annotator/">annotator</a></td>
+<td>ORCID identifier of the indidvidual submitting the study data</td>
 </tr>
 <tr>
 <td><a href="cas_id/">cas_id</a></td>
@@ -583,7 +587,7 @@
 <td>CHEBI identifier for the chemical</td>
 </tr>
 <tr>
-<td><a href="chemical/">chemical</a></td>
+<td><a href="chemical_id/">chemical_id</a></td>
 <td>Chemical identifier (CHEBI, CAS, or UUID)</td>
 </tr>
 <tr>
@@ -591,28 +595,20 @@
 <td>Name of the chemical</td>
 </tr>
 <tr>
-<td><a href="comments/">comments</a></td>
+<td><a href="comment/">comment</a></td>
 <td>Additional comments</td>
 </tr>
 <tr>
-<td><a href="contributor/">contributor</a></td>
-<td>The contributors of the study</td>
+<td><a href="concentration/">concentration</a></td>
+<td>The dose or concentration of the chemical to which the subject was exposed to</td>
 </tr>
 <tr>
 <td><a href="control/">control</a></td>
-<td>Whether this is a control observation</td>
-</tr>
-<tr>
-<td><a href="dose/">dose</a></td>
-<td>The dose of the chemical</td>
-</tr>
-<tr>
-<td><a href="experiment/">experiment</a></td>
-<td>The experiments in this study</td>
+<td>A PhenotypeObservation that serves as the reference for comparing other obser...</td>
 </tr>
 <tr>
 <td><a href="exposure_end_stage/">exposure_end_stage</a></td>
-<td>The developmental stage at exposure end</td>
+<td>The developmental stage of fish when exposure ended</td>
 </tr>
 <tr>
 <td><a href="exposure_event/">exposure_event</a></td>
@@ -628,11 +624,11 @@
 </tr>
 <tr>
 <td><a href="exposure_start_stage/">exposure_start_stage</a></td>
-<td>The developmental stage at exposure start</td>
+<td>The developmental stage of fish when exposure started</td>
 </tr>
 <tr>
 <td><a href="exposure_type/">exposure_type</a></td>
-<td>The exposure type</td>
+<td>An instance of exposure specifying the type of stressor a subject was exposed...</td>
 </tr>
 <tr>
 <td><a href="id/">id</a></td>
@@ -647,7 +643,7 @@
 <td>Individual exposure duration</td>
 </tr>
 <tr>
-<td><a href="interval_between_exposures/">interval_between_exposures</a></td>
+<td><a href="interval_between_individual_exposures/">interval_between_individual_exposures</a></td>
 <td>Interval between individual exposures</td>
 </tr>
 <tr>
@@ -656,7 +652,7 @@
 </tr>
 <tr>
 <td><a href="magnification/">magnification</a></td>
-<td>The magnification of the image</td>
+<td>The factor by which a microscope enlarges the apparent size of a subject comp...</td>
 </tr>
 <tr>
 <td><a href="manufacturer/">manufacturer</a></td>
@@ -667,12 +663,16 @@
 <td>Name or label of an entity</td>
 </tr>
 <tr>
-<td><a href="number_of_repeats/">number_of_repeats</a></td>
-<td>Number of repeats in the regimen</td>
+<td><a href="number_of_individual_exposure/">number_of_individual_exposure</a></td>
+<td>Total number of individual exposures</td>
 </tr>
 <tr>
 <td><a href="numeric_value/">numeric_value</a></td>
 <td>The numeric value of the quantity value</td>
+</tr>
+<tr>
+<td><a href="observation_set/">observation_set</a></td>
+<td>The observation set in a study</td>
 </tr>
 <tr>
 <td><a href="phenotype/">phenotype</a></td>
@@ -688,15 +688,15 @@
 </tr>
 <tr>
 <td><a href="prevalence/">prevalence</a></td>
-<td>The prevalence of the phenotype</td>
+<td>The percentage of subject exhibiting this phenotype</td>
 </tr>
 <tr>
 <td><a href="publication/">publication</a></td>
 <td>The publication identifier (e</td>
 </tr>
 <tr>
-<td><a href="rearing_condition_comments/">rearing_condition_comments</a></td>
-<td>Comments about rearing conditions</td>
+<td><a href="rearing_condition_comment/">rearing_condition_comment</a></td>
+<td>Comments on rearing conditions, for example, about how conditions deviated fr...</td>
 </tr>
 <tr>
 <td><a href="regimen/">regimen</a></td>
@@ -704,7 +704,7 @@
 </tr>
 <tr>
 <td><a href="resolution/">resolution</a></td>
-<td>The resolution of the image</td>
+<td>Level of detail of the image</td>
 </tr>
 <tr>
 <td><a href="route/">route</a></td>
@@ -712,23 +712,23 @@
 </tr>
 <tr>
 <td><a href="scale_bar/">scale_bar</a></td>
-<td>Scale bar information</td>
+<td>Scale bar information, including the physical length it represents and the un...</td>
 </tr>
 <tr>
 <td><a href="severity/">severity</a></td>
-<td>The severity of the phenotype</td>
+<td>The intensity of the observed phenotype</td>
 </tr>
 <tr>
 <td><a href="stage/">stage</a></td>
-<td>The developmental stage</td>
+<td>The developmental stage of fish when the phenotype was observed</td>
 </tr>
 <tr>
-<td><a href="standard_rearing_conditions/">standard_rearing_conditions</a></td>
-<td>Whether standard rearing conditions were used</td>
+<td><a href="standard_rearing_condition/">standard_rearing_condition</a></td>
+<td>An indication if the subject was maintained under standard conditions, which ...</td>
 </tr>
 <tr>
-<td><a href="stressor_chemical/">stressor_chemical</a></td>
-<td>The stressor chemicals used</td>
+<td><a href="stressor/">stressor</a></td>
+<td>Substance, chemical or toxicant, that elicit a response (a phenotype) in a su...</td>
 </tr>
 <tr>
 <td><a href="subject/">subject</a></td>
@@ -736,10 +736,10 @@
 </tr>
 <tr>
 <td><a href="synonym/">synonym</a></td>
-<td></td>
+<td>Other names for the chemical</td>
 </tr>
 <tr>
-<td><a href="time_between_first_and_last_exposure/">time_between_first_and_last_exposure</a></td>
+<td><a href="total_exposure_duration/">total_exposure_duration</a></td>
 <td>Time between first and last individual exposure</td>
 </tr>
 <tr>
@@ -752,7 +752,7 @@
 </tr>
 <tr>
 <td><a href="vehicle/">vehicle</a></td>
-<td>The vehicles used in the exposure</td>
+<td>The substance or medium used deliver a stressor</td>
 </tr>
 </tbody>
 </table>

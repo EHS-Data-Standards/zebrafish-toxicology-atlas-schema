@@ -245,7 +245,7 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <h1 id="class-exposureexperiment">Class: ExposureExperiment</h1>
-<p><em>An experiment exposing fish to chemical stressors.</em></p>
+<p><em>An experimental procedure in which a subject is exposed to a defined stressor, such as a chemical or environmental factor, to evaluate phenotypic effects.</em></p>
 <p>URI: <a href="https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/ExposureExperiment">zebrafish_toxicology_atlas_schema:ExposureExperiment</a></p>
 <div class="mermaid"> classDiagram
     class ExposureExperiment
@@ -264,9 +264,9 @@
 
 
 
-      ExposureExperiment : rearing_condition_comments
+      ExposureExperiment : rearing_condition_comment
 
-      ExposureExperiment : standard_rearing_conditions
+      ExposureExperiment : standard_rearing_condition
 
       ExposureExperiment : subject
 
@@ -314,15 +314,15 @@
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../standard_rearing_conditions/">standard_rearing_conditions</a></td>
+<td><a href="../standard_rearing_condition/">standard_rearing_condition</a></td>
 <td>0..1 <br/> <a href="../Boolean/">Boolean</a></td>
-<td>Whether standard rearing conditions were used</td>
+<td>An indication if the subject was maintained under standard conditions, which ...</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../rearing_condition_comments/">rearing_condition_comments</a></td>
+<td><a href="../rearing_condition_comment/">rearing_condition_comment</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Comments about rearing conditions</td>
+<td>Comments on rearing conditions, for example, about how conditions deviated fr...</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -381,21 +381,23 @@
 <h3 id="direct">Direct</h3>
 <details>
 <pre><code class="language-yaml">name: ExposureExperiment
-description: An experiment exposing fish to chemical stressors.
+description: An experimental procedure in which a subject is exposed to a defined
+  stressor, such as a chemical or environmental factor, to evaluate phenotypic effects.
 from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
 is_a: Entity
 slots:
 - subject
 - exposure_event
-- standard_rearing_conditions
-- rearing_condition_comments
+- standard_rearing_condition
+- rearing_condition_comment
 
 </code></pre>
 </details>
 <h3 id="induced">Induced</h3>
 <details>
 <pre><code class="language-yaml">name: ExposureExperiment
-description: An experiment exposing fish to chemical stressors.
+description: An experimental procedure in which a subject is exposed to a defined
+  stressor, such as a chemical or environmental factor, to evaluate phenotypic effects.
 from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
 is_a: Entity
 attributes:
@@ -424,22 +426,26 @@ attributes:
     multivalued: true
     inlined: true
     inlined_as_list: true
-  standard_rearing_conditions:
-    name: standard_rearing_conditions
-    description: Whether standard rearing conditions were used.
+  standard_rearing_condition:
+    name: standard_rearing_condition
+    description: An indication if the subject was maintained under standard conditions,
+      which are the established, consistent environmental and husbandry parameters
+      (such as temperature, lighting, diet, and housing) designed to minimize variability
+      and ensure reproducibility in experiments.
     from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
     rank: 1000
-    alias: standard_rearing_conditions
+    alias: standard_rearing_condition
     owner: ExposureExperiment
     domain_of:
     - ExposureExperiment
     range: boolean
-  rearing_condition_comments:
-    name: rearing_condition_comments
-    description: Comments about rearing conditions.
+  rearing_condition_comment:
+    name: rearing_condition_comment
+    description: Comments on rearing conditions, for example, about how conditions
+      deviated from standard parameters.
     from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
     rank: 1000
-    alias: rearing_condition_comments
+    alias: rearing_condition_comment
     owner: ExposureExperiment
     domain_of:
     - ExposureExperiment

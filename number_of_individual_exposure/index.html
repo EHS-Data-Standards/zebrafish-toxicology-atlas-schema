@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/standard_rearing_conditions/">
+        <link rel="canonical" href="https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/number_of_individual_exposure/">
       
       
       
@@ -18,7 +18,7 @@
     
     
       
-        <title>Slot: standard_rearing_conditions - Zebrafish Toxicology Atlas Schema Documentation</title>
+        <title>Slot: number_of_individual_exposure - Zebrafish Toxicology Atlas Schema Documentation</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-standard_rearing_conditions" class="md-skip">
+        <a href="#slot-number_of_individual_exposure" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: standard_rearing_conditions
+              Slot: number_of_individual_exposure
             
           </span>
         </div>
@@ -420,10 +420,10 @@
   
 
 
-<h1 id="slot-standard_rearing_conditions">Slot: standard_rearing_conditions</h1>
-<p><em>Whether standard rearing conditions were used.</em></p>
-<p>URI: <a href="https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/standard_rearing_conditions">zebrafish_toxicology_atlas_schema:standard_rearing_conditions</a>
-Alias: standard_rearing_conditions</p>
+<h1 id="slot-number_of_individual_exposure">Slot: number_of_individual_exposure</h1>
+<p><em>Total number of individual exposures.</em></p>
+<p>URI: <a href="https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/number_of_individual_exposure">zebrafish_toxicology_atlas_schema:number_of_individual_exposure</a>
+Alias: number_of_individual_exposure</p>
 <!-- no inheritance hierarchy -->
 
 <h2 id="applicable-classes">Applicable Classes</h2>
@@ -437,15 +437,15 @@ Alias: standard_rearing_conditions</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../ExposureExperiment/">ExposureExperiment</a></td>
-<td>An experiment exposing fish to chemical stressors</td>
+<td><a href="../Regimen/">Regimen</a></td>
+<td>The schedule and pattern of an exposure event</td>
 <td>no</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>Range: <a href="../Boolean/">Boolean</a></li>
+<li>Range: <a href="../Integer/">Integer</a></li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
@@ -463,25 +463,25 @@ Alias: standard_rearing_conditions</p>
 <tbody>
 <tr>
 <td>self</td>
-<td>zebrafish_toxicology_atlas_schema:standard_rearing_conditions</td>
+<td>zebrafish_toxicology_atlas_schema:number_of_individual_exposure</td>
 </tr>
 <tr>
 <td>native</td>
-<td>zebrafish_toxicology_atlas_schema:standard_rearing_conditions</td>
+<td>zebrafish_toxicology_atlas_schema:number_of_individual_exposure</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: standard_rearing_conditions
-description: Whether standard rearing conditions were used.
+<pre><code class="language-yaml">name: number_of_individual_exposure
+description: Total number of individual exposures.
 from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
 rank: 1000
-alias: standard_rearing_conditions
+alias: number_of_individual_exposure
 domain_of:
-- ExposureExperiment
-range: boolean
+- Regimen
+range: integer
 
 </code></pre>
 

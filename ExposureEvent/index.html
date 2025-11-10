@@ -245,7 +245,7 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <h1 id="class-exposureevent">Class: ExposureEvent</h1>
-<p><em>An instance of a toxicological exposure event in the study.</em></p>
+<p><em>An occurrence in a study where a subject is exposed to a stressor under defined conditions.</em></p>
 <p>URI: <a href="https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/ExposureEvent">zebrafish_toxicology_atlas_schema:ExposureEvent</a></p>
 <div class="mermaid"> classDiagram
     class ExposureEvent
@@ -253,9 +253,9 @@
       Entity &lt;|-- ExposureEvent
         click Entity href "../Entity/"
 
-      ExposureEvent : additional_exposure_conditions
+      ExposureEvent : additional_exposure_condition
 
-      ExposureEvent : comments
+      ExposureEvent : comment
 
       ExposureEvent : exposure_end_stage
 
@@ -294,14 +294,14 @@
 
 
 
-      ExposureEvent : stressor_chemical
+      ExposureEvent : stressor
 
 
 
 
 
-        ExposureEvent --&gt; "*" Stressor : stressor_chemical
-        click Stressor href "../Stressor/"
+        ExposureEvent --&gt; "*" StressorChemical : stressor
+        click StressorChemical href "../StressorChemical/"
 
 
 
@@ -339,15 +339,15 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../stressor_chemical/">stressor_chemical</a></td>
-<td>* <br/> <a href="../Stressor/">Stressor</a></td>
-<td>The stressor chemicals used</td>
+<td><a href="../stressor/">stressor</a></td>
+<td>* <br/> <a href="../StressorChemical/">StressorChemical</a></td>
+<td>Substance, chemical or toxicant, that elicit a response (a phenotype) in a su...</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../vehicle/">vehicle</a></td>
 <td>* <br/> <a href="../VehicleEnumeration/">VehicleEnumeration</a></td>
-<td>The vehicles used in the exposure</td>
+<td>The substance or medium used deliver a stressor</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -365,17 +365,17 @@
 <tr>
 <td><a href="../exposure_start_stage/">exposure_start_stage</a></td>
 <td>0..1 <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
-<td>The developmental stage at exposure start</td>
+<td>The developmental stage of fish when exposure started</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../exposure_end_stage/">exposure_end_stage</a></td>
 <td>0..1 <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
-<td>The developmental stage at exposure end</td>
+<td>The developmental stage of fish when exposure ended</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../comments/">comments</a></td>
+<td><a href="../comment/">comment</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>Additional comments</td>
 <td>direct</td>
@@ -383,13 +383,13 @@
 <tr>
 <td><a href="../exposure_type/">exposure_type</a></td>
 <td>0..1 <br/> <a href="../ExposureTypeEnum/">ExposureTypeEnum</a></td>
-<td>The exposure type</td>
+<td>An instance of exposure specifying the type of stressor a subject was exposed...</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../additional_exposure_conditions/">additional_exposure_conditions</a></td>
+<td><a href="../additional_exposure_condition/">additional_exposure_condition</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Additional exposure conditions</td>
+<td>Additional information about the conditions under which exposure event occurr...</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -452,49 +452,52 @@
 <h3 id="direct">Direct</h3>
 <details>
 <pre><code class="language-yaml">name: ExposureEvent
-description: An instance of a toxicological exposure event in the study.
+description: An occurrence in a study where a subject is exposed to a stressor under
+  defined conditions.
 from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
 exact_mappings:
 - biolink:ExposureEvent
 is_a: Entity
 slots:
-- stressor_chemical
+- stressor
 - vehicle
 - route
 - regimen
 - exposure_start_stage
 - exposure_end_stage
-- comments
+- comment
 - exposure_type
-- additional_exposure_conditions
+- additional_exposure_condition
 
 </code></pre>
 </details>
 <h3 id="induced">Induced</h3>
 <details>
 <pre><code class="language-yaml">name: ExposureEvent
-description: An instance of a toxicological exposure event in the study.
+description: An occurrence in a study where a subject is exposed to a stressor under
+  defined conditions.
 from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
 exact_mappings:
 - biolink:ExposureEvent
 is_a: Entity
 attributes:
-  stressor_chemical:
-    name: stressor_chemical
-    description: The stressor chemicals used.
+  stressor:
+    name: stressor
+    description: Substance, chemical or toxicant, that elicit a response (a phenotype)
+      in a subject when encountered through exposure.
     from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
     rank: 1000
-    alias: stressor_chemical
+    alias: stressor
     owner: ExposureEvent
     domain_of:
     - ExposureEvent
-    range: Stressor
+    range: StressorChemical
     multivalued: true
     inlined: true
     inlined_as_list: true
   vehicle:
     name: vehicle
-    description: The vehicles used in the exposure.
+    description: The substance or medium used deliver a stressor.
     from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
     rank: 1000
     alias: vehicle
@@ -528,7 +531,7 @@ attributes:
     inlined_as_list: true
   exposure_start_stage:
     name: exposure_start_stage
-    description: The developmental stage at exposure start.
+    description: The developmental stage of fish when exposure started.
     from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
     rank: 1000
     alias: exposure_start_stage
@@ -539,7 +542,7 @@ attributes:
     multivalued: false
   exposure_end_stage:
     name: exposure_end_stage
-    description: The developmental stage at exposure end.
+    description: The developmental stage of fish when exposure ended.
     from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
     rank: 1000
     alias: exposure_end_stage
@@ -548,20 +551,21 @@ attributes:
     - ExposureEvent
     range: uriorcurie
     multivalued: false
-  comments:
-    name: comments
+  comment:
+    name: comment
     description: Additional comments.
     from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
     rank: 1000
-    alias: comments
+    alias: comment
     owner: ExposureEvent
     domain_of:
     - ExposureEvent
-    - Stressor
+    - StressorChemical
     range: string
   exposure_type:
     name: exposure_type
-    description: The exposure type.
+    description: An instance of exposure specifying the type of stressor a subject
+      was exposed to.
     from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
     rank: 1000
     alias: exposure_type
@@ -569,12 +573,13 @@ attributes:
     domain_of:
     - ExposureEvent
     range: ExposureTypeEnum
-  additional_exposure_conditions:
-    name: additional_exposure_conditions
-    description: Additional exposure conditions.
+  additional_exposure_condition:
+    name: additional_exposure_condition
+    description: Additional information about the conditions under which exposure
+      event occurred.
     from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
     rank: 1000
-    alias: additional_exposure_conditions
+    alias: additional_exposure_condition
     owner: ExposureEvent
     domain_of:
     - ExposureEvent

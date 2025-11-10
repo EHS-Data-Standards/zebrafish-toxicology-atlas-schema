@@ -5,10 +5,10 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<link href="https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/Experiment/" rel="canonical"/>
+<link href="https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/StressorChemical/" rel="canonical"/>
 <link href="../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.6.23" name="generator"/>
-<title>Class: Experiment - Zebrafish Toxicology Atlas Schema Documentation</title>
+<title>Class: StressorChemical - Zebrafish Toxicology Atlas Schema Documentation</title>
 <link href="../assets/stylesheets/main.84d31ad4.min.css" rel="stylesheet"/>
 <link href="../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -24,7 +24,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#class-experiment">
+<a class="md-skip" href="#class-stressorchemical">
           Skip to content
         </a>
 </div>
@@ -48,7 +48,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Class: Experiment
+              Class: StressorChemical
             
           </span>
 </div>
@@ -244,36 +244,49 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="class-experiment">Class: Experiment</h1>
-<p><em>An experiment within a study.</em></p>
-<p>URI: <a href="https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/Experiment">zebrafish_toxicology_atlas_schema:Experiment</a></p>
+<h1 id="class-stressorchemical">Class: StressorChemical</h1>
+<p><em>A chemical, that elicit a response (a phenotype) in a subject when when encountered through exposure.</em></p>
+<p>URI: <a href="https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/StressorChemical">zebrafish_toxicology_atlas_schema:StressorChemical</a></p>
 <div class="mermaid"> classDiagram
-    class Experiment
-    click Experiment href "../Experiment/"
-      Entity &lt;|-- Experiment
+    class StressorChemical
+    click StressorChemical href "../StressorChemical/"
+      Entity &lt;|-- StressorChemical
         click Entity href "../Entity/"
 
-      Experiment : control
-
-      Experiment : phenotype_observation
+      StressorChemical : chemical_id
 
 
 
 
 
-        Experiment --&gt; "*" PhenotypeObservation : phenotype_observation
-        click PhenotypeObservation href "../PhenotypeObservation/"
+        StressorChemical --&gt; "1" ChemicalEntity : chemical_id
+        click ChemicalEntity href "../ChemicalEntity/"
 
 
 
-      Experiment : uuid
+      StressorChemical : comment
+
+      StressorChemical : concentration
+
+
+
+
+
+        StressorChemical --&gt; "1" QuantityValue : concentration
+        click QuantityValue href "../QuantityValue/"
+
+
+
+      StressorChemical : manufacturer
+
+      StressorChemical : uuid
 
 
 </div>
 <h2 id="inheritance">Inheritance</h2>
 <ul>
 <li><a href="../Entity/">Entity</a><ul>
-<li><strong>Experiment</strong></li>
+<li><strong>StressorChemical</strong></li>
 </ul>
 </li>
 </ul>
@@ -289,15 +302,27 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../phenotype_observation/">phenotype_observation</a></td>
-<td>* <br/> <a href="../PhenotypeObservation/">PhenotypeObservation</a></td>
-<td>The phenotype observations from this experiment</td>
+<td><a href="../chemical_id/">chemical_id</a></td>
+<td>1 <br/> <a href="../ChemicalEntity/">ChemicalEntity</a></td>
+<td>Chemical identifier (CHEBI, CAS, or UUID)</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../control/">control</a></td>
-<td>0..1 <br/> <a href="../Boolean/">Boolean</a></td>
-<td>Whether this is a control observation</td>
+<td><a href="../manufacturer/">manufacturer</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>The manufacturer of the chemical</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../concentration/">concentration</a></td>
+<td>1 <br/> <a href="../QuantityValue/">QuantityValue</a></td>
+<td>The dose or concentration of the chemical to which the subject was exposed to</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../comment/">comment</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Additional comments</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -320,10 +345,10 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../Study/">Study</a></td>
-<td><a href="../experiment/">experiment</a></td>
+<td><a href="../ExposureEvent/">ExposureEvent</a></td>
+<td><a href="../stressor/">stressor</a></td>
 <td>range</td>
-<td><a href="./">Experiment</a></td>
+<td><a href="./">StressorChemical</a></td>
 </tr>
 </tbody>
 </table>
@@ -343,11 +368,11 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>zebrafish_toxicology_atlas_schema:Experiment</td>
+<td>zebrafish_toxicology_atlas_schema:StressorChemical</td>
 </tr>
 <tr>
 <td>native</td>
-<td>zebrafish_toxicology_atlas_schema:Experiment</td>
+<td>zebrafish_toxicology_atlas_schema:StressorChemical</td>
 </tr>
 </tbody>
 </table>
@@ -355,47 +380,75 @@
 <!-- TODO: investigate https://stackoverflow.com/questions/37606292/how-to-create-tabbed-code-blocks-in-mkdocs-or-sphinx -->
 <h3 id="direct">Direct</h3>
 <details>
-<pre><code class="language-yaml">name: Experiment
-description: An experiment within a study.
+<pre><code class="language-yaml">name: StressorChemical
+description: A chemical, that elicit a response (a phenotype) in a subject when when
+  encountered through exposure.
 from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
 is_a: Entity
 slots:
-- phenotype_observation
-- control
+- chemical_id
+- manufacturer
+- concentration
+- comment
 
 </code></pre>
 </details>
 <h3 id="induced">Induced</h3>
 <details>
-<pre><code class="language-yaml">name: Experiment
-description: An experiment within a study.
+<pre><code class="language-yaml">name: StressorChemical
+description: A chemical, that elicit a response (a phenotype) in a subject when when
+  encountered through exposure.
 from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
 is_a: Entity
 attributes:
-  phenotype_observation:
-    name: phenotype_observation
-    description: The phenotype observations from this experiment.
+  chemical_id:
+    name: chemical_id
+    description: Chemical identifier (CHEBI, CAS, or UUID).
     from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
     rank: 1000
-    alias: phenotype_observation
-    owner: Experiment
+    alias: chemical_id
+    owner: StressorChemical
     domain_of:
-    - Experiment
-    range: PhenotypeObservation
-    multivalued: true
+    - StressorChemical
+    range: ChemicalEntity
+    required: true
     inlined: true
     inlined_as_list: true
-  control:
-    name: control
-    description: Whether this is a control observation.
+  manufacturer:
+    name: manufacturer
+    description: The manufacturer of the chemical.
     from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
     rank: 1000
-    alias: control
-    owner: Experiment
+    alias: manufacturer
+    owner: StressorChemical
     domain_of:
-    - Experiment
-    - PhenotypeObservation
-    range: boolean
+    - StressorChemical
+    range: string
+  concentration:
+    name: concentration
+    description: The dose or concentration of the chemical to which the subject was
+      exposed to.
+    from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
+    rank: 1000
+    alias: concentration
+    owner: StressorChemical
+    domain_of:
+    - StressorChemical
+    range: QuantityValue
+    required: true
+    inlined: true
+    inlined_as_list: true
+  comment:
+    name: comment
+    description: Additional comments.
+    from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
+    rank: 1000
+    alias: comment
+    owner: StressorChemical
+    domain_of:
+    - ExposureEvent
+    - StressorChemical
+    range: string
   uuid:
     name: uuid
     description: UUID identifier.
@@ -403,7 +456,7 @@ attributes:
     rank: 1000
     identifier: true
     alias: uuid
-    owner: Experiment
+    owner: StressorChemical
     domain_of:
     - Entity
     - ChemicalEntity

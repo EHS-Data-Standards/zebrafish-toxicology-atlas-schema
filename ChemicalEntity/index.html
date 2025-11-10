@@ -245,7 +245,7 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <h1 id="class-chemicalentity">Class: ChemicalEntity</h1>
-<p><em>A chemical compound used as a toxicant in the study.</em></p>
+<p><em>The chemical used as the stressor chemical in an exposure event.</em></p>
 <p>URI: <a href="https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/ChemicalEntity">zebrafish_toxicology_atlas_schema:ChemicalEntity</a></p>
 <div class="mermaid"> classDiagram
     class ChemicalEntity
@@ -310,7 +310,7 @@
 <tr>
 <td><a href="../synonym/">synonym</a></td>
 <td>* <br/> <a href="../String/">String</a></td>
-<td></td>
+<td>Other names for the chemical</td>
 <td>direct</td>
 </tr>
 </tbody>
@@ -327,8 +327,8 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../Stressor/">Stressor</a></td>
-<td><a href="../chemical/">chemical</a></td>
+<td><a href="../StressorChemical/">StressorChemical</a></td>
+<td><a href="../chemical_id/">chemical_id</a></td>
 <td>range</td>
 <td><a href="./">ChemicalEntity</a></td>
 </tr>
@@ -367,7 +367,7 @@
 <h3 id="direct">Direct</h3>
 <details>
 <pre><code class="language-yaml">name: ChemicalEntity
-description: A chemical compound used as a toxicant in the study.
+description: The chemical used as the stressor chemical in an exposure event.
 from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
 exact_mappings:
 - biolink:ChemicalEntity
@@ -384,7 +384,7 @@ slots:
 <h3 id="induced">Induced</h3>
 <details>
 <pre><code class="language-yaml">name: ChemicalEntity
-description: A chemical compound used as a toxicant in the study.
+description: The chemical used as the stressor chemical in an exposure event.
 from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
 exact_mappings:
 - biolink:ChemicalEntity
@@ -436,6 +436,7 @@ attributes:
     required: true
   synonym:
     name: synonym
+    description: Other names for the chemical.
     from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
     rank: 1000
     alias: synonym

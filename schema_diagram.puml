@@ -2,57 +2,57 @@
 skinparam nodesep 10
 hide circle
 hide empty members
-class "Stressor" [[{A chemical stressor used in exposure experiments.}]] {
+class "StressorChemical" [[{A chemical, that elicit a response (a phenotype) in a subject when when encountered through exposure.}]] {
     {field} manufacturer : string  
-    {field} comments : string  
+    {field} comment : string  
     {field} uuid(i) : string  
 }
 class "QuantityValue" [[{A value of an attribute that is quantitative and measurable, expressed as a combination of a unit and a numeric value}]] {
     {field} unit : string  
     {field} numeric_value : string  
 }
-class "Regimen" [[{The regimen of exposure events.}]] {
+class "Regimen" [[{The schedule and pattern of an exposure event.}]] {
     {field} exposure_regimen_type : ExposureRegimenTypeEnum  
-    {field} number_of_repeats : integer  
+    {field} number_of_individual_exposure : integer  
     {field} uuid(i) : string  
 }
-class "Phenotype" [[{A phenotype observed in the fish as a result of exposure.}]] {
+class "Phenotype" [[{Any measurable or visible trait change in the subject as a result of exposure.}]] {
     {field} stage : uriorcurie  
     {field} severity : SeverityEnum  
     {field} phenotype_term_id : uriorcurie  
     {field} uuid(i) : string  
 }
-"Stressor" *--> "1" "QuantityValue" : "dose"
+"StressorChemical" *--> "1" "QuantityValue" : "concentration"
 "Regimen" *--> "0..1" "QuantityValue" : "individual_exposure_duration"
-"Regimen" *--> "0..1" "QuantityValue" : "interval_between_exposures"
+"Regimen" *--> "0..1" "QuantityValue" : "interval_between_individual_exposures"
 "Phenotype" *--> "0..1" "QuantityValue" : "prevalence"
-"Regimen" *--> "0..1" "QuantityValue" : "time_between_first_and_last_exposure"
-class "ChemicalEntity" [[{A chemical compound used as a toxicant in the study.}]] {
+"Regimen" *--> "0..1" "QuantityValue" : "total_exposure_duration"
+class "ChemicalEntity" [[{The chemical used as the stressor chemical in an exposure event.}]] {
     {field} chebi_id : uriorcurie  
     {field} cas_id : string  
     {field} chemical_name : string  
     {field} synonym : string  [0..*]
     {field} uuid(i) : string  
 }
-class "ExposureEvent" [[{An instance of a toxicological exposure event in the study.}]] {
+class "ExposureEvent" [[{An occurrence in a study where a subject is exposed to a stressor under defined conditions.}]] {
     {field} vehicle : VehicleEnumeration  [0..*]
     {field} route : ExposureRouteEnum  
     {field} exposure_start_stage : uriorcurie  
     {field} exposure_end_stage : uriorcurie  
-    {field} comments : string  
+    {field} comment : string  
     {field} exposure_type : ExposureTypeEnum  
-    {field} additional_exposure_conditions : string  
+    {field} additional_exposure_condition : string  
     {field} uuid(i) : string  
 }
 abstract "Entity" [[{The base class for all entities in the Zebrafish Toxicology Atlas Schema.}]] {
     {field} uuid : string  
 }
-"Stressor" *--> "1" "ChemicalEntity" : "chemical"
-"ExposureEvent" *--> "0..*" "Stressor" : "stressor_chemical"
-"Entity" ^-- "Stressor"
+"StressorChemical" *--> "1" "ChemicalEntity" : "chemical_id"
+"ExposureEvent" *--> "0..*" "StressorChemical" : "stressor"
+"Entity" ^-- "StressorChemical"
 "ExposureEvent" *--> "0..1" "Regimen" : "regimen"
 "Entity" ^-- "Regimen"
-class "PhenotypeObservation" [[{An observation of phenotypes resulting from exposure experiments.}]] {
+class "PhenotypeObservation" [[{A phenotypic outcome resulting from an exposure event.}]] {
     {field} control : boolean  
     {field} uuid(i) : string  
 }
@@ -64,21 +64,30 @@ class "Image" [[{An image associated with a phenotype observation.}]] {
     {field} scale_bar : string  
     {field} uuid(i) : string  
 }
-class "ExposureExperiment" [[{An experiment exposing fish to chemical stressors.}]] {
-    {field} standard_rearing_conditions : boolean  
-    {field} rearing_condition_comments : string  
+class "ExposureExperiment" [[{An experimental procedure in which a subject is exposed to a defined stressor, such as a chemical or environmental factor, to evaluate phenotypic effects.}]] {
+    {field} standard_rearing_condition : boolean  
+    {field} rearing_condition_comment : string  
     {field} uuid(i) : string  
 }
-class "Experiment" [[{An experiment within a study.}]] {
+class "ObservationSet" [[{Group of observations (phenotypic outcomes and their control) that are linked by a common experiment and subject that are part of a study.}]] {
     {field} control : boolean  
     {field} uuid(i) : string  
 }
 "PhenotypeObservation" *--> "0..*" "Image" : "image"
 "PhenotypeObservation" *--> "0..1" "ExposureExperiment" : "exposure_experiment"
-"Experiment" *--> "0..*" "PhenotypeObservation" : "phenotype_observation"
+"ObservationSet" *--> "0..*" "PhenotypeObservation" : "phenotype_observation"
 "Entity" ^-- "PhenotypeObservation"
+class "Study" [[{A toxicological investigation, including the experimental conditions and phenotypic outcomes, with information provenance.}]] {
+    {field} publication : string  
+    {field} annotator : uriorcurie  [0..*]
+    {field} lab : uriorcurie  
+    {field} uuid(i) : string  
+}
+"Study" *--> "0..*" "ObservationSet" : "observation_set"
+"Entity" ^-- "ObservationSet"
+"Entity" ^-- "Study"
 "Entity" ^-- "Image"
-class "Fish" [[{A representation of the zebrafish used in the toxicology study.}]] {
+class "Fish" [[{Zebrafish used as subject in the study.}]] {
     {field} name : string  
     {field} id : uriorcurie  
     {field} uuid(i) : string  
@@ -88,14 +97,5 @@ class "Fish" [[{A representation of the zebrafish used in the toxicology study.}
 "Entity" ^-- "ExposureExperiment"
 "Entity" ^-- "Fish"
 "Entity" ^-- "ExposureEvent"
-class "Study" [[{A toxicology study containing experiments.}]] {
-    {field} publication : string  
-    {field} contributor : uriorcurie  [0..*]
-    {field} lab : uriorcurie  
-    {field} uuid(i) : string  
-}
-"Study" *--> "0..*" "Experiment" : "experiment"
-"Entity" ^-- "Experiment"
-"Entity" ^-- "Study"
 "Entity" ^-- "ChemicalEntity"
 @enduml

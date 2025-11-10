@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/dose/">
+        <link rel="canonical" href="https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/annotator/">
       
       
       
@@ -18,7 +18,7 @@
     
     
       
-        <title>Slot: dose - Zebrafish Toxicology Atlas Schema Documentation</title>
+        <title>Slot: annotator - Zebrafish Toxicology Atlas Schema Documentation</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-dose" class="md-skip">
+        <a href="#slot-annotator" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: dose
+              Slot: annotator
             
           </span>
         </div>
@@ -420,10 +420,10 @@
   
 
 
-<h1 id="slot-dose">Slot: dose</h1>
-<p><em>The dose of the chemical.</em></p>
-<p>URI: <a href="https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/dose">zebrafish_toxicology_atlas_schema:dose</a>
-Alias: dose</p>
+<h1 id="slot-annotator">Slot: annotator</h1>
+<p><em>ORCID identifier of the indidvidual submitting the study data.</em></p>
+<p>URI: <a href="https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/annotator">zebrafish_toxicology_atlas_schema:annotator</a>
+Alias: annotator</p>
 <!-- no inheritance hierarchy -->
 
 <h2 id="applicable-classes">Applicable Classes</h2>
@@ -437,8 +437,8 @@ Alias: dose</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../Stressor/">Stressor</a></td>
-<td>A chemical stressor used in exposure experiments</td>
+<td><a href="../Study/">Study</a></td>
+<td>A toxicological investigation, including the experimental conditions and phen...</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -446,10 +446,13 @@ Alias: dose</p>
 <h2 id="properties">Properties</h2>
 <ul>
 <li>
-<p>Range: <a href="../QuantityValue/">QuantityValue</a></p>
+<p>Range: <a href="../Uriorcurie/">Uriorcurie</a></p>
 </li>
 <li>
-<p>Required: True</p>
+<p>Multivalued: True</p>
+</li>
+<li>
+<p>Regex pattern: <code>^ORCID:[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[0-9X]$</code></p>
 </li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
@@ -468,28 +471,27 @@ Alias: dose</p>
 <tbody>
 <tr>
 <td>self</td>
-<td>zebrafish_toxicology_atlas_schema:dose</td>
+<td>zebrafish_toxicology_atlas_schema:annotator</td>
 </tr>
 <tr>
 <td>native</td>
-<td>zebrafish_toxicology_atlas_schema:dose</td>
+<td>zebrafish_toxicology_atlas_schema:annotator</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: dose
-description: The dose of the chemical.
+<pre><code class="language-yaml">name: annotator
+description: ORCID identifier of the indidvidual submitting the study data.
 from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
 rank: 1000
-alias: dose
+alias: annotator
 domain_of:
-- Stressor
-range: QuantityValue
-required: true
-inlined: true
-inlined_as_list: true
+- Study
+range: uriorcurie
+multivalued: true
+pattern: ^ORCID:[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[0-9X]$
 
 </code></pre>
 

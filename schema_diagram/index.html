@@ -183,23 +183,19 @@ ChemicalEntity {
 Entity {
     string uuid  
 }
-Experiment {
-    boolean control  
-    string uuid  
-}
 ExposureEvent {
     VehicleEnumerationList vehicle  
     ExposureRouteEnum route  
     uriorcurie exposure_start_stage  
     uriorcurie exposure_end_stage  
-    string comments  
+    string comment  
     ExposureTypeEnum exposure_type  
-    string additional_exposure_conditions  
+    string additional_exposure_condition  
     string uuid  
 }
 ExposureExperiment {
-    boolean standard_rearing_conditions  
-    string rearing_condition_comments  
+    boolean standard_rearing_condition  
+    string rearing_condition_comment  
     string uuid  
 }
 Fish {
@@ -212,6 +208,10 @@ Image {
     string magnification  
     string resolution  
     string scale_bar  
+}
+ObservationSet {
+    boolean control  
+    string uuid  
 }
 Phenotype {
     uriorcurie stage  
@@ -229,36 +229,36 @@ QuantityValue {
 }
 Regimen {
     ExposureRegimenTypeEnum exposure_regimen_type  
-    integer number_of_repeats  
+    integer number_of_individual_exposure  
     string uuid  
 }
-Stressor {
+StressorChemical {
     string manufacturer  
-    string comments  
+    string comment  
     string uuid  
 }
 Study {
     string publication  
-    uriorcurieList contributor  
+    uriorcurieList annotator  
     uriorcurie lab  
     string uuid  
 }
 
-Experiment ||--}o PhenotypeObservation : "phenotype_observation"
 ExposureEvent ||--|o Regimen : "regimen"
-ExposureEvent ||--}o Stressor : "stressor_chemical"
+ExposureEvent ||--}o StressorChemical : "stressor"
 ExposureExperiment ||--|o Fish : "subject"
 ExposureExperiment ||--}o ExposureEvent : "exposure_event"
+ObservationSet ||--}o PhenotypeObservation : "phenotype_observation"
 Phenotype ||--|o QuantityValue : "prevalence"
 PhenotypeObservation ||--|o ExposureExperiment : "exposure_experiment"
 PhenotypeObservation ||--}o Image : "image"
 PhenotypeObservation ||--}o Phenotype : "phenotype"
 Regimen ||--|o QuantityValue : "individual_exposure_duration"
-Regimen ||--|o QuantityValue : "interval_between_exposures"
-Regimen ||--|o QuantityValue : "time_between_first_and_last_exposure"
-Stressor ||--|| ChemicalEntity : "chemical"
-Stressor ||--|| QuantityValue : "dose"
-Study ||--}o Experiment : "experiment"
+Regimen ||--|o QuantityValue : "interval_between_individual_exposures"
+Regimen ||--|o QuantityValue : "total_exposure_duration"
+StressorChemical ||--|| ChemicalEntity : "chemical_id"
+StressorChemical ||--|| QuantityValue : "concentration"
+Study ||--}o ObservationSet : "observation_set"
 
 </div>
 </article>

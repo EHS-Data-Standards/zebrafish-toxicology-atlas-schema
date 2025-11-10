@@ -245,7 +245,7 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <h1 id="class-regimen">Class: Regimen</h1>
-<p><em>The regimen of exposure events.</em></p>
+<p><em>The schedule and pattern of an exposure event.</em></p>
 <p>URI: <a href="https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/Regimen">zebrafish_toxicology_atlas_schema:Regimen</a></p>
 <div class="mermaid"> classDiagram
     class Regimen
@@ -275,26 +275,26 @@
 
 
 
-      Regimen : interval_between_exposures
+      Regimen : interval_between_individual_exposures
 
 
 
 
 
-        Regimen --&gt; "0..1" QuantityValue : interval_between_exposures
+        Regimen --&gt; "0..1" QuantityValue : interval_between_individual_exposures
         click QuantityValue href "../QuantityValue/"
 
 
 
-      Regimen : number_of_repeats
+      Regimen : number_of_individual_exposure
 
-      Regimen : time_between_first_and_last_exposure
-
-
+      Regimen : total_exposure_duration
 
 
 
-        Regimen --&gt; "0..1" QuantityValue : time_between_first_and_last_exposure
+
+
+        Regimen --&gt; "0..1" QuantityValue : total_exposure_duration
         click QuantityValue href "../QuantityValue/"
 
 
@@ -328,13 +328,13 @@
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../interval_between_exposures/">interval_between_exposures</a></td>
+<td><a href="../interval_between_individual_exposures/">interval_between_individual_exposures</a></td>
 <td>0..1 <br/> <a href="../QuantityValue/">QuantityValue</a></td>
 <td>Interval between individual exposures</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../time_between_first_and_last_exposure/">time_between_first_and_last_exposure</a></td>
+<td><a href="../total_exposure_duration/">total_exposure_duration</a></td>
 <td>0..1 <br/> <a href="../QuantityValue/">QuantityValue</a></td>
 <td>Time between first and last individual exposure</td>
 <td>direct</td>
@@ -346,9 +346,9 @@
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../number_of_repeats/">number_of_repeats</a></td>
+<td><a href="../number_of_individual_exposure/">number_of_individual_exposure</a></td>
 <td>0..1 <br/> <a href="../Integer/">Integer</a></td>
-<td>Number of repeats in the regimen</td>
+<td>Total number of individual exposures</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -407,22 +407,22 @@
 <h3 id="direct">Direct</h3>
 <details>
 <pre><code class="language-yaml">name: Regimen
-description: The regimen of exposure events.
+description: The schedule and pattern of an exposure event.
 from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
 is_a: Entity
 slots:
 - exposure_regimen_type
-- interval_between_exposures
-- time_between_first_and_last_exposure
+- interval_between_individual_exposures
+- total_exposure_duration
 - individual_exposure_duration
-- number_of_repeats
+- number_of_individual_exposure
 
 </code></pre>
 </details>
 <h3 id="induced">Induced</h3>
 <details>
 <pre><code class="language-yaml">name: Regimen
-description: The regimen of exposure events.
+description: The schedule and pattern of an exposure event.
 from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
 is_a: Entity
 attributes:
@@ -436,24 +436,24 @@ attributes:
     domain_of:
     - Regimen
     range: ExposureRegimenTypeEnum
-  interval_between_exposures:
-    name: interval_between_exposures
+  interval_between_individual_exposures:
+    name: interval_between_individual_exposures
     description: Interval between individual exposures.
     from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
     rank: 1000
-    alias: interval_between_exposures
+    alias: interval_between_individual_exposures
     owner: Regimen
     domain_of:
     - Regimen
     range: QuantityValue
     inlined: true
     inlined_as_list: true
-  time_between_first_and_last_exposure:
-    name: time_between_first_and_last_exposure
+  total_exposure_duration:
+    name: total_exposure_duration
     description: Time between first and last individual exposure.
     from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
     rank: 1000
-    alias: time_between_first_and_last_exposure
+    alias: total_exposure_duration
     owner: Regimen
     domain_of:
     - Regimen
@@ -472,12 +472,12 @@ attributes:
     range: QuantityValue
     inlined: true
     inlined_as_list: true
-  number_of_repeats:
-    name: number_of_repeats
-    description: Number of repeats in the regimen.
+  number_of_individual_exposure:
+    name: number_of_individual_exposure
+    description: Total number of individual exposures.
     from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
     rank: 1000
-    alias: number_of_repeats
+    alias: number_of_individual_exposure
     owner: Regimen
     domain_of:
     - Regimen

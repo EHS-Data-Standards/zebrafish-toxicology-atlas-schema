@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/comments/">
+        <link rel="canonical" href="https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/interval_between_individual_exposures/">
       
       
       
@@ -18,7 +18,7 @@
     
     
       
-        <title>Slot: comments - Zebrafish Toxicology Atlas Schema Documentation</title>
+        <title>Slot: interval_between_individual_exposures - Zebrafish Toxicology Atlas Schema Documentation</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-comments" class="md-skip">
+        <a href="#slot-interval_between_individual_exposures" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: comments
+              Slot: interval_between_individual_exposures
             
           </span>
         </div>
@@ -420,10 +420,10 @@
   
 
 
-<h1 id="slot-comments">Slot: comments</h1>
-<p><em>Additional comments.</em></p>
-<p>URI: <a href="https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/comments">zebrafish_toxicology_atlas_schema:comments</a>
-Alias: comments</p>
+<h1 id="slot-interval_between_individual_exposures">Slot: interval_between_individual_exposures</h1>
+<p><em>Interval between individual exposures.</em></p>
+<p>URI: <a href="https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/interval_between_individual_exposures">zebrafish_toxicology_atlas_schema:interval_between_individual_exposures</a>
+Alias: interval_between_individual_exposures</p>
 <!-- no inheritance hierarchy -->
 
 <h2 id="applicable-classes">Applicable Classes</h2>
@@ -437,20 +437,15 @@ Alias: comments</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../Stressor/">Stressor</a></td>
-<td>A chemical stressor used in exposure experiments</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../ExposureEvent/">ExposureEvent</a></td>
-<td>An instance of a toxicological exposure event in the study</td>
+<td><a href="../Regimen/">Regimen</a></td>
+<td>The schedule and pattern of an exposure event</td>
 <td>no</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>Range: <a href="../String/">String</a></li>
+<li>Range: <a href="../QuantityValue/">QuantityValue</a></li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
@@ -468,26 +463,27 @@ Alias: comments</p>
 <tbody>
 <tr>
 <td>self</td>
-<td>zebrafish_toxicology_atlas_schema:comments</td>
+<td>zebrafish_toxicology_atlas_schema:interval_between_individual_exposures</td>
 </tr>
 <tr>
 <td>native</td>
-<td>zebrafish_toxicology_atlas_schema:comments</td>
+<td>zebrafish_toxicology_atlas_schema:interval_between_individual_exposures</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: comments
-description: Additional comments.
+<pre><code class="language-yaml">name: interval_between_individual_exposures
+description: Interval between individual exposures.
 from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
 rank: 1000
-alias: comments
+alias: interval_between_individual_exposures
 domain_of:
-- ExposureEvent
-- Stressor
-range: string
+- Regimen
+range: QuantityValue
+inlined: true
+inlined_as_list: true
 
 </code></pre>
 

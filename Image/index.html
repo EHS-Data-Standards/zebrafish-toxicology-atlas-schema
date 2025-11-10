@@ -290,19 +290,19 @@
 <tr>
 <td><a href="../magnification/">magnification</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
-<td>The magnification of the image</td>
+<td>The factor by which a microscope enlarges the apparent size of a subject comp...</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../resolution/">resolution</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
-<td>The resolution of the image</td>
+<td>Level of detail of the image</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../scale_bar/">scale_bar</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Scale bar information</td>
+<td>Scale bar information, including the physical length it represents and the un...</td>
 <td>direct</td>
 </tr>
 </tbody>
@@ -389,7 +389,8 @@ attributes:
     required: true
   magnification:
     name: magnification
-    description: The magnification of the image.
+    description: The factor by which a microscope enlarges the apparent size of a
+      subject compared to its actual size.
     from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
     rank: 1000
     alias: magnification
@@ -399,7 +400,7 @@ attributes:
     range: string
   resolution:
     name: resolution
-    description: The resolution of the image.
+    description: Level of detail of the image.
     from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
     rank: 1000
     alias: resolution
@@ -409,7 +410,8 @@ attributes:
     range: string
   scale_bar:
     name: scale_bar
-    description: Scale bar information.
+    description: Scale bar information, including the physical length it represents
+      and the unit of measurement.
     from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
     rank: 1000
     alias: scale_bar

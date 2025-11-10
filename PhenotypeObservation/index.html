@@ -262,7 +262,7 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <h1 id="class-phenotypeobservation">Class: PhenotypeObservation</h1>
-<p><em>An observation of phenotypes resulting from exposure experiments.</em></p>
+<p><em>A phenotypic outcome resulting from an exposure event.</em></p>
 <p>URI: <a href="https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/PhenotypeObservation">zebrafish_toxicology_atlas_schema:PhenotypeObservation</a></p>
 <div class="mermaid"> classDiagram
     class PhenotypeObservation
@@ -348,7 +348,7 @@
 <tr>
 <td><a href="../control/">control</a></td>
 <td>0..1 <br/> <a href="../Boolean/">Boolean</a></td>
-<td>Whether this is a control observation</td>
+<td>A PhenotypeObservation that serves as the reference for comparing other obser...</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -371,7 +371,7 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../Experiment/">Experiment</a></td>
+<td><a href="../ObservationSet/">ObservationSet</a></td>
 <td><a href="../phenotype_observation/">phenotype_observation</a></td>
 <td>range</td>
 <td><a href="./">PhenotypeObservation</a></td>
@@ -427,7 +427,7 @@
 <h3 id="direct">Direct</h3>
 <details>
 <pre><code class="language-yaml">name: PhenotypeObservation
-description: An observation of phenotypes resulting from exposure experiments.
+description: A phenotypic outcome resulting from an exposure event.
 from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
 is_a: Entity
 slots:
@@ -452,7 +452,7 @@ rules:
 <h3 id="induced">Induced</h3>
 <details>
 <pre><code class="language-yaml">name: PhenotypeObservation
-description: An observation of phenotypes resulting from exposure experiments.
+description: A phenotypic outcome resulting from an exposure event.
 from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
 is_a: Entity
 attributes:
@@ -496,13 +496,14 @@ attributes:
     inlined_as_list: true
   control:
     name: control
-    description: Whether this is a control observation.
+    description: A PhenotypeObservation that serves as the reference for comparing
+      other observations to evaluate the effects of experimental variables.
     from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
     rank: 1000
     alias: control
     owner: PhenotypeObservation
     domain_of:
-    - Experiment
+    - ObservationSet
     - PhenotypeObservation
     range: boolean
   uuid:
