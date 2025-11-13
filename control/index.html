@@ -421,7 +421,7 @@
 
 
 <h1 id="slot-control">Slot: control</h1>
-<p><em>A PhenotypeObservation that serves as the reference for comparing other observations to evaluate the effects of experimental variables.</em></p>
+<p><em>The controls for this experiment.</em></p>
 <p>URI: <a href="https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/control">zebrafish_toxicology_atlas_schema:control</a>
 Alias: control</p>
 <!-- no inheritance hierarchy -->
@@ -437,12 +437,7 @@ Alias: control</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../PhenotypeObservation/">PhenotypeObservation</a></td>
-<td>A phenotypic outcome resulting from an exposure event</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../ObservationSet/">ObservationSet</a></td>
+<td><a href="../Experiment/">Experiment</a></td>
 <td>Group of observations (phenotypic outcomes and their control) that are linked...</td>
 <td>no</td>
 </tr>
@@ -450,7 +445,12 @@ Alias: control</p>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>Range: <a href="../Boolean/">Boolean</a></li>
+<li>
+<p>Range: <a href="../Control/">Control</a></p>
+</li>
+<li>
+<p>Multivalued: True</p>
+</li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
@@ -480,15 +480,16 @@ Alias: control</p>
 <details>
 
 <pre><code class="language-yaml">name: control
-description: A PhenotypeObservation that serves as the reference for comparing other
-  observations to evaluate the effects of experimental variables.
+description: The controls for this experiment.
 from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
 rank: 1000
 alias: control
 domain_of:
-- ObservationSet
-- PhenotypeObservation
-range: boolean
+- Experiment
+range: Control
+multivalued: true
+inlined: true
+inlined_as_list: true
 
 </code></pre>
 

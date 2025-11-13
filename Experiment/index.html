@@ -5,10 +5,10 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<link href="https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/ExposureExperiment/" rel="canonical"/>
+<link href="https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/Experiment/" rel="canonical"/>
 <link href="../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.6.23" name="generator"/>
-<title>Class: ExposureExperiment - Zebrafish Toxicology Atlas Schema Documentation</title>
+<title>Class: Experiment - Zebrafish Toxicology Atlas Schema Documentation</title>
 <link href="../assets/stylesheets/main.84d31ad4.min.css" rel="stylesheet"/>
 <link href="../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -24,7 +24,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#class-exposureexperiment">
+<a class="md-skip" href="#class-experiment">
           Skip to content
         </a>
 </div>
@@ -48,7 +48,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Class: ExposureExperiment
+              Class: Experiment
             
           </span>
 </div>
@@ -244,49 +244,60 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="class-exposureexperiment">Class: ExposureExperiment</h1>
-<p><em>An experimental procedure in which a subject is exposed to a defined stressor, such as a chemical or environmental factor, to evaluate phenotypic effects.</em></p>
-<p>URI: <a href="https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/ExposureExperiment">zebrafish_toxicology_atlas_schema:ExposureExperiment</a></p>
+<h1 id="class-experiment">Class: Experiment</h1>
+<p><em>Group of observations (phenotypic outcomes and their control) that are linked by a common experiment and subject that are part of a study.</em></p>
+<p>URI: <a href="https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/Experiment">zebrafish_toxicology_atlas_schema:Experiment</a></p>
 <div class="mermaid"> classDiagram
-    class ExposureExperiment
-    click ExposureExperiment href "../ExposureExperiment/"
-      Entity &lt;|-- ExposureExperiment
+    class Experiment
+    click Experiment href "../Experiment/"
+      Entity &lt;|-- Experiment
         click Entity href "../Entity/"
 
-      ExposureExperiment : exposure_event
+      Experiment : control
 
 
 
 
 
-        ExposureExperiment --&gt; "*" ExposureEvent : exposure_event
+        Experiment --&gt; "*" Control : control
+        click Control href "../Control/"
+
+
+
+      Experiment : exposure_event
+
+
+
+
+
+        Experiment --&gt; "*" ExposureEvent : exposure_event
         click ExposureEvent href "../ExposureEvent/"
 
 
 
-      ExposureExperiment : rearing_condition_comment
-
-      ExposureExperiment : standard_rearing_condition
-
-      ExposureExperiment : subject
+      Experiment : fish
 
 
 
 
 
-        ExposureExperiment --&gt; "0..1" Fish : subject
+        Experiment --&gt; "0..1" Fish : fish
         click Fish href "../Fish/"
 
 
 
-      ExposureExperiment : uuid
+      Experiment : rearing_condition_comment
+
+      Experiment : standard_rearing_condition
+
+      Experiment : uuid
 
 
 </div>
 <h2 id="inheritance">Inheritance</h2>
 <ul>
 <li><a href="../Entity/">Entity</a><ul>
-<li><strong>ExposureExperiment</strong></li>
+<li><strong>Experiment</strong></li>
 </ul>
 </li>
 </ul>
@@ -302,18 +313,6 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../subject/">subject</a></td>
-<td>0..1 <br/> <a href="../Fish/">Fish</a></td>
-<td>The fish subject of the exposure experiment</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../exposure_event/">exposure_event</a></td>
-<td>* <br/> <a href="../ExposureEvent/">ExposureEvent</a></td>
-<td>The exposure events in this experiment</td>
-<td>direct</td>
-</tr>
-<tr>
 <td><a href="../standard_rearing_condition/">standard_rearing_condition</a></td>
 <td>0..1 <br/> <a href="../Boolean/">Boolean</a></td>
 <td>An indication if the subject was maintained under standard conditions, which ...</td>
@@ -323,6 +322,24 @@
 <td><a href="../rearing_condition_comment/">rearing_condition_comment</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>Comments on rearing conditions, for example, about how conditions deviated fr...</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../fish/">fish</a></td>
+<td>0..1 <br/> <a href="../Fish/">Fish</a></td>
+<td>The fish subject of the experiment</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../control/">control</a></td>
+<td>* <br/> <a href="../Control/">Control</a></td>
+<td>The controls for this experiment</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../exposure_event/">exposure_event</a></td>
+<td>* <br/> <a href="../ExposureEvent/">ExposureEvent</a></td>
+<td>The exposure events in this experiment</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -345,10 +362,10 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../PhenotypeObservation/">PhenotypeObservation</a></td>
-<td><a href="../exposure_experiment/">exposure_experiment</a></td>
+<td><a href="../Study/">Study</a></td>
+<td><a href="../experiment/">experiment</a></td>
 <td>range</td>
-<td><a href="./">ExposureExperiment</a></td>
+<td><a href="./">Experiment</a></td>
 </tr>
 </tbody>
 </table>
@@ -368,11 +385,11 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>zebrafish_toxicology_atlas_schema:ExposureExperiment</td>
+<td>zebrafish_toxicology_atlas_schema:Experiment</td>
 </tr>
 <tr>
 <td>native</td>
-<td>zebrafish_toxicology_atlas_schema:ExposureExperiment</td>
+<td>zebrafish_toxicology_atlas_schema:Experiment</td>
 </tr>
 </tbody>
 </table>
@@ -380,52 +397,28 @@
 <!-- TODO: investigate https://stackoverflow.com/questions/37606292/how-to-create-tabbed-code-blocks-in-mkdocs-or-sphinx -->
 <h3 id="direct">Direct</h3>
 <details>
-<pre><code class="language-yaml">name: ExposureExperiment
-description: An experimental procedure in which a subject is exposed to a defined
-  stressor, such as a chemical or environmental factor, to evaluate phenotypic effects.
+<pre><code class="language-yaml">name: Experiment
+description: Group of observations (phenotypic outcomes and their control) that are
+  linked by a common experiment and subject that are part of a study.
 from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
 is_a: Entity
 slots:
-- subject
-- exposure_event
 - standard_rearing_condition
 - rearing_condition_comment
+- fish
+- control
+- exposure_event
 
 </code></pre>
 </details>
 <h3 id="induced">Induced</h3>
 <details>
-<pre><code class="language-yaml">name: ExposureExperiment
-description: An experimental procedure in which a subject is exposed to a defined
-  stressor, such as a chemical or environmental factor, to evaluate phenotypic effects.
+<pre><code class="language-yaml">name: Experiment
+description: Group of observations (phenotypic outcomes and their control) that are
+  linked by a common experiment and subject that are part of a study.
 from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
 is_a: Entity
 attributes:
-  subject:
-    name: subject
-    description: The fish subject of the exposure experiment.
-    from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
-    rank: 1000
-    alias: subject
-    owner: ExposureExperiment
-    domain_of:
-    - ExposureExperiment
-    range: Fish
-    inlined: true
-    inlined_as_list: true
-  exposure_event:
-    name: exposure_event
-    description: The exposure events in this experiment.
-    from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
-    rank: 1000
-    alias: exposure_event
-    owner: ExposureExperiment
-    domain_of:
-    - ExposureExperiment
-    range: ExposureEvent
-    multivalued: true
-    inlined: true
-    inlined_as_list: true
   standard_rearing_condition:
     name: standard_rearing_condition
     description: An indication if the subject was maintained under standard conditions,
@@ -435,9 +428,9 @@ attributes:
     from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
     rank: 1000
     alias: standard_rearing_condition
-    owner: ExposureExperiment
+    owner: Experiment
     domain_of:
-    - ExposureExperiment
+    - Experiment
     range: boolean
   rearing_condition_comment:
     name: rearing_condition_comment
@@ -446,10 +439,48 @@ attributes:
     from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
     rank: 1000
     alias: rearing_condition_comment
-    owner: ExposureExperiment
+    owner: Experiment
     domain_of:
-    - ExposureExperiment
+    - Experiment
     range: string
+  fish:
+    name: fish
+    description: The fish subject of the experiment.
+    from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
+    rank: 1000
+    alias: fish
+    owner: Experiment
+    domain_of:
+    - Experiment
+    range: Fish
+    inlined: true
+    inlined_as_list: true
+  control:
+    name: control
+    description: The controls for this experiment.
+    from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
+    rank: 1000
+    alias: control
+    owner: Experiment
+    domain_of:
+    - Experiment
+    range: Control
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  exposure_event:
+    name: exposure_event
+    description: The exposure events in this experiment.
+    from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
+    rank: 1000
+    alias: exposure_event
+    owner: Experiment
+    domain_of:
+    - Experiment
+    range: ExposureEvent
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
   uuid:
     name: uuid
     description: UUID identifier.
@@ -457,11 +488,9 @@ attributes:
     rank: 1000
     identifier: true
     alias: uuid
-    owner: ExposureExperiment
+    owner: Experiment
     domain_of:
     - Entity
-    - ChemicalEntity
-    - Image
     range: string
     required: true
 

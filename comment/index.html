@@ -437,13 +437,18 @@ Alias: comment</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../StressorChemical/">StressorChemical</a></td>
-<td>A chemical, that elicit a response (a phenotype) in a subject when when encou...</td>
+<td><a href="../Control/">Control</a></td>
+<td>Information about controls used in the experiment, including the type of cont...</td>
 <td>no</td>
 </tr>
 <tr>
 <td><a href="../ExposureEvent/">ExposureEvent</a></td>
 <td>An occurrence in a study where a subject is exposed to a stressor under defin...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../StressorChemical/">StressorChemical</a></td>
+<td>A chemical, that elicit a response (a phenotype) in a subject when when encou...</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -485,6 +490,7 @@ from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
 rank: 1000
 alias: comment
 domain_of:
+- Control
 - ExposureEvent
 - StressorChemical
 range: string

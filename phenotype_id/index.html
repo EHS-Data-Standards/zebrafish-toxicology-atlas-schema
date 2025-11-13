@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/exposure_experiment/">
+        <link rel="canonical" href="https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/phenotype_id/">
       
       
       
@@ -18,7 +18,7 @@
     
     
       
-        <title>Slot: exposure_experiment - Zebrafish Toxicology Atlas Schema Documentation</title>
+        <title>Slot: phenotype_id - Zebrafish Toxicology Atlas Schema Documentation</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-exposure_experiment" class="md-skip">
+        <a href="#slot-phenotype_id" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: exposure_experiment
+              Slot: phenotype_id
             
           </span>
         </div>
@@ -420,10 +420,10 @@
   
 
 
-<h1 id="slot-exposure_experiment">Slot: exposure_experiment</h1>
-<p><em>The exposure experiments for this observation.</em></p>
-<p>URI: <a href="https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/exposure_experiment">zebrafish_toxicology_atlas_schema:exposure_experiment</a>
-Alias: exposure_experiment</p>
+<h1 id="slot-phenotype_id">Slot: phenotype_id</h1>
+<p><em>Foreign key reference to the Phenotype uuid (for database representation).</em></p>
+<p>URI: <a href="https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/phenotype_id">zebrafish_toxicology_atlas_schema:phenotype_id</a>
+Alias: phenotype_id</p>
 <!-- no inheritance hierarchy -->
 
 <h2 id="applicable-classes">Applicable Classes</h2>
@@ -437,15 +437,15 @@ Alias: exposure_experiment</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../PhenotypeObservation/">PhenotypeObservation</a></td>
-<td>A phenotypic outcome resulting from an exposure event</td>
+<td><a href="../ControlImage/">ControlImage</a></td>
+<td>An image associated with a control, taken at the same developmental stage as ...</td>
 <td>no</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>Range: <a href="../ExposureExperiment/">ExposureExperiment</a></li>
+<li>Range: <a href="../String/">String</a></li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
@@ -463,27 +463,25 @@ Alias: exposure_experiment</p>
 <tbody>
 <tr>
 <td>self</td>
-<td>zebrafish_toxicology_atlas_schema:exposure_experiment</td>
+<td>zebrafish_toxicology_atlas_schema:phenotype_id</td>
 </tr>
 <tr>
 <td>native</td>
-<td>zebrafish_toxicology_atlas_schema:exposure_experiment</td>
+<td>zebrafish_toxicology_atlas_schema:phenotype_id</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: exposure_experiment
-description: The exposure experiments for this observation.
+<pre><code class="language-yaml">name: phenotype_id
+description: Foreign key reference to the Phenotype uuid (for database representation).
 from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
 rank: 1000
-alias: exposure_experiment
+alias: phenotype_id
 domain_of:
-- PhenotypeObservation
-range: ExposureExperiment
-multivalued: false
-inlined: true
+- ControlImage
+range: string
 
 </code></pre>
 

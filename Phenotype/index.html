@@ -253,6 +253,17 @@
       Entity &lt;|-- Phenotype
         click Entity href "../Entity/"
 
+      Phenotype : control_image
+
+
+
+
+
+        Phenotype --&gt; "*" ControlImage : control_image
+        click ControlImage href "../ControlImage/"
+
+
+
       Phenotype : phenotype_term_id
 
       Phenotype : prevalence
@@ -326,6 +337,12 @@
 <td>direct</td>
 </tr>
 <tr>
+<td><a href="../control_image/">control_image</a></td>
+<td>* <br/> <a href="../ControlImage/">ControlImage</a></td>
+<td>Images associated with this control</td>
+<td>direct</td>
+</tr>
+<tr>
 <td><a href="../uuid/">uuid</a></td>
 <td>1 <br/> <a href="../String/">String</a></td>
 <td>UUID identifier</td>
@@ -345,7 +362,7 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../PhenotypeObservation/">PhenotypeObservation</a></td>
+<td><a href="../PhenotypeObservationSet/">PhenotypeObservationSet</a></td>
 <td><a href="../phenotype/">phenotype</a></td>
 <td>range</td>
 <td><a href="./">Phenotype</a></td>
@@ -390,6 +407,7 @@ slots:
 - prevalence
 - severity
 - phenotype_term_id
+- control_image
 
 </code></pre>
 </details>
@@ -443,6 +461,20 @@ attributes:
     domain_of:
     - Phenotype
     range: uriorcurie
+  control_image:
+    name: control_image
+    description: Images associated with this control.
+    from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
+    rank: 1000
+    alias: control_image
+    owner: Phenotype
+    domain_of:
+    - Phenotype
+    - Control
+    range: ControlImage
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
   uuid:
     name: uuid
     description: UUID identifier.
@@ -453,8 +485,6 @@ attributes:
     owner: Phenotype
     domain_of:
     - Entity
-    - ChemicalEntity
-    - Image
     range: string
     required: true
 

@@ -248,18 +248,18 @@
 
       Study : annotator
 
+      Study : experiment
+
+
+
+
+
+        Study --&gt; "*" Experiment : experiment
+        click Experiment href "../Experiment/"
+
+
+
       Study : lab
-
-      Study : observation_set
-
-
-
-
-
-        Study --&gt; "*" ObservationSet : observation_set
-        click ObservationSet href "../ObservationSet/"
-
-
 
       Study : publication
 
@@ -286,9 +286,9 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../observation_set/">observation_set</a></td>
-<td>* <br/> <a href="../ObservationSet/">ObservationSet</a></td>
-<td>The observation set in a study</td>
+<td><a href="../experiment/">experiment</a></td>
+<td>* <br/> <a href="../Experiment/">Experiment</a></td>
+<td>The experiments in a study</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -351,7 +351,7 @@ description: A toxicological investigation, including the experimental condition
 from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
 is_a: Entity
 slots:
-- observation_set
+- experiment
 - publication
 - annotator
 - lab
@@ -366,16 +366,16 @@ description: A toxicological investigation, including the experimental condition
 from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
 is_a: Entity
 attributes:
-  observation_set:
-    name: observation_set
-    description: The observation set in a study.
+  experiment:
+    name: experiment
+    description: The experiments in a study.
     from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
     rank: 1000
-    alias: observation_set
+    alias: experiment
     owner: Study
     domain_of:
     - Study
-    range: ObservationSet
+    range: Experiment
     multivalued: true
     inlined: true
     inlined_as_list: true
@@ -423,8 +423,6 @@ attributes:
     owner: Study
     domain_of:
     - Entity
-    - ChemicalEntity
-    - Image
     range: string
     required: true
 

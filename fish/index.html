@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/image/">
+        <link rel="canonical" href="https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/fish/">
       
       
       
@@ -18,7 +18,7 @@
     
     
       
-        <title>Slot: image - Zebrafish Toxicology Atlas Schema Documentation</title>
+        <title>Slot: fish - Zebrafish Toxicology Atlas Schema Documentation</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-image" class="md-skip">
+        <a href="#slot-fish" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: image
+              Slot: fish
             
           </span>
         </div>
@@ -420,10 +420,10 @@
   
 
 
-<h1 id="slot-image">Slot: image</h1>
-<p><em>Images associated with this observation.</em></p>
-<p>URI: <a href="https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/image">zebrafish_toxicology_atlas_schema:image</a>
-Alias: image</p>
+<h1 id="slot-fish">Slot: fish</h1>
+<p><em>The fish subject of the experiment.</em></p>
+<p>URI: <a href="https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/fish">zebrafish_toxicology_atlas_schema:fish</a>
+Alias: fish</p>
 <!-- no inheritance hierarchy -->
 
 <h2 id="applicable-classes">Applicable Classes</h2>
@@ -437,20 +437,15 @@ Alias: image</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../PhenotypeObservationSet/">PhenotypeObservationSet</a></td>
-<td>A phenotypic outcome resulting from an exposure event</td>
+<td><a href="../Experiment/">Experiment</a></td>
+<td>Group of observations (phenotypic outcomes and their control) that are linked...</td>
 <td>no</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>
-<p>Range: <a href="../Image/">Image</a></p>
-</li>
-<li>
-<p>Multivalued: True</p>
-</li>
+<li>Range: <a href="../Fish/">Fish</a></li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
@@ -468,26 +463,25 @@ Alias: image</p>
 <tbody>
 <tr>
 <td>self</td>
-<td>zebrafish_toxicology_atlas_schema:image</td>
+<td>zebrafish_toxicology_atlas_schema:fish</td>
 </tr>
 <tr>
 <td>native</td>
-<td>zebrafish_toxicology_atlas_schema:image</td>
+<td>zebrafish_toxicology_atlas_schema:fish</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: image
-description: Images associated with this observation.
+<pre><code class="language-yaml">name: fish
+description: The fish subject of the experiment.
 from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
 rank: 1000
-alias: image
+alias: fish
 domain_of:
-- PhenotypeObservationSet
-range: Image
-multivalued: true
+- Experiment
+range: Fish
 inlined: true
 inlined_as_list: true
 

@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/observation_set/">
+        <link rel="canonical" href="https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/control_image/">
       
       
       
@@ -18,7 +18,7 @@
     
     
       
-        <title>Slot: observation_set - Zebrafish Toxicology Atlas Schema Documentation</title>
+        <title>Slot: control_image - Zebrafish Toxicology Atlas Schema Documentation</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-observation_set" class="md-skip">
+        <a href="#slot-control_image" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: observation_set
+              Slot: control_image
             
           </span>
         </div>
@@ -420,10 +420,10 @@
   
 
 
-<h1 id="slot-observation_set">Slot: observation_set</h1>
-<p><em>The observation set in a study.</em></p>
-<p>URI: <a href="https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/observation_set">zebrafish_toxicology_atlas_schema:observation_set</a>
-Alias: observation_set</p>
+<h1 id="slot-control_image">Slot: control_image</h1>
+<p><em>Images associated with this control.</em></p>
+<p>URI: <a href="https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/control_image">zebrafish_toxicology_atlas_schema:control_image</a>
+Alias: control_image</p>
 <!-- no inheritance hierarchy -->
 
 <h2 id="applicable-classes">Applicable Classes</h2>
@@ -437,8 +437,13 @@ Alias: observation_set</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="../Study/">Study</a></td>
-<td>A toxicological investigation, including the experimental conditions and phen...</td>
+<td><a href="../Phenotype/">Phenotype</a></td>
+<td>Any measurable or visible trait change in the subject as a result of exposure</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../Control/">Control</a></td>
+<td>Information about controls used in the experiment, including the type of cont...</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -446,7 +451,7 @@ Alias: observation_set</p>
 <h2 id="properties">Properties</h2>
 <ul>
 <li>
-<p>Range: <a href="../ObservationSet/">ObservationSet</a></p>
+<p>Range: <a href="../ControlImage/">ControlImage</a></p>
 </li>
 <li>
 <p>Multivalued: True</p>
@@ -468,25 +473,26 @@ Alias: observation_set</p>
 <tbody>
 <tr>
 <td>self</td>
-<td>zebrafish_toxicology_atlas_schema:observation_set</td>
+<td>zebrafish_toxicology_atlas_schema:control_image</td>
 </tr>
 <tr>
 <td>native</td>
-<td>zebrafish_toxicology_atlas_schema:observation_set</td>
+<td>zebrafish_toxicology_atlas_schema:control_image</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: observation_set
-description: The observation set in a study.
+<pre><code class="language-yaml">name: control_image
+description: Images associated with this control.
 from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
 rank: 1000
-alias: observation_set
+alias: control_image
 domain_of:
-- Study
-range: ObservationSet
+- Phenotype
+- Control
+range: ControlImage
 multivalued: true
 inlined: true
 inlined_as_list: true

@@ -1,85 +1,142 @@
 # metamodel_version: 1.7.0
-type Allele
+enum ExposureRegimenTypeEnum
   {
-    name: String
-    gene: Gene
-    variationType: String
-    id: String!
+    continuous
+    repeated
   }
 
-interface Annotation
+enum SeverityEnum
   {
+    mild
+    moderate
+    severe
+  }
+
+enum VehicleEnumeration
+  {
+    ethanol
+    dmso
   }
 
 type ChemicalEntity
   {
-    name: String
-    id: String!
+    uuid: String!
+    chebiId: String
+    casId: String
+    chemicalName: String
+    synonym: [String]
   }
 
-type Concentration
+type Control
   {
-    hasUnit: String
-    hasNumericValue: String
+    uuid: String!
+    controlType: String
+    vehicleIfTreated: VehicleEnumeration
+    comment: String
+    controlImage: [ControlImage]
   }
 
-type DevelopmentalStage
+type ControlImage
   {
-    name: String
-    id: String!
+    uuid: String!
+    phenotypeId: String
+    magnification: String
+    resolution: String
+    scaleBar: String
+  }
+
+interface Entity
+  {
+    uuid: String!
+  }
+
+type Experiment
+  {
+    uuid: String!
+    standardRearingCondition: Boolean
+    rearingConditionComment: String
+    fish: Fish
+    control: [Control]
+    exposureEvent: [ExposureEvent]
   }
 
 type ExposureEvent
   {
-    id: String!
-    name: String
-    exposureSubstance: ChemicalEntity
+    uuid: String!
+    stressor: [StressorChemical]
+    vehicle: [VehicleEnumeration]
+    route: ExposureRouteEnum
+    regimen: Regimen
+    exposureStartStage: String
+    exposureEndStage: String
+    comment: String
     exposureType: ExposureTypeEnum
-    concentration: Concentration
-    startStage: DevelopmentalStage
-    endStage: DevelopmentalStage
-    duration: QuantityValue
-    frequency: QuantityValue
+    additionalExposureCondition: String
+    phenotypeObservation: [PhenotypeObservationSet]
   }
 
 type Fish
   {
-    name: String
-    background: String
-    allele: Allele
-    zygosity: Uriorcurie
+    uuid: String!
     id: String!
+    name: String!
   }
 
-type FishExposureOutcome
+type Image
   {
-    fish: Fish
-    exposureEvent: ExposureEvent
-    outcome: [Phenotype]
-  }
-
-type Gene
-  {
-    name: String
-    symbol: String
-    id: String!
-  }
-
-interface NamedThing
-  {
-    id: String!
-    name: String
+    uuid: String!
+    magnification: String
+    resolution: String
+    scaleBar: String
   }
 
 type Phenotype
   {
-    id: String!
-    name: String
+    uuid: String!
+    stage: String
+    prevalence: QuantityValue
+    severity: SeverityEnum
+    phenotypeTermId: String
+    controlImage: [ControlImage]
+  }
+
+type PhenotypeObservationSet
+  {
+    uuid: String!
+    image: [Image]
+    phenotype: [Phenotype]
   }
 
 type QuantityValue
   {
-    hasUnit: String
-    hasNumericValue: String
+    unit: String
+    numericValue: String
   }
 
+type Regimen
+  {
+    uuid: String!
+    exposureRegimenType: ExposureRegimenTypeEnum
+    intervalBetweenIndividualExposures: QuantityValue
+    totalExposureDuration: QuantityValue
+    individualExposureDuration: QuantityValue
+    numberOfIndividualExposure: Int
+  }
+
+type StressorChemical
+  {
+    uuid: String!
+    chemicalId: ChemicalEntity!
+    manufacturer: String
+    concentration: QuantityValue!
+    comment: String
+  }
+
+type Study
+  {
+    uuid: String!
+    experiment: [Experiment]
+    publication: String
+    annotator: [String]
+    lab: String
+  }

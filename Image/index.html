@@ -282,12 +282,6 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../uuid/">uuid</a></td>
-<td>1 <br/> <a href="../String/">String</a></td>
-<td>UUID identifier</td>
-<td>direct</td>
-</tr>
-<tr>
 <td><a href="../magnification/">magnification</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>The factor by which a microscope enlarges the apparent size of a subject comp...</td>
@@ -305,6 +299,12 @@
 <td>Scale bar information, including the physical length it represents and the un...</td>
 <td>direct</td>
 </tr>
+<tr>
+<td><a href="../uuid/">uuid</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>UUID identifier</td>
+<td><a href="../Entity/">Entity</a></td>
+</tr>
 </tbody>
 </table>
 <h2 id="usages">Usages</h2>
@@ -319,7 +319,7 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../PhenotypeObservation/">PhenotypeObservation</a></td>
+<td><a href="../PhenotypeObservationSet/">PhenotypeObservationSet</a></td>
 <td><a href="../image/">image</a></td>
 <td>range</td>
 <td><a href="./">Image</a></td>
@@ -359,7 +359,6 @@ description: An image associated with a phenotype observation.
 from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
 is_a: Entity
 slots:
-- uuid
 - magnification
 - resolution
 - scale_bar
@@ -373,20 +372,6 @@ description: An image associated with a phenotype observation.
 from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
 is_a: Entity
 attributes:
-  uuid:
-    name: uuid
-    description: UUID identifier.
-    from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
-    rank: 1000
-    identifier: true
-    alias: uuid
-    owner: Image
-    domain_of:
-    - Entity
-    - ChemicalEntity
-    - Image
-    range: string
-    required: true
   magnification:
     name: magnification
     description: The factor by which a microscope enlarges the apparent size of a
@@ -397,6 +382,7 @@ attributes:
     owner: Image
     domain_of:
     - Image
+    - ControlImage
     range: string
   resolution:
     name: resolution
@@ -407,6 +393,7 @@ attributes:
     owner: Image
     domain_of:
     - Image
+    - ControlImage
     range: string
   scale_bar:
     name: scale_bar
@@ -418,7 +405,20 @@ attributes:
     owner: Image
     domain_of:
     - Image
+    - ControlImage
     range: string
+  uuid:
+    name: uuid
+    description: UUID identifier.
+    from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
+    rank: 1000
+    identifier: true
+    alias: uuid
+    owner: Image
+    domain_of:
+    - Entity
+    range: string
+    required: true
 
 </code></pre>
 </details>

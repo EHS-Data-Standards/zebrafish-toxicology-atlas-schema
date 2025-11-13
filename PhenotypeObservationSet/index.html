@@ -5,10 +5,10 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<link href="https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/ObservationSet/" rel="canonical"/>
+<link href="https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/PhenotypeObservationSet/" rel="canonical"/>
 <link href="../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.6.23" name="generator"/>
-<title>Class: ObservationSet - Zebrafish Toxicology Atlas Schema Documentation</title>
+<title>Class: PhenotypeObservationSet - Zebrafish Toxicology Atlas Schema Documentation</title>
 <link href="../assets/stylesheets/main.84d31ad4.min.css" rel="stylesheet"/>
 <link href="../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -24,7 +24,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#class-observationset">
+<a class="md-skip" href="#class-phenotypeobservationset">
           Skip to content
         </a>
 </div>
@@ -48,7 +48,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Class: ObservationSet
+              Class: PhenotypeObservationSet
             
           </span>
 </div>
@@ -244,36 +244,45 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="class-observationset">Class: ObservationSet</h1>
-<p><em>Group of observations (phenotypic outcomes and their control) that are linked by a common experiment and subject that are part of a study.</em></p>
-<p>URI: <a href="https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/ObservationSet">zebrafish_toxicology_atlas_schema:ObservationSet</a></p>
+<h1 id="class-phenotypeobservationset">Class: PhenotypeObservationSet</h1>
+<p><em>A phenotypic outcome resulting from an exposure event.</em></p>
+<p>URI: <a href="https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/PhenotypeObservationSet">zebrafish_toxicology_atlas_schema:PhenotypeObservationSet</a></p>
 <div class="mermaid"> classDiagram
-    class ObservationSet
-    click ObservationSet href "../ObservationSet/"
-      Entity &lt;|-- ObservationSet
+    class PhenotypeObservationSet
+    click PhenotypeObservationSet href "../PhenotypeObservationSet/"
+      Entity &lt;|-- PhenotypeObservationSet
         click Entity href "../Entity/"
 
-      ObservationSet : control
-
-      ObservationSet : phenotype_observation
+      PhenotypeObservationSet : image
 
 
 
 
 
-        ObservationSet --&gt; "*" PhenotypeObservation : phenotype_observation
-        click PhenotypeObservation href "../PhenotypeObservation/"
+        PhenotypeObservationSet --&gt; "*" Image : image
+        click Image href "../Image/"
 
 
 
-      ObservationSet : uuid
+      PhenotypeObservationSet : phenotype
+
+
+
+
+
+        PhenotypeObservationSet --&gt; "*" Phenotype : phenotype
+        click Phenotype href "../Phenotype/"
+
+
+
+      PhenotypeObservationSet : uuid
 
 
 </div>
 <h2 id="inheritance">Inheritance</h2>
 <ul>
 <li><a href="../Entity/">Entity</a><ul>
-<li><strong>ObservationSet</strong></li>
+<li><strong>PhenotypeObservationSet</strong></li>
 </ul>
 </li>
 </ul>
@@ -289,15 +298,15 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../phenotype_observation/">phenotype_observation</a></td>
-<td>* <br/> <a href="../PhenotypeObservation/">PhenotypeObservation</a></td>
-<td>The phenotype observations from this experiment</td>
+<td><a href="../image/">image</a></td>
+<td>* <br/> <a href="../Image/">Image</a></td>
+<td>Images associated with this observation</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../control/">control</a></td>
-<td>0..1 <br/> <a href="../Boolean/">Boolean</a></td>
-<td>A PhenotypeObservation that serves as the reference for comparing other obser...</td>
+<td><a href="../phenotype/">phenotype</a></td>
+<td>* <br/> <a href="../Phenotype/">Phenotype</a></td>
+<td>The phenotype observed</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -320,10 +329,10 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../Study/">Study</a></td>
-<td><a href="../observation_set/">observation_set</a></td>
+<td><a href="../ExposureEvent/">ExposureEvent</a></td>
+<td><a href="../phenotype_observation/">phenotype_observation</a></td>
 <td>range</td>
-<td><a href="./">ObservationSet</a></td>
+<td><a href="./">PhenotypeObservationSet</a></td>
 </tr>
 </tbody>
 </table>
@@ -343,11 +352,11 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>zebrafish_toxicology_atlas_schema:ObservationSet</td>
+<td>zebrafish_toxicology_atlas_schema:PhenotypeObservationSet</td>
 </tr>
 <tr>
 <td>native</td>
-<td>zebrafish_toxicology_atlas_schema:ObservationSet</td>
+<td>zebrafish_toxicology_atlas_schema:PhenotypeObservationSet</td>
 </tr>
 </tbody>
 </table>
@@ -355,50 +364,49 @@
 <!-- TODO: investigate https://stackoverflow.com/questions/37606292/how-to-create-tabbed-code-blocks-in-mkdocs-or-sphinx -->
 <h3 id="direct">Direct</h3>
 <details>
-<pre><code class="language-yaml">name: ObservationSet
-description: Group of observations (phenotypic outcomes and their control) that are
-  linked by a common experiment and subject that are part of a study.
+<pre><code class="language-yaml">name: PhenotypeObservationSet
+description: A phenotypic outcome resulting from an exposure event.
 from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
 is_a: Entity
 slots:
-- phenotype_observation
-- control
+- image
+- phenotype
 
 </code></pre>
 </details>
 <h3 id="induced">Induced</h3>
 <details>
-<pre><code class="language-yaml">name: ObservationSet
-description: Group of observations (phenotypic outcomes and their control) that are
-  linked by a common experiment and subject that are part of a study.
+<pre><code class="language-yaml">name: PhenotypeObservationSet
+description: A phenotypic outcome resulting from an exposure event.
 from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
 is_a: Entity
 attributes:
-  phenotype_observation:
-    name: phenotype_observation
-    description: The phenotype observations from this experiment.
+  image:
+    name: image
+    description: Images associated with this observation.
     from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
     rank: 1000
-    alias: phenotype_observation
-    owner: ObservationSet
+    alias: image
+    owner: PhenotypeObservationSet
     domain_of:
-    - ObservationSet
-    range: PhenotypeObservation
+    - PhenotypeObservationSet
+    range: Image
     multivalued: true
     inlined: true
     inlined_as_list: true
-  control:
-    name: control
-    description: A PhenotypeObservation that serves as the reference for comparing
-      other observations to evaluate the effects of experimental variables.
+  phenotype:
+    name: phenotype
+    description: The phenotype observed.
     from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
     rank: 1000
-    alias: control
-    owner: ObservationSet
+    alias: phenotype
+    owner: PhenotypeObservationSet
     domain_of:
-    - ObservationSet
-    - PhenotypeObservation
-    range: boolean
+    - PhenotypeObservationSet
+    range: Phenotype
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
   uuid:
     name: uuid
     description: UUID identifier.
@@ -406,11 +414,9 @@ attributes:
     rank: 1000
     identifier: true
     alias: uuid
-    owner: ObservationSet
+    owner: PhenotypeObservationSet
     domain_of:
     - Entity
-    - ChemicalEntity
-    - Image
     range: string
     required: true
 

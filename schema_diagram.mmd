@@ -4,10 +4,28 @@ ChemicalEntity {
     uriorcurie chebi_id  
     string cas_id  
     string chemical_name  
-    string uuid  
     stringList synonym  
+    string uuid  
+}
+Control {
+    string control_type  
+    VehicleEnumeration vehicle_if_treated  
+    string comment  
+    string uuid  
+}
+ControlImage {
+    string phenotype_id  
+    string magnification  
+    string resolution  
+    string scale_bar  
+    string uuid  
 }
 Entity {
+    string uuid  
+}
+Experiment {
+    boolean standard_rearing_condition  
+    string rearing_condition_comment  
     string uuid  
 }
 ExposureEvent {
@@ -20,24 +38,15 @@ ExposureEvent {
     string additional_exposure_condition  
     string uuid  
 }
-ExposureExperiment {
-    boolean standard_rearing_condition  
-    string rearing_condition_comment  
-    string uuid  
-}
 Fish {
-    string name  
     uriorcurie id  
+    string name  
     string uuid  
 }
 Image {
-    string uuid  
     string magnification  
     string resolution  
     string scale_bar  
-}
-ObservationSet {
-    boolean control  
     string uuid  
 }
 Phenotype {
@@ -46,8 +55,7 @@ Phenotype {
     uriorcurie phenotype_term_id  
     string uuid  
 }
-PhenotypeObservation {
-    boolean control  
+PhenotypeObservationSet {
     string uuid  
 }
 QuantityValue {
@@ -71,21 +79,23 @@ Study {
     string uuid  
 }
 
+Control ||--}o ControlImage : "control_image"
+Experiment ||--|o Fish : "fish"
+Experiment ||--}o Control : "control"
+Experiment ||--}o ExposureEvent : "exposure_event"
 ExposureEvent ||--|o Regimen : "regimen"
+ExposureEvent ||--}o PhenotypeObservationSet : "phenotype_observation"
 ExposureEvent ||--}o StressorChemical : "stressor"
-ExposureExperiment ||--|o Fish : "subject"
-ExposureExperiment ||--}o ExposureEvent : "exposure_event"
-ObservationSet ||--}o PhenotypeObservation : "phenotype_observation"
 Phenotype ||--|o QuantityValue : "prevalence"
-PhenotypeObservation ||--|o ExposureExperiment : "exposure_experiment"
-PhenotypeObservation ||--}o Image : "image"
-PhenotypeObservation ||--}o Phenotype : "phenotype"
+Phenotype ||--}o ControlImage : "control_image"
+PhenotypeObservationSet ||--}o Image : "image"
+PhenotypeObservationSet ||--}o Phenotype : "phenotype"
 Regimen ||--|o QuantityValue : "individual_exposure_duration"
 Regimen ||--|o QuantityValue : "interval_between_individual_exposures"
 Regimen ||--|o QuantityValue : "total_exposure_duration"
 StressorChemical ||--|| ChemicalEntity : "chemical_id"
 StressorChemical ||--|| QuantityValue : "concentration"
-Study ||--}o ObservationSet : "observation_set"
+Study ||--}o Experiment : "experiment"
 
 ```
 

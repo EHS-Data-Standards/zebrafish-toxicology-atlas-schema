@@ -52,11 +52,18 @@ abstract "Entity" [[{The base class for all entities in the Zebrafish Toxicology
 "Entity" ^-- "StressorChemical"
 "ExposureEvent" *--> "0..1" "Regimen" : "regimen"
 "Entity" ^-- "Regimen"
-class "PhenotypeObservation" [[{A phenotypic outcome resulting from an exposure event.}]] {
-    {field} control : boolean  
+class "ControlImage" [[{An image associated with a control, taken at the same developmental stage as the corresponding phenotype observation.}]] {
+    {field} phenotype_id : string  
+    {field} magnification : string  
+    {field} resolution : string  
+    {field} scale_bar : string  
     {field} uuid(i) : string  
 }
-"PhenotypeObservation" *--> "0..*" "Phenotype" : "phenotype"
+class "PhenotypeObservationSet" [[{A phenotypic outcome resulting from an exposure event.}]] {
+    {field} uuid(i) : string  
+}
+"Phenotype" *--> "0..*" "ControlImage" : "control_image"
+"PhenotypeObservationSet" *--> "0..*" "Phenotype" : "phenotype"
 "Entity" ^-- "Phenotype"
 class "Image" [[{An image associated with a phenotype observation.}]] {
     {field} magnification : string  
@@ -64,38 +71,42 @@ class "Image" [[{An image associated with a phenotype observation.}]] {
     {field} scale_bar : string  
     {field} uuid(i) : string  
 }
-class "ExposureExperiment" [[{An experimental procedure in which a subject is exposed to a defined stressor, such as a chemical or environmental factor, to evaluate phenotypic effects.}]] {
+"PhenotypeObservationSet" *--> "0..*" "Image" : "image"
+"ExposureEvent" *--> "0..*" "PhenotypeObservationSet" : "phenotype_observation"
+"Entity" ^-- "PhenotypeObservationSet"
+"Entity" ^-- "Image"
+class "Experiment" [[{Group of observations (phenotypic outcomes and their control) that are linked by a common experiment and subject that are part of a study.}]] {
     {field} standard_rearing_condition : boolean  
     {field} rearing_condition_comment : string  
     {field} uuid(i) : string  
 }
-class "ObservationSet" [[{Group of observations (phenotypic outcomes and their control) that are linked by a common experiment and subject that are part of a study.}]] {
-    {field} control : boolean  
+"Experiment" *--> "0..*" "ExposureEvent" : "exposure_event"
+"Entity" ^-- "ExposureEvent"
+class "Control" [[{Information about controls used in the experiment, including the type of control (wildtype vs mutant, treated vs untreated) and vehicle information if applicable.}]] {
+    {field} control_type : string  
+    {field} vehicle_if_treated : VehicleEnumeration  
+    {field} comment : string  
     {field} uuid(i) : string  
 }
-"PhenotypeObservation" *--> "0..*" "Image" : "image"
-"PhenotypeObservation" *--> "0..1" "ExposureExperiment" : "exposure_experiment"
-"ObservationSet" *--> "0..*" "PhenotypeObservation" : "phenotype_observation"
-"Entity" ^-- "PhenotypeObservation"
+class "Fish" [[{Zebrafish used as subject in the study.}]] {
+    {field} id : uriorcurie  
+    {field} name : string  
+    {field} uuid(i) : string  
+}
 class "Study" [[{A toxicological investigation, including the experimental conditions and phenotypic outcomes, with information provenance.}]] {
     {field} publication : string  
     {field} annotator : uriorcurie  [0..*]
     {field} lab : uriorcurie  
     {field} uuid(i) : string  
 }
-"Study" *--> "0..*" "ObservationSet" : "observation_set"
-"Entity" ^-- "ObservationSet"
+"Experiment" *--> "0..*" "Control" : "control"
+"Experiment" *--> "0..1" "Fish" : "fish"
+"Study" *--> "0..*" "Experiment" : "experiment"
+"Entity" ^-- "Experiment"
 "Entity" ^-- "Study"
-"Entity" ^-- "Image"
-class "Fish" [[{Zebrafish used as subject in the study.}]] {
-    {field} name : string  
-    {field} id : uriorcurie  
-    {field} uuid(i) : string  
-}
-"ExposureExperiment" *--> "0..*" "ExposureEvent" : "exposure_event"
-"ExposureExperiment" *--> "0..1" "Fish" : "subject"
-"Entity" ^-- "ExposureExperiment"
 "Entity" ^-- "Fish"
-"Entity" ^-- "ExposureEvent"
+"Entity" ^-- "ControlImage"
+"Entity" ^-- "Control"
 "Entity" ^-- "ChemicalEntity"
+"Control" *--> "0..*" "ControlImage" : "control_image"
 @enduml

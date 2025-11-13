@@ -516,12 +516,20 @@
 <td>The chemical used as the stressor chemical in an exposure event</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ExposureEvent/">ExposureEvent</a></td>
-<td>An occurrence in a study where a subject is exposed to a stressor under defin...</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Control/">Control</a></td>
+<td>Information about controls used in the experiment, including the type of cont...</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ExposureExperiment/">ExposureExperiment</a></td>
-<td>An experimental procedure in which a subject is exposed to a defined stressor...</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ControlImage/">ControlImage</a></td>
+<td>An image associated with a control, taken at the same developmental stage as ...</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Experiment/">Experiment</a></td>
+<td>Group of observations (phenotypic outcomes and their control) that are linked...</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ExposureEvent/">ExposureEvent</a></td>
+<td>An occurrence in a study where a subject is exposed to a stressor under defin...</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Fish/">Fish</a></td>
@@ -532,15 +540,11 @@
 <td>An image associated with a phenotype observation</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ObservationSet/">ObservationSet</a></td>
-<td>Group of observations (phenotypic outcomes and their control) that are linked...</td>
-</tr>
-<tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Phenotype/">Phenotype</a></td>
 <td>Any measurable or visible trait change in the subject as a result of exposure</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="PhenotypeObservation/">PhenotypeObservation</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="PhenotypeObservationSet/">PhenotypeObservationSet</a></td>
 <td>A phenotypic outcome resulting from an exposure event</td>
 </tr>
 <tr>
@@ -604,7 +608,23 @@
 </tr>
 <tr>
 <td><a href="control/">control</a></td>
-<td>A PhenotypeObservation that serves as the reference for comparing other obser...</td>
+<td>The controls for this experiment</td>
+</tr>
+<tr>
+<td><a href="control_id/">control_id</a></td>
+<td>Identifier for the control, used to link control images to specific controls</td>
+</tr>
+<tr>
+<td><a href="control_image/">control_image</a></td>
+<td>Images associated with this control</td>
+</tr>
+<tr>
+<td><a href="control_type/">control_type</a></td>
+<td>Type of control (e</td>
+</tr>
+<tr>
+<td><a href="experiment/">experiment</a></td>
+<td>The experiments in a study</td>
 </tr>
 <tr>
 <td><a href="exposure_end_stage/">exposure_end_stage</a></td>
@@ -613,10 +633,6 @@
 <tr>
 <td><a href="exposure_event/">exposure_event</a></td>
 <td>The exposure events in this experiment</td>
-</tr>
-<tr>
-<td><a href="exposure_experiment/">exposure_experiment</a></td>
-<td>The exposure experiments for this observation</td>
 </tr>
 <tr>
 <td><a href="exposure_regimen_type/">exposure_regimen_type</a></td>
@@ -629,6 +645,10 @@
 <tr>
 <td><a href="exposure_type/">exposure_type</a></td>
 <td>An instance of exposure specifying the type of stressor a subject was exposed...</td>
+</tr>
+<tr>
+<td><a href="fish/">fish</a></td>
+<td>The fish subject of the experiment</td>
 </tr>
 <tr>
 <td><a href="id/">id</a></td>
@@ -671,16 +691,16 @@
 <td>The numeric value of the quantity value</td>
 </tr>
 <tr>
-<td><a href="observation_set/">observation_set</a></td>
-<td>The observation set in a study</td>
-</tr>
-<tr>
 <td><a href="phenotype/">phenotype</a></td>
 <td>The phenotype observed</td>
 </tr>
 <tr>
+<td><a href="phenotype_id/">phenotype_id</a></td>
+<td>Foreign key reference to the Phenotype uuid (for database representation)</td>
+</tr>
+<tr>
 <td><a href="phenotype_observation/">phenotype_observation</a></td>
-<td>The phenotype observations from this experiment</td>
+<td>The phenotype observations from this exposure event</td>
 </tr>
 <tr>
 <td><a href="phenotype_term_id/">phenotype_term_id</a></td>
@@ -731,10 +751,6 @@
 <td>Substance, chemical or toxicant, that elicit a response (a phenotype) in a su...</td>
 </tr>
 <tr>
-<td><a href="subject/">subject</a></td>
-<td>The fish subject of the exposure experiment</td>
-</tr>
-<tr>
 <td><a href="synonym/">synonym</a></td>
 <td>Other names for the chemical</td>
 </tr>
@@ -753,6 +769,10 @@
 <tr>
 <td><a href="vehicle/">vehicle</a></td>
 <td>The substance or medium used deliver a stressor</td>
+</tr>
+<tr>
+<td><a href="vehicle_if_treated/">vehicle_if_treated</a></td>
+<td>Vehicle used if this is a treated control</td>
 </tr>
 </tbody>
 </table>

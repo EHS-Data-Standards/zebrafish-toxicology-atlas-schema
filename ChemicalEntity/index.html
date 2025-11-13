@@ -302,16 +302,16 @@
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../uuid/">uuid</a></td>
-<td>1 <br/> <a href="../String/">String</a></td>
-<td>UUID identifier</td>
-<td>direct</td>
-</tr>
-<tr>
 <td><a href="../synonym/">synonym</a></td>
 <td>* <br/> <a href="../String/">String</a></td>
 <td>Other names for the chemical</td>
 <td>direct</td>
+</tr>
+<tr>
+<td><a href="../uuid/">uuid</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>UUID identifier</td>
+<td><a href="../Entity/">Entity</a></td>
 </tr>
 </tbody>
 </table>
@@ -376,7 +376,6 @@ slots:
 - chebi_id
 - cas_id
 - chemical_name
-- uuid
 - synonym
 
 </code></pre>
@@ -420,20 +419,6 @@ attributes:
     domain_of:
     - ChemicalEntity
     range: string
-  uuid:
-    name: uuid
-    description: UUID identifier.
-    from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
-    rank: 1000
-    identifier: true
-    alias: uuid
-    owner: ChemicalEntity
-    domain_of:
-    - Entity
-    - ChemicalEntity
-    - Image
-    range: string
-    required: true
   synonym:
     name: synonym
     description: Other names for the chemical.
@@ -445,6 +430,18 @@ attributes:
     - ChemicalEntity
     range: string
     multivalued: true
+  uuid:
+    name: uuid
+    description: UUID identifier.
+    from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
+    rank: 1000
+    identifier: true
+    alias: uuid
+    owner: ChemicalEntity
+    domain_of:
+    - Entity
+    range: string
+    required: true
 
 </code></pre>
 </details>

@@ -43,126 +43,172 @@ linkml:Jsonpath xsd:string
 
 linkml:Sparqlpath xsd:string
 
-<Allele> CLOSED {
-    (  $<Allele_tes> (  &<NamedThing_tes> ;
-          rdf:type [ <NamedThing> ] ? ;
-          <name> @linkml:String ? ;
-          <gene> @<Gene> ? ;
-          <variation_type> @linkml:String ?
-       ) ;
-       rdf:type [ <Allele> ]
-    )
-}
-
-<Annotation>  (
-    {
-       (  $<Annotation_tes> rdf:type . * ;
-          rdf:type [ <Annotation> ] ?
-       )
-    } OR @<QuantityValue>
-)
-
 <ChemicalEntity> CLOSED {
-    (  $<ChemicalEntity_tes> (  &<NamedThing_tes> ;
-          rdf:type [ <NamedThing> ] ? ;
-          <name> @linkml:String ?
+    (  $<ChemicalEntity_tes> (  &<Entity_tes> ;
+          rdf:type [ <Entity> ] ? ;
+          <chebi_id> @linkml:Uriorcurie ? ;
+          <cas_id> @linkml:String ? ;
+          <chemical_name> @linkml:String ? ;
+          <synonym> @linkml:String *
        ) ;
        rdf:type [ <ChemicalEntity> ]
     )
 }
 
-<Concentration> CLOSED {
-    (  $<Concentration_tes> (  &<QuantityValue_tes> ;
-          rdf:type [ <QuantityValue> ] ? ;
-          <has_unit> @linkml:String ? ;
-          <has_numeric_value> @linkml:String ?
+<Control> CLOSED {
+    (  $<Control_tes> (  &<Entity_tes> ;
+          rdf:type [ <Entity> ] ? ;
+          <control_type> @linkml:String ? ;
+          <vehicle_if_treated> [ <http://purl.obolibrary.org/obo/CHEBI_00000000> <http://purl.obolibrary.org/obo/CHEBI_00000000> ]
+          ? ;
+          <comment> @linkml:String ? ;
+          <control_image> @<ControlImage> *
        ) ;
-       rdf:type [ <Concentration> ] ?
+       rdf:type [ <Control> ]
     )
 }
 
-<DevelopmentalStage> CLOSED {
-    (  $<DevelopmentalStage_tes> (  &<NamedThing_tes> ;
-          rdf:type [ <NamedThing> ] ? ;
-          <name> @linkml:String ?
+<ControlImage> CLOSED {
+    (  $<ControlImage_tes> (  &<Entity_tes> ;
+          rdf:type [ <Entity> ] ? ;
+          <phenotype_id> @linkml:String ? ;
+          <magnification> @linkml:String ? ;
+          <resolution> @linkml:String ? ;
+          <scale_bar> @linkml:String ?
        ) ;
-       rdf:type [ <DevelopmentalStage> ]
+       rdf:type [ <ControlImage> ]
+    )
+}
+
+<Entity>  (
+    @<ChemicalEntity> OR @<Control> OR @<ControlImage> OR @<Experiment> OR @<ExposureEvent> OR @<Fish> OR @<Image> OR @<Phenotype>
+    OR @<PhenotypeObservationSet> OR @<Regimen> OR @<StressorChemical> OR @<Study>
+)
+
+<Entity_struct> {
+    (  $<Entity_tes> rdf:type . * ;
+       rdf:type [ <Entity> ]
+    )
+}
+
+<Experiment> CLOSED {
+    (  $<Experiment_tes> (  &<Entity_tes> ;
+          rdf:type [ <Entity> ] ? ;
+          <standard_rearing_condition> @linkml:Boolean ? ;
+          <rearing_condition_comment> @linkml:String ? ;
+          <fish> @<Fish> ? ;
+          <control> @<Control> * ;
+          <exposure_event> @<ExposureEvent> *
+       ) ;
+       rdf:type [ <Experiment> ]
     )
 }
 
 <ExposureEvent> CLOSED {
-    (  $<ExposureEvent_tes> (  &<NamedThing_tes> ;
-          rdf:type [ <NamedThing> ] ? ;
-          <exposure_substance> @<ChemicalEntity> ? ;
+    (  $<ExposureEvent_tes> (  &<Entity_tes> ;
+          rdf:type [ <Entity> ] ? ;
+          <stressor> @<StressorChemical> * ;
+          <vehicle> [ <http://purl.obolibrary.org/obo/CHEBI_00000000> <http://purl.obolibrary.org/obo/CHEBI_00000000> ] * ;
+          <route> . ? ;
+          <regimen> @<Regimen> ? ;
+          <exposure_start_stage> @linkml:Uriorcurie ? ;
+          <exposure_end_stage> @linkml:Uriorcurie ? ;
+          <comment> @linkml:String ? ;
           <exposure_type> . ? ;
-          <concentration> @<Concentration> ? ;
-          <start_stage> @<DevelopmentalStage> ? ;
-          <end_stage> @<DevelopmentalStage> ? ;
-          <duration> @<QuantityValue> ? ;
-          <frequency> @<QuantityValue> ?
+          <additional_exposure_condition> @linkml:String ? ;
+          <phenotype_observation> @<PhenotypeObservationSet> *
        ) ;
        rdf:type [ <ExposureEvent> ]
     )
 }
 
 <Fish> CLOSED {
-    (  $<Fish_tes> (  &<NamedThing_tes> ;
-          rdf:type [ <NamedThing> ] ? ;
-          <background> @linkml:String ? ;
-          <allele> @<Allele> ? ;
-          <zygosity> @linkml:Uriorcurie ?
+    (  $<Fish_tes> (  &<Entity_tes> ;
+          rdf:type [ <Entity> ] ? ;
+          <id> @linkml:Uriorcurie ;
+          <name> @linkml:String
        ) ;
        rdf:type [ <Fish> ]
     )
 }
 
-<FishExposureOutcome> CLOSED {
-    (  $<FishExposureOutcome_tes> (  <fish> @<Fish> ? ;
-          <exposure_event> @<ExposureEvent> ? ;
-          <outcome> @<Phenotype> *
+<Image> CLOSED {
+    (  $<Image_tes> (  &<Entity_tes> ;
+          rdf:type [ <Entity> ] ? ;
+          <magnification> @linkml:String ? ;
+          <resolution> @linkml:String ? ;
+          <scale_bar> @linkml:String ?
        ) ;
-       rdf:type [ <FishExposureOutcome> ] ?
-    )
-}
-
-<Gene> CLOSED {
-    (  $<Gene_tes> (  &<NamedThing_tes> ;
-          rdf:type [ <NamedThing> ] ? ;
-          <name> @linkml:String ? ;
-          <symbol> @linkml:String ?
-       ) ;
-       rdf:type [ <Gene> ]
-    )
-}
-
-<NamedThing>  (
-    @<Allele> OR @<ChemicalEntity> OR @<DevelopmentalStage> OR @<ExposureEvent> OR @<Fish> OR @<Gene> OR @<Phenotype>
-)
-
-<NamedThing_struct> {
-    (  $<NamedThing_tes> <name> @linkml:String ? ;
-       rdf:type [ <NamedThing> ]
+       rdf:type [ <Image> ]
     )
 }
 
 <Phenotype> CLOSED {
-    (  $<Phenotype_tes> (  &<NamedThing_tes> ;
-          rdf:type [ <NamedThing> ] ? ;
-          <name> @linkml:String ?
+    (  $<Phenotype_tes> (  &<Entity_tes> ;
+          rdf:type [ <Entity> ] ? ;
+          <stage> @linkml:Uriorcurie ? ;
+          <prevalence> @<QuantityValue> ? ;
+          <severity> [ <https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/SeverityEnum#mild>
+             <https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/SeverityEnum#moderate>
+             <https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/SeverityEnum#severe> ] ? ;
+          <phenotype_term_id> @linkml:Uriorcurie ? ;
+          <control_image> @<ControlImage> *
        ) ;
        rdf:type [ <Phenotype> ]
     )
 }
 
-<QuantityValue>  (
-    CLOSED {
-       (  $<QuantityValue_tes> (  &<Annotation_tes> ;
-             rdf:type [ <Annotation> ] ? ;
-             <has_unit> @linkml:String ? ;
-             <has_numeric_value> @linkml:String ?
-          ) ;
-          rdf:type [ <QuantityValue> ] ?
-       )
-    } OR @<Concentration>
-)
+<PhenotypeObservationSet> CLOSED {
+    (  $<PhenotypeObservationSet_tes> (  &<Entity_tes> ;
+          rdf:type [ <Entity> ] ? ;
+          <image> @<Image> * ;
+          <phenotype> @<Phenotype> *
+       ) ;
+       rdf:type [ <PhenotypeObservationSet> ]
+    )
+}
 
+<QuantityValue> CLOSED {
+    (  $<QuantityValue_tes> (  <unit> @linkml:String ? ;
+          <numeric_value> @linkml:String ?
+       ) ;
+       rdf:type [ <QuantityValue> ] ?
+    )
+}
+
+<Regimen> CLOSED {
+    (  $<Regimen_tes> (  &<Entity_tes> ;
+          rdf:type [ <Entity> ] ? ;
+          <exposure_regimen_type> [ <http://purl.obolibrary.org/obo/EXO_0000109> <http://purl.obolibrary.org/obo/EXO_0000110> ] ? ;
+          <interval_between_individual_exposures> @<QuantityValue> ? ;
+          <total_exposure_duration> @<QuantityValue> ? ;
+          <individual_exposure_duration> @<QuantityValue> ? ;
+          <number_of_individual_exposure> @linkml:Integer ?
+       ) ;
+       rdf:type [ <Regimen> ]
+    )
+}
+
+<StressorChemical> CLOSED {
+    (  $<StressorChemical_tes> (  &<Entity_tes> ;
+          rdf:type [ <Entity> ] ? ;
+          <chemical_id> @<ChemicalEntity> ;
+          <manufacturer> @linkml:String ? ;
+          <concentration> @<QuantityValue> ;
+          <comment> @linkml:String ?
+       ) ;
+       rdf:type [ <StressorChemical> ]
+    )
+}
+
+<Study> CLOSED {
+    (  $<Study_tes> (  &<Entity_tes> ;
+          rdf:type [ <Entity> ] ? ;
+          <experiment> @<Experiment> * ;
+          <publication> @linkml:String ? ;
+          <annotator> @linkml:Uriorcurie * ;
+          <lab> @linkml:Uriorcurie ?
+       ) ;
+       rdf:type [ <Study> ]
+    )
+}

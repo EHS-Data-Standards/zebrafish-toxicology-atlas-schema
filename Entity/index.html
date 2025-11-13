@@ -248,14 +248,14 @@
     click Entity href "../Entity/"
       Entity &lt;|-- Study
         click Study href "../Study/"
-      Entity &lt;|-- ObservationSet
-        click ObservationSet href "../ObservationSet/"
-      Entity &lt;|-- PhenotypeObservation
-        click PhenotypeObservation href "../PhenotypeObservation/"
+      Entity &lt;|-- Experiment
+        click Experiment href "../Experiment/"
+      Entity &lt;|-- PhenotypeObservationSet
+        click PhenotypeObservationSet href "../PhenotypeObservationSet/"
       Entity &lt;|-- Phenotype
         click Phenotype href "../Phenotype/"
-      Entity &lt;|-- ExposureExperiment
-        click ExposureExperiment href "../ExposureExperiment/"
+      Entity &lt;|-- Control
+        click Control href "../Control/"
       Entity &lt;|-- ExposureEvent
         click ExposureEvent href "../ExposureEvent/"
       Entity &lt;|-- Regimen
@@ -266,6 +266,8 @@
         click ChemicalEntity href "../ChemicalEntity/"
       Entity &lt;|-- Image
         click Image href "../Image/"
+      Entity &lt;|-- ControlImage
+        click ControlImage href "../ControlImage/"
       Entity &lt;|-- Fish
         click Fish href "../Fish/"
 
@@ -277,15 +279,16 @@
 <ul>
 <li><strong>Entity</strong><ul>
 <li><a href="../Study/">Study</a></li>
-<li><a href="../ObservationSet/">ObservationSet</a></li>
-<li><a href="../PhenotypeObservation/">PhenotypeObservation</a></li>
+<li><a href="../Experiment/">Experiment</a></li>
+<li><a href="../PhenotypeObservationSet/">PhenotypeObservationSet</a></li>
 <li><a href="../Phenotype/">Phenotype</a></li>
-<li><a href="../ExposureExperiment/">ExposureExperiment</a></li>
+<li><a href="../Control/">Control</a></li>
 <li><a href="../ExposureEvent/">ExposureEvent</a></li>
 <li><a href="../Regimen/">Regimen</a></li>
 <li><a href="../StressorChemical/">StressorChemical</a></li>
 <li><a href="../ChemicalEntity/">ChemicalEntity</a></li>
 <li><a href="../Image/">Image</a></li>
+<li><a href="../ControlImage/">ControlImage</a></li>
 <li><a href="../Fish/">Fish</a></li>
 </ul>
 </li>
@@ -363,8 +366,6 @@ attributes:
     owner: Entity
     domain_of:
     - Entity
-    - ChemicalEntity
-    - Image
     range: string
     required: true
 

@@ -5,10 +5,10 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<link href="https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/PhenotypeObservation/" rel="canonical"/>
+<link href="https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/Control/" rel="canonical"/>
 <link href="../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.6.23" name="generator"/>
-<title>Class: PhenotypeObservation - Zebrafish Toxicology Atlas Schema Documentation</title>
+<title>Class: Control - Zebrafish Toxicology Atlas Schema Documentation</title>
 <link href="../assets/stylesheets/main.84d31ad4.min.css" rel="stylesheet"/>
 <link href="../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -24,7 +24,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#class-phenotypeobservation">
+<a class="md-skip" href="#class-control">
           Skip to content
         </a>
 </div>
@@ -48,7 +48,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Class: PhenotypeObservation
+              Class: Control
             
           </span>
 </div>
@@ -188,23 +188,6 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#rules">
-<span class="md-ellipsis">
-      Rules
-    </span>
-</a>
-<nav aria-label="Rules" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_1">
-<span class="md-ellipsis">
-</span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
 <a class="md-nav__link" href="#identifier-and-mapping-information">
 <span class="md-ellipsis">
       Identifier and Mapping Information
@@ -261,58 +244,49 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="class-phenotypeobservation">Class: PhenotypeObservation</h1>
-<p><em>A phenotypic outcome resulting from an exposure event.</em></p>
-<p>URI: <a href="https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/PhenotypeObservation">zebrafish_toxicology_atlas_schema:PhenotypeObservation</a></p>
+<h1 id="class-control">Class: Control</h1>
+<p><em>Information about controls used in the experiment, including the type of control (wildtype vs mutant, treated vs untreated) and vehicle information if applicable.</em></p>
+<p>URI: <a href="https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/Control">zebrafish_toxicology_atlas_schema:Control</a></p>
 <div class="mermaid"> classDiagram
-    class PhenotypeObservation
-    click PhenotypeObservation href "../PhenotypeObservation/"
-      Entity &lt;|-- PhenotypeObservation
+    class Control
+    click Control href "../Control/"
+      Entity &lt;|-- Control
         click Entity href "../Entity/"
 
-      PhenotypeObservation : control
+      Control : comment
 
-      PhenotypeObservation : exposure_experiment
-
-
-
-
-
-        PhenotypeObservation --&gt; "0..1" ExposureExperiment : exposure_experiment
-        click ExposureExperiment href "../ExposureExperiment/"
-
-
-
-      PhenotypeObservation : image
+      Control : control_image
 
 
 
 
 
-        PhenotypeObservation --&gt; "*" Image : image
-        click Image href "../Image/"
+        Control --&gt; "*" ControlImage : control_image
+        click ControlImage href "../ControlImage/"
 
 
 
-      PhenotypeObservation : phenotype
+      Control : control_type
+
+      Control : uuid
+
+      Control : vehicle_if_treated
 
 
 
 
 
-        PhenotypeObservation --&gt; "*" Phenotype : phenotype
-        click Phenotype href "../Phenotype/"
+        Control --&gt; "0..1" VehicleEnumeration : vehicle_if_treated
+        click VehicleEnumeration href "../VehicleEnumeration/"
 
 
-
-      PhenotypeObservation : uuid
 
 
 </div>
 <h2 id="inheritance">Inheritance</h2>
 <ul>
 <li><a href="../Entity/">Entity</a><ul>
-<li><strong>PhenotypeObservation</strong></li>
+<li><strong>Control</strong></li>
 </ul>
 </li>
 </ul>
@@ -328,27 +302,27 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../exposure_experiment/">exposure_experiment</a></td>
-<td>0..1 <br/> <a href="../ExposureExperiment/">ExposureExperiment</a></td>
-<td>The exposure experiments for this observation</td>
+<td><a href="../control_type/">control_type</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Type of control (e</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../image/">image</a></td>
-<td>* <br/> <a href="../Image/">Image</a></td>
-<td>Images associated with this observation</td>
+<td><a href="../vehicle_if_treated/">vehicle_if_treated</a></td>
+<td>0..1 <br/> <a href="../VehicleEnumeration/">VehicleEnumeration</a></td>
+<td>Vehicle used if this is a treated control</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../phenotype/">phenotype</a></td>
-<td>* <br/> <a href="../Phenotype/">Phenotype</a></td>
-<td>The phenotype observed</td>
+<td><a href="../comment/">comment</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Additional comments</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../control/">control</a></td>
-<td>0..1 <br/> <a href="../Boolean/">Boolean</a></td>
-<td>A PhenotypeObservation that serves as the reference for comparing other obser...</td>
+<td><a href="../control_image/">control_image</a></td>
+<td>* <br/> <a href="../ControlImage/">ControlImage</a></td>
+<td>Images associated with this control</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -371,30 +345,10 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../ObservationSet/">ObservationSet</a></td>
-<td><a href="../phenotype_observation/">phenotype_observation</a></td>
+<td><a href="../Experiment/">Experiment</a></td>
+<td><a href="../control/">control</a></td>
 <td>range</td>
-<td><a href="./">PhenotypeObservation</a></td>
-</tr>
-</tbody>
-</table>
-<h2 id="rules">Rules</h2>
-<h3 id="_1"></h3>
-<table>
-<thead>
-<tr>
-<th>Rule Applied</th>
-<th>Preconditions</th>
-<th>Postconditions</th>
-<th>Elseconditions</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>slot_conditions</td>
-<td><code>{'control': {'equals_expression': 'true'}}</code></td>
-<td><code>{'phenotype': {'required': False}}</code></td>
-<td></td>
+<td><a href="./">Control</a></td>
 </tr>
 </tbody>
 </table>
@@ -414,11 +368,11 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>zebrafish_toxicology_atlas_schema:PhenotypeObservation</td>
+<td>zebrafish_toxicology_atlas_schema:Control</td>
 </tr>
 <tr>
 <td>native</td>
-<td>zebrafish_toxicology_atlas_schema:PhenotypeObservation</td>
+<td>zebrafish_toxicology_atlas_schema:Control</td>
 </tr>
 </tbody>
 </table>
@@ -426,86 +380,75 @@
 <!-- TODO: investigate https://stackoverflow.com/questions/37606292/how-to-create-tabbed-code-blocks-in-mkdocs-or-sphinx -->
 <h3 id="direct">Direct</h3>
 <details>
-<pre><code class="language-yaml">name: PhenotypeObservation
-description: A phenotypic outcome resulting from an exposure event.
+<pre><code class="language-yaml">name: Control
+description: Information about controls used in the experiment, including the type
+  of control (wildtype vs mutant, treated vs untreated) and vehicle information if
+  applicable.
 from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
 is_a: Entity
 slots:
-- exposure_experiment
-- image
-- phenotype
-- control
-rules:
-- preconditions:
-    slot_conditions:
-      control:
-        name: control
-        equals_expression: 'true'
-  postconditions:
-    slot_conditions:
-      phenotype:
-        name: phenotype
-        required: false
+- control_type
+- vehicle_if_treated
+- comment
+- control_image
 
 </code></pre>
 </details>
 <h3 id="induced">Induced</h3>
 <details>
-<pre><code class="language-yaml">name: PhenotypeObservation
-description: A phenotypic outcome resulting from an exposure event.
+<pre><code class="language-yaml">name: Control
+description: Information about controls used in the experiment, including the type
+  of control (wildtype vs mutant, treated vs untreated) and vehicle information if
+  applicable.
 from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
 is_a: Entity
 attributes:
-  exposure_experiment:
-    name: exposure_experiment
-    description: The exposure experiments for this observation.
+  control_type:
+    name: control_type
+    description: Type of control (e.g., wildtype vs mutant, treated vs untreated).
     from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
     rank: 1000
-    alias: exposure_experiment
-    owner: PhenotypeObservation
+    alias: control_type
+    owner: Control
     domain_of:
-    - PhenotypeObservation
-    range: ExposureExperiment
-    multivalued: false
-    inlined: true
-  image:
-    name: image
-    description: Images associated with this observation.
+    - Control
+    range: string
+  vehicle_if_treated:
+    name: vehicle_if_treated
+    description: Vehicle used if this is a treated control.
     from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
     rank: 1000
-    alias: image
-    owner: PhenotypeObservation
+    alias: vehicle_if_treated
+    owner: Control
     domain_of:
-    - PhenotypeObservation
-    range: Image
+    - Control
+    range: VehicleEnumeration
+  comment:
+    name: comment
+    description: Additional comments.
+    from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
+    rank: 1000
+    alias: comment
+    owner: Control
+    domain_of:
+    - Control
+    - ExposureEvent
+    - StressorChemical
+    range: string
+  control_image:
+    name: control_image
+    description: Images associated with this control.
+    from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
+    rank: 1000
+    alias: control_image
+    owner: Control
+    domain_of:
+    - Phenotype
+    - Control
+    range: ControlImage
     multivalued: true
     inlined: true
     inlined_as_list: true
-  phenotype:
-    name: phenotype
-    description: The phenotype observed.
-    from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
-    rank: 1000
-    alias: phenotype
-    owner: PhenotypeObservation
-    domain_of:
-    - PhenotypeObservation
-    range: Phenotype
-    multivalued: true
-    inlined: true
-    inlined_as_list: true
-  control:
-    name: control
-    description: A PhenotypeObservation that serves as the reference for comparing
-      other observations to evaluate the effects of experimental variables.
-    from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
-    rank: 1000
-    alias: control
-    owner: PhenotypeObservation
-    domain_of:
-    - ObservationSet
-    - PhenotypeObservation
-    range: boolean
   uuid:
     name: uuid
     description: UUID identifier.
@@ -513,24 +456,11 @@ attributes:
     rank: 1000
     identifier: true
     alias: uuid
-    owner: PhenotypeObservation
+    owner: Control
     domain_of:
     - Entity
-    - ChemicalEntity
-    - Image
     range: string
     required: true
-rules:
-- preconditions:
-    slot_conditions:
-      control:
-        name: control
-        equals_expression: 'true'
-  postconditions:
-    slot_conditions:
-      phenotype:
-        name: phenotype
-        required: false
 
 </code></pre>
 </details>

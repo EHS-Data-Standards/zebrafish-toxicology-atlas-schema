@@ -5,10 +5,10 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<link href="https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/ExposureEvent/" rel="canonical"/>
+<link href="https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/ControlImage/" rel="canonical"/>
 <link href="../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.6.23" name="generator"/>
-<title>Class: ExposureEvent - Zebrafish Toxicology Atlas Schema Documentation</title>
+<title>Class: ControlImage - Zebrafish Toxicology Atlas Schema Documentation</title>
 <link href="../assets/stylesheets/main.84d31ad4.min.css" rel="stylesheet"/>
 <link href="../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
@@ -24,7 +24,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#class-exposureevent">
+<a class="md-skip" href="#class-controlimage">
           Skip to content
         </a>
 </div>
@@ -48,7 +48,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Class: ExposureEvent
+              Class: ControlImage
             
           </span>
 </div>
@@ -244,97 +244,31 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="class-exposureevent">Class: ExposureEvent</h1>
-<p><em>An occurrence in a study where a subject is exposed to a stressor under defined conditions.</em></p>
-<p>URI: <a href="https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/ExposureEvent">zebrafish_toxicology_atlas_schema:ExposureEvent</a></p>
+<h1 id="class-controlimage">Class: ControlImage</h1>
+<p><em>An image associated with a control, taken at the same developmental stage as the corresponding phenotype observation.</em></p>
+<p>URI: <a href="https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/ControlImage">zebrafish_toxicology_atlas_schema:ControlImage</a></p>
 <div class="mermaid"> classDiagram
-    class ExposureEvent
-    click ExposureEvent href "../ExposureEvent/"
-      Entity &lt;|-- ExposureEvent
+    class ControlImage
+    click ControlImage href "../ControlImage/"
+      Entity &lt;|-- ControlImage
         click Entity href "../Entity/"
 
-      ExposureEvent : additional_exposure_condition
+      ControlImage : magnification
 
-      ExposureEvent : comment
+      ControlImage : phenotype_id
 
-      ExposureEvent : exposure_end_stage
+      ControlImage : resolution
 
-      ExposureEvent : exposure_start_stage
+      ControlImage : scale_bar
 
-      ExposureEvent : exposure_type
-
-
-
-
-
-        ExposureEvent --&gt; "0..1" ExposureTypeEnum : exposure_type
-        click ExposureTypeEnum href "../ExposureTypeEnum/"
-
-
-
-      ExposureEvent : phenotype_observation
-
-
-
-
-
-        ExposureEvent --&gt; "*" PhenotypeObservationSet : phenotype_observation
-        click PhenotypeObservationSet href "../PhenotypeObservationSet/"
-
-
-
-      ExposureEvent : regimen
-
-
-
-
-
-        ExposureEvent --&gt; "0..1" Regimen : regimen
-        click Regimen href "../Regimen/"
-
-
-
-      ExposureEvent : route
-
-
-
-
-
-        ExposureEvent --&gt; "0..1" ExposureRouteEnum : route
-        click ExposureRouteEnum href "../ExposureRouteEnum/"
-
-
-
-      ExposureEvent : stressor
-
-
-
-
-
-        ExposureEvent --&gt; "*" StressorChemical : stressor
-        click StressorChemical href "../StressorChemical/"
-
-
-
-      ExposureEvent : uuid
-
-      ExposureEvent : vehicle
-
-
-
-
-
-        ExposureEvent --&gt; "*" VehicleEnumeration : vehicle
-        click VehicleEnumeration href "../VehicleEnumeration/"
-
-
+      ControlImage : uuid
 
 
 </div>
 <h2 id="inheritance">Inheritance</h2>
 <ul>
 <li><a href="../Entity/">Entity</a><ul>
-<li><strong>ExposureEvent</strong></li>
+<li><strong>ControlImage</strong></li>
 </ul>
 </li>
 </ul>
@@ -350,63 +284,27 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../stressor/">stressor</a></td>
-<td>* <br/> <a href="../StressorChemical/">StressorChemical</a></td>
-<td>Substance, chemical or toxicant, that elicit a response (a phenotype) in a su...</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../vehicle/">vehicle</a></td>
-<td>* <br/> <a href="../VehicleEnumeration/">VehicleEnumeration</a></td>
-<td>The substance or medium used deliver a stressor</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../route/">route</a></td>
-<td>0..1 <br/> <a href="../ExposureRouteEnum/">ExposureRouteEnum</a></td>
-<td>The route of exposure</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../regimen/">regimen</a></td>
-<td>0..1 <br/> <a href="../Regimen/">Regimen</a></td>
-<td>The regimen for the exposure</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../exposure_start_stage/">exposure_start_stage</a></td>
-<td>0..1 <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
-<td>The developmental stage of fish when exposure started</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../exposure_end_stage/">exposure_end_stage</a></td>
-<td>0..1 <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
-<td>The developmental stage of fish when exposure ended</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../comment/">comment</a></td>
+<td><a href="../phenotype_id/">phenotype_id</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Additional comments</td>
+<td>Foreign key reference to the Phenotype uuid (for database representation)</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../exposure_type/">exposure_type</a></td>
-<td>0..1 <br/> <a href="../ExposureTypeEnum/">ExposureTypeEnum</a></td>
-<td>An instance of exposure specifying the type of stressor a subject was exposed...</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../additional_exposure_condition/">additional_exposure_condition</a></td>
+<td><a href="../magnification/">magnification</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Additional information about the conditions under which exposure event occurr...</td>
+<td>The factor by which a microscope enlarges the apparent size of a subject comp...</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../phenotype_observation/">phenotype_observation</a></td>
-<td>* <br/> <a href="../PhenotypeObservationSet/">PhenotypeObservationSet</a></td>
-<td>The phenotype observations from this exposure event</td>
+<td><a href="../resolution/">resolution</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Level of detail of the image</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../scale_bar/">scale_bar</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Scale bar information, including the physical length it represents and the un...</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -429,10 +327,16 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../Experiment/">Experiment</a></td>
-<td><a href="../exposure_event/">exposure_event</a></td>
+<td><a href="../Phenotype/">Phenotype</a></td>
+<td><a href="../control_image/">control_image</a></td>
 <td>range</td>
-<td><a href="./">ExposureEvent</a></td>
+<td><a href="./">ControlImage</a></td>
+</tr>
+<tr>
+<td><a href="../Control/">Control</a></td>
+<td><a href="../control_image/">control_image</a></td>
+<td>range</td>
+<td><a href="./">ControlImage</a></td>
 </tr>
 </tbody>
 </table>
@@ -452,15 +356,11 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>zebrafish_toxicology_atlas_schema:ExposureEvent</td>
+<td>zebrafish_toxicology_atlas_schema:ControlImage</td>
 </tr>
 <tr>
 <td>native</td>
-<td>zebrafish_toxicology_atlas_schema:ExposureEvent</td>
-</tr>
-<tr>
-<td>exact</td>
-<td>biolink:ExposureEvent</td>
+<td>zebrafish_toxicology_atlas_schema:ControlImage</td>
 </tr>
 </tbody>
 </table>
@@ -468,154 +368,72 @@
 <!-- TODO: investigate https://stackoverflow.com/questions/37606292/how-to-create-tabbed-code-blocks-in-mkdocs-or-sphinx -->
 <h3 id="direct">Direct</h3>
 <details>
-<pre><code class="language-yaml">name: ExposureEvent
-description: An occurrence in a study where a subject is exposed to a stressor under
-  defined conditions.
+<pre><code class="language-yaml">name: ControlImage
+description: An image associated with a control, taken at the same developmental stage
+  as the corresponding phenotype observation.
 from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
-exact_mappings:
-- biolink:ExposureEvent
 is_a: Entity
 slots:
-- stressor
-- vehicle
-- route
-- regimen
-- exposure_start_stage
-- exposure_end_stage
-- comment
-- exposure_type
-- additional_exposure_condition
-- phenotype_observation
+- phenotype_id
+- magnification
+- resolution
+- scale_bar
 
 </code></pre>
 </details>
 <h3 id="induced">Induced</h3>
 <details>
-<pre><code class="language-yaml">name: ExposureEvent
-description: An occurrence in a study where a subject is exposed to a stressor under
-  defined conditions.
+<pre><code class="language-yaml">name: ControlImage
+description: An image associated with a control, taken at the same developmental stage
+  as the corresponding phenotype observation.
 from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
-exact_mappings:
-- biolink:ExposureEvent
 is_a: Entity
 attributes:
-  stressor:
-    name: stressor
-    description: Substance, chemical or toxicant, that elicit a response (a phenotype)
-      in a subject when encountered through exposure.
+  phenotype_id:
+    name: phenotype_id
+    description: Foreign key reference to the Phenotype uuid (for database representation).
     from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
     rank: 1000
-    alias: stressor
-    owner: ExposureEvent
+    alias: phenotype_id
+    owner: ControlImage
     domain_of:
-    - ExposureEvent
-    range: StressorChemical
-    multivalued: true
-    inlined: true
-    inlined_as_list: true
-  vehicle:
-    name: vehicle
-    description: The substance or medium used deliver a stressor.
-    from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
-    rank: 1000
-    alias: vehicle
-    owner: ExposureEvent
-    domain_of:
-    - ExposureEvent
-    range: VehicleEnumeration
-    multivalued: true
-  route:
-    name: route
-    description: The route of exposure.
-    from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
-    rank: 1000
-    alias: route
-    owner: ExposureEvent
-    domain_of:
-    - ExposureEvent
-    range: ExposureRouteEnum
-  regimen:
-    name: regimen
-    description: The regimen for the exposure.
-    from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
-    rank: 1000
-    alias: regimen
-    owner: ExposureEvent
-    domain_of:
-    - ExposureEvent
-    range: Regimen
-    multivalued: false
-    inlined: true
-    inlined_as_list: true
-  exposure_start_stage:
-    name: exposure_start_stage
-    description: The developmental stage of fish when exposure started.
-    from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
-    rank: 1000
-    alias: exposure_start_stage
-    owner: ExposureEvent
-    domain_of:
-    - ExposureEvent
-    range: uriorcurie
-    multivalued: false
-  exposure_end_stage:
-    name: exposure_end_stage
-    description: The developmental stage of fish when exposure ended.
-    from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
-    rank: 1000
-    alias: exposure_end_stage
-    owner: ExposureEvent
-    domain_of:
-    - ExposureEvent
-    range: uriorcurie
-    multivalued: false
-  comment:
-    name: comment
-    description: Additional comments.
-    from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
-    rank: 1000
-    alias: comment
-    owner: ExposureEvent
-    domain_of:
-    - Control
-    - ExposureEvent
-    - StressorChemical
+    - ControlImage
     range: string
-  exposure_type:
-    name: exposure_type
-    description: An instance of exposure specifying the type of stressor a subject
-      was exposed to.
+  magnification:
+    name: magnification
+    description: The factor by which a microscope enlarges the apparent size of a
+      subject compared to its actual size.
     from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
     rank: 1000
-    alias: exposure_type
-    owner: ExposureEvent
+    alias: magnification
+    owner: ControlImage
     domain_of:
-    - ExposureEvent
-    range: ExposureTypeEnum
-  additional_exposure_condition:
-    name: additional_exposure_condition
-    description: Additional information about the conditions under which exposure
-      event occurred.
-    from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
-    rank: 1000
-    alias: additional_exposure_condition
-    owner: ExposureEvent
-    domain_of:
-    - ExposureEvent
+    - Image
+    - ControlImage
     range: string
-  phenotype_observation:
-    name: phenotype_observation
-    description: The phenotype observations from this exposure event.
+  resolution:
+    name: resolution
+    description: Level of detail of the image.
     from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
     rank: 1000
-    alias: phenotype_observation
-    owner: ExposureEvent
+    alias: resolution
+    owner: ControlImage
     domain_of:
-    - ExposureEvent
-    range: PhenotypeObservationSet
-    multivalued: true
-    inlined: true
-    inlined_as_list: true
+    - Image
+    - ControlImage
+    range: string
+  scale_bar:
+    name: scale_bar
+    description: Scale bar information, including the physical length it represents
+      and the unit of measurement.
+    from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
+    rank: 1000
+    alias: scale_bar
+    owner: ControlImage
+    domain_of:
+    - Image
+    - ControlImage
+    range: string
   uuid:
     name: uuid
     description: UUID identifier.
@@ -623,7 +441,7 @@ attributes:
     rank: 1000
     identifier: true
     alias: uuid
-    owner: ExposureEvent
+    owner: ControlImage
     domain_of:
     - Entity
     range: string

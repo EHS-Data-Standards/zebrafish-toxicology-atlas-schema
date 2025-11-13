@@ -280,15 +280,15 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../name/">name</a></td>
-<td>1 <br/> <a href="../String/">String</a></td>
-<td>Name or label of an entity</td>
-<td>direct</td>
-</tr>
-<tr>
 <td><a href="../id/">id</a></td>
 <td>1 <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
 <td></td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../name/">name</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>Name or label of an entity</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -311,8 +311,8 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../ExposureExperiment/">ExposureExperiment</a></td>
-<td><a href="../subject/">subject</a></td>
+<td><a href="../Experiment/">Experiment</a></td>
+<td><a href="../fish/">fish</a></td>
 <td>range</td>
 <td><a href="./">Fish</a></td>
 </tr>
@@ -351,8 +351,8 @@ description: Zebrafish used as subject in the study.
 from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
 is_a: Entity
 slots:
-- name
 - id
+- name
 slot_usage:
   name:
     name: name
@@ -377,17 +377,6 @@ slot_usage:
     name: id
     pattern: ^ZFIN:ZDB-FISH-[0-9]{4}-[0-9]{6}-[0-9]+$
 attributes:
-  name:
-    name: name
-    description: Name or label of an entity.
-    from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
-    rank: 1000
-    alias: name
-    owner: Fish
-    domain_of:
-    - Fish
-    range: string
-    required: true
   id:
     name: id
     from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
@@ -399,6 +388,17 @@ attributes:
     range: uriorcurie
     required: true
     pattern: ^ZFIN:ZDB-FISH-[0-9]{4}-[0-9]{6}-[0-9]+$
+  name:
+    name: name
+    description: Name or label of an entity.
+    from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
+    rank: 1000
+    alias: name
+    owner: Fish
+    domain_of:
+    - Fish
+    range: string
+    required: true
   uuid:
     name: uuid
     description: UUID identifier.
@@ -409,8 +409,6 @@ attributes:
     owner: Fish
     domain_of:
     - Entity
-    - ChemicalEntity
-    - Image
     range: string
     required: true
 
