@@ -44,6 +44,7 @@ jobs:
         run: |
           mkdir -p docs
           touch docs/.nojekyll
+          just gen-project
           just gendoc
           just mkd-gh-deploy
       
