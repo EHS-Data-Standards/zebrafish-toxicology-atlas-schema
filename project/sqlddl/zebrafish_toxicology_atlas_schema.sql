@@ -24,7 +24,6 @@
 --     * Slot: control_type Description: Type of control (e.g., wildtype vs mutant, treated vs untreated).
 --     * Slot: vehicle_if_treated Description: Vehicle used if this is a treated control.
 --     * Slot: comment Description: Additional comments.
---     * Slot: control_id Description: Identifier for the control, used to link control images to specific controls.
 --     * Slot: uuid Description: UUID identifier.
 --     * Slot: Experiment_uuid Description: Autocreated FK slot
 -- # Class: ExposureEvent Description: An occurrence in a study where a subject is exposed to a stressor under defined conditions.
@@ -57,23 +56,22 @@
 --     * Slot: chemical_name Description: Name of the chemical.
 --     * Slot: uuid Description: UUID identifier.
 -- # Class: Image Description: An image associated with a phenotype observation.
---     * Slot: uuid Description: UUID identifier.
---     * Slot: phenotype_observation_id Description: Foreign key reference to the PhenotypeObservation uuid (for database representation).
 --     * Slot: magnification Description: The factor by which a microscope enlarges the apparent size of a subject compared to its actual size.
 --     * Slot: resolution Description: Level of detail of the image.
 --     * Slot: scale_bar Description: Scale bar information, including the physical length it represents and the unit of measurement.
+--     * Slot: uuid Description: UUID identifier.
 --     * Slot: PhenotypeObservation_uuid Description: Autocreated FK slot
 -- # Class: ControlImage Description: An image associated with a control, taken at the same developmental stage as the corresponding phenotype observation.
---     * Slot: uuid Description: UUID identifier.
 --     * Slot: phenotype_id Description: Foreign key reference to the Phenotype uuid (for database representation).
 --     * Slot: magnification Description: The factor by which a microscope enlarges the apparent size of a subject compared to its actual size.
 --     * Slot: resolution Description: Level of detail of the image.
 --     * Slot: scale_bar Description: Scale bar information, including the physical length it represents and the unit of measurement.
+--     * Slot: uuid Description: UUID identifier.
 --     * Slot: Phenotype_uuid Description: Autocreated FK slot
 --     * Slot: Control_uuid Description: Autocreated FK slot
 -- # Class: Fish Description: Zebrafish used as subject in the study.
---     * Slot: name Description: Name or label of an entity.
 --     * Slot: id
+--     * Slot: name Description: Name or label of an entity.
 --     * Slot: uuid Description: UUID identifier.
 -- # Class: QuantityValue Description: A value of an attribute that is quantitative and measurable, expressed as a combination of a unit and a numeric value
 --     * Slot: id
@@ -107,8 +105,8 @@ CREATE TABLE "ChemicalEntity" (
 	PRIMARY KEY (uuid)
 );CREATE INDEX "ix_ChemicalEntity_uuid" ON "ChemicalEntity" (uuid);
 CREATE TABLE "Fish" (
-	name TEXT NOT NULL,
 	id TEXT NOT NULL,
+	name TEXT NOT NULL,
 	uuid TEXT NOT NULL,
 	PRIMARY KEY (uuid)
 );CREATE INDEX "ix_Fish_uuid" ON "Fish" (uuid);
@@ -154,9 +152,8 @@ CREATE TABLE "ChemicalEntity_synonym" (
 );CREATE INDEX "ix_ChemicalEntity_synonym_synonym" ON "ChemicalEntity_synonym" (synonym);CREATE INDEX "ix_ChemicalEntity_synonym_ChemicalEntity_uuid" ON "ChemicalEntity_synonym" ("ChemicalEntity_uuid");
 CREATE TABLE "Control" (
 	control_type TEXT,
-	vehicle_if_treated VARCHAR(10),
+	vehicle_if_treated VARCHAR(7),
 	comment TEXT,
-	control_id TEXT,
 	uuid TEXT NOT NULL,
 	"Experiment_uuid" TEXT,
 	PRIMARY KEY (uuid),
@@ -196,7 +193,7 @@ CREATE TABLE "StressorChemical" (
 );CREATE INDEX "ix_StressorChemical_uuid" ON "StressorChemical" (uuid);
 CREATE TABLE "ExposureEvent_vehicle" (
 	"ExposureEvent_uuid" TEXT,
-	vehicle VARCHAR(10),
+	vehicle VARCHAR(7),
 	PRIMARY KEY ("ExposureEvent_uuid", vehicle),
 	FOREIGN KEY("ExposureEvent_uuid") REFERENCES "ExposureEvent" (uuid)
 );CREATE INDEX "ix_ExposureEvent_vehicle_vehicle" ON "ExposureEvent_vehicle" (vehicle);CREATE INDEX "ix_ExposureEvent_vehicle_ExposureEvent_uuid" ON "ExposureEvent_vehicle" ("ExposureEvent_uuid");
@@ -212,21 +209,20 @@ CREATE TABLE "Phenotype" (
 	FOREIGN KEY(prevalence_id) REFERENCES "QuantityValue" (id)
 );CREATE INDEX "ix_Phenotype_uuid" ON "Phenotype" (uuid);
 CREATE TABLE "Image" (
-	uuid TEXT NOT NULL,
-	phenotype_observation_id TEXT,
 	magnification TEXT,
 	resolution TEXT,
 	scale_bar TEXT,
+	uuid TEXT NOT NULL,
 	"PhenotypeObservation_uuid" TEXT,
 	PRIMARY KEY (uuid),
 	FOREIGN KEY("PhenotypeObservation_uuid") REFERENCES "PhenotypeObservation" (uuid)
 );CREATE INDEX "ix_Image_uuid" ON "Image" (uuid);
 CREATE TABLE "ControlImage" (
-	uuid TEXT NOT NULL,
 	phenotype_id TEXT,
 	magnification TEXT,
 	resolution TEXT,
 	scale_bar TEXT,
+	uuid TEXT NOT NULL,
 	"Phenotype_uuid" TEXT,
 	"Control_uuid" TEXT,
 	PRIMARY KEY (uuid),

@@ -57,13 +57,6 @@
                         "null"
                     ]
                 },
-                "control_id": {
-                    "description": "Identifier for the control, used to link control images to specific controls.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
                 "control_image": {
                     "description": "Images associated with this control.",
                     "items": {
@@ -328,8 +321,8 @@
                 }
             },
             "required": [
-                "name",
                 "id",
+                "name",
                 "uuid"
             ],
             "title": "Fish",
@@ -341,13 +334,6 @@
             "properties": {
                 "magnification": {
                     "description": "The factor by which a microscope enlarges the apparent size of a subject compared to its actual size.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "phenotype_observation_id": {
-                    "description": "Foreign key reference to the PhenotypeObservation uuid (for database representation).",
                     "type": [
                         "string",
                         "null"
@@ -652,8 +638,7 @@
             "description": "An enumeration of vehicles used in exposures.",
             "enum": [
                 "ethanol",
-                "dmso",
-                "fish_water"
+                "dmso"
             ],
             "title": "VehicleEnumeration",
             "type": "string"

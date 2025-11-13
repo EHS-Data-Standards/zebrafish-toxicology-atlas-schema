@@ -54,7 +54,7 @@ classes:
       - control
       - exposure_event
 
-  PhenotypeObservation:
+  PhenotypeObservationSet:
     is_a: Entity
     description: A phenotypic outcome resulting from an exposure event.
     slots:
@@ -194,7 +194,7 @@ slots:
     inlined: true
   phenotype_observation:
     description: The phenotype observations from this exposure event.
-    range: PhenotypeObservation
+    range: PhenotypeObservationSet
     multivalued: true
     inlined: true
     inlined_as_list: true
@@ -250,9 +250,6 @@ slots:
     multivalued: true
     inlined: true
     inlined_as_list: true
-  phenotype_observation_id:
-    description: Foreign key reference to the PhenotypeObservation uuid (for database representation).
-    range: string
   phenotype_id:
     description: Foreign key reference to the Phenotype uuid (for database representation).
     range: string
