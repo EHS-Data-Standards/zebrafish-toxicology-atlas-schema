@@ -11,4 +11,3 @@ control_image:
     magnification: "10x"
     resolution: "1024x768"
     scale_bar: "100 µm"
-    control_identifier: "ctrl-untreated"
