@@ -78,7 +78,6 @@ classes:
       - control_type
       - vehicle_if_treated
       - comment
-      - control_id
       - control_image
 
   ExposureEvent:
@@ -125,7 +124,6 @@ classes:
       - chebi_id
       - cas_id
       - chemical_name
-      - uuid
       - synonym
     exact_mappings:
       - biolink:ChemicalEntity
@@ -134,8 +132,6 @@ classes:
     is_a: Entity
     description: An image associated with a phenotype observation.
     slots:
-      - uuid
-      - phenotype_observation_id
       - magnification
       - resolution
       - scale_bar
@@ -144,7 +140,6 @@ classes:
     is_a: Entity
     description: An image associated with a control, taken at the same developmental stage as the corresponding phenotype observation.
     slots:
-      - uuid
       - phenotype_id
       - magnification
       - resolution
@@ -154,8 +149,8 @@ classes:
     is_a: Entity
     description: Zebrafish used as subject in the study.
     slots:
-      - name
       - id
+      - name
     slot_usage:
       name:
         required: true
@@ -390,7 +385,7 @@ enums:
   ExposureTypeEnum:
     description: An enumeration of exposure types derived from the ECTO ontology.
     reachable_from:
-      source_ontology: "ECTO"
+      source_ontology: obo:ecto
       relationship_types:
         - "rdfs:subClassOf"
       include_self: true
@@ -419,10 +414,8 @@ enums:
     description: An enumeration of vehicles used in exposures.
     permissible_values:
       ethanol:
-        description: Ethanol vehicle
+        description: Ethanol
         meaning: CHEBI:00000000
       dmso:
-        description: DMSO vehicle
+        description: DMSO
         meaning: CHEBI:00000000
-      fish_water:
-        description: Fish water vehicle

@@ -58,16 +58,18 @@
 --     * Slot: uuid Description: UUID identifier.
 -- # Class: Image Description: An image associated with a phenotype observation.
 --     * Slot: uuid Description: UUID identifier.
+--     * Slot: phenotype_observation_id Description: Foreign key reference to the PhenotypeObservation uuid (for database representation).
 --     * Slot: magnification Description: The factor by which a microscope enlarges the apparent size of a subject compared to its actual size.
 --     * Slot: resolution Description: Level of detail of the image.
 --     * Slot: scale_bar Description: Scale bar information, including the physical length it represents and the unit of measurement.
 --     * Slot: PhenotypeObservation_uuid Description: Autocreated FK slot
--- # Class: ControlImage Description: An image associated with a control. Links to the control identifier to specify which control (e.g., untreated vs vehicle-treated) the image represents.
+-- # Class: ControlImage Description: An image associated with a control, taken at the same developmental stage as the corresponding phenotype observation.
 --     * Slot: uuid Description: UUID identifier.
+--     * Slot: phenotype_id Description: Foreign key reference to the Phenotype uuid (for database representation).
 --     * Slot: magnification Description: The factor by which a microscope enlarges the apparent size of a subject compared to its actual size.
 --     * Slot: resolution Description: Level of detail of the image.
 --     * Slot: scale_bar Description: Scale bar information, including the physical length it represents and the unit of measurement.
---     * Slot: control_identifier Description: Identifier linking this image to a specific control.
+--     * Slot: Phenotype_uuid Description: Autocreated FK slot
 --     * Slot: Control_uuid Description: Autocreated FK slot
 -- # Class: Fish Description: Zebrafish used as subject in the study.
 --     * Slot: name Description: Name or label of an entity.
@@ -143,7 +145,7 @@ CREATE TABLE "Study_annotator" (
 	annotator TEXT,
 	PRIMARY KEY ("Study_uuid", annotator),
 	FOREIGN KEY("Study_uuid") REFERENCES "Study" (uuid)
-);CREATE INDEX "ix_Study_annotator_annotator" ON "Study_annotator" (annotator);CREATE INDEX "ix_Study_annotator_Study_uuid" ON "Study_annotator" ("Study_uuid");
+);CREATE INDEX "ix_Study_annotator_Study_uuid" ON "Study_annotator" ("Study_uuid");CREATE INDEX "ix_Study_annotator_annotator" ON "Study_annotator" (annotator);
 CREATE TABLE "ChemicalEntity_synonym" (
 	"ChemicalEntity_uuid" TEXT,
 	synonym TEXT,
@@ -192,16 +194,6 @@ CREATE TABLE "StressorChemical" (
 	FOREIGN KEY(chemical_id_uuid) REFERENCES "ChemicalEntity" (uuid),
 	FOREIGN KEY(concentration_id) REFERENCES "QuantityValue" (id)
 );CREATE INDEX "ix_StressorChemical_uuid" ON "StressorChemical" (uuid);
-CREATE TABLE "ControlImage" (
-	uuid TEXT NOT NULL,
-	magnification TEXT,
-	resolution TEXT,
-	scale_bar TEXT,
-	control_identifier TEXT,
-	"Control_uuid" TEXT,
-	PRIMARY KEY (uuid),
-	FOREIGN KEY("Control_uuid") REFERENCES "Control" (uuid)
-);CREATE INDEX "ix_ControlImage_uuid" ON "ControlImage" (uuid);
 CREATE TABLE "ExposureEvent_vehicle" (
 	"ExposureEvent_uuid" TEXT,
 	vehicle VARCHAR(10),
@@ -221,6 +213,7 @@ CREATE TABLE "Phenotype" (
 );CREATE INDEX "ix_Phenotype_uuid" ON "Phenotype" (uuid);
 CREATE TABLE "Image" (
 	uuid TEXT NOT NULL,
+	phenotype_observation_id TEXT,
 	magnification TEXT,
 	resolution TEXT,
 	scale_bar TEXT,
@@ -228,4 +221,16 @@ CREATE TABLE "Image" (
 	PRIMARY KEY (uuid),
 	FOREIGN KEY("PhenotypeObservation_uuid") REFERENCES "PhenotypeObservation" (uuid)
 );CREATE INDEX "ix_Image_uuid" ON "Image" (uuid);
+CREATE TABLE "ControlImage" (
+	uuid TEXT NOT NULL,
+	phenotype_id TEXT,
+	magnification TEXT,
+	resolution TEXT,
+	scale_bar TEXT,
+	"Phenotype_uuid" TEXT,
+	"Control_uuid" TEXT,
+	PRIMARY KEY (uuid),
+	FOREIGN KEY("Phenotype_uuid") REFERENCES "Phenotype" (uuid),
+	FOREIGN KEY("Control_uuid") REFERENCES "Control" (uuid)
+);CREATE INDEX "ix_ControlImage_uuid" ON "ControlImage" (uuid);
 
