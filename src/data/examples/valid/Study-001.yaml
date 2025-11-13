@@ -19,10 +19,10 @@ experiment:
         control_id: "ctrl-untreated"
         control_image:
           - uuid: "control-image-001"
+            phenotype_id: "phenotype-001"
             magnification: "10x"
             resolution: "1024x768"
             scale_bar: "100 µm"
-            control_identifier: "ctrl-untreated"
     exposure_event:
       - uuid: "exposure-event-001"
         route: "EXO:0000002"
@@ -73,6 +73,7 @@ experiment:
                   numeric_value: "75"
             image:
               - uuid: "image-001"
+                phenotype_observation_id: "phenotype-observation-001"
                 magnification: "10x"
                 resolution: "1024x768"
                 scale_bar: "100 µm"
