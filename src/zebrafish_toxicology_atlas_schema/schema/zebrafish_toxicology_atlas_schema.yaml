@@ -3,7 +3,7 @@ id: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
 name: zebrafish-toxicology-atlas-schema
 title: zebrafish-toxicology-atlas-schema
 description: |-
-  Schema to represent metadata associated with the Zebrafish Toxicology Atlas
+  Schema to represent metadatcha associated with the Zebrafish Toxicology Atlas
 license: MIT
 see_also:
   - https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema
@@ -37,100 +37,93 @@ classes:
 
   Study:
     is_a: Entity
-    description: A toxicology study containing experiments.
+    description: A toxicological investigation, including the experimental conditions and phenotypic outcomes, with information provenance.
     slots:
       - experiment
       - publication
-      - contributor
+      - annotator
       - lab
 
   Experiment:
     is_a: Entity
-    description: An experiment within a study.
+    description: Group of observations (phenotypic outcomes and their control) that are linked by a common experiment and subject that are part of a study.
     slots:
-      - phenotype_observation
+      - standard_rearing_condition
+      - rearing_condition_comment
+      - fish
       - control
+      - exposure_event
 
-  PhenotypeObservation:
+  PhenotypeObservationSet:
     is_a: Entity
-    description: An observation of phenotypes resulting from exposure experiments.
+    description: A phenotypic outcome resulting from an exposure event.
     slots:
-      - exposure_experiment
       - image
       - phenotype
-      - control
-    rules:
-      - preconditions:
-          slot_conditions:
-            control:
-              equals_expression: "true"
-        postconditions:
-          slot_conditions:
-            phenotype:
-              required: false
 
   Phenotype:
     is_a: Entity
-    description: A phenotype observed in the fish as a result of exposure.
+    description: Any measurable or visible trait change in the subject as a result of exposure.
     slots:
       - stage
       - prevalence
       - severity
       - phenotype_term_id
+      - control_image
 
-  ExposureExperiment:
+  Control:
     is_a: Entity
-    description: An experiment exposing fish to chemical stressors.
+    description: Information about controls used in the experiment, including the type of control (wildtype vs mutant, treated vs untreated) and vehicle information if applicable.
     slots:
-      - subject
-      - exposure_event
-      - standard_rearing_conditions
-      - rearing_condition_comments
+      - control_type
+      - vehicle_if_treated
+      - comment
+      - control_image
 
   ExposureEvent:
     is_a: Entity
     description: >-
-      An instance of a toxicological exposure event in the study.
+      An occurrence in a study where a subject is exposed to a stressor under defined conditions.
     slots:
-      - stressor_chemical
+      - stressor
       - vehicle
       - route
       - regimen
       - exposure_start_stage
       - exposure_end_stage
-      - comments
+      - comment
       - exposure_type
-      - additional_exposure_conditions
+      - additional_exposure_condition
+      - phenotype_observation
     exact_mappings:
       - biolink:ExposureEvent
 
   Regimen:
     is_a: Entity
-    description: The regimen of exposure events.
+    description: The schedule and pattern of an exposure event.
     slots:
       - exposure_regimen_type
-      - interval_between_exposures
-      - time_between_first_and_last_exposure
+      - interval_between_individual_exposures
+      - total_exposure_duration
       - individual_exposure_duration
-      - number_of_repeats
+      - number_of_individual_exposure
 
-  Stressor:
+  StressorChemical:
     is_a: Entity
-    description: A chemical stressor used in exposure experiments.
+    description: A chemical, that elicit a response (a phenotype) in a subject when when encountered through exposure.
     slots:
-      - chemical
+      - chemical_id
       - manufacturer
-      - dose
-      - comments
+      - concentration
+      - comment
 
   ChemicalEntity:
     is_a: Entity
-    description: A chemical compound used as a toxicant in the study.
+    description: The chemical used as the stressor chemical in an exposure event.
     slots:
       - chebi_id
       - cas_id
       - chemical_name
-      - uuid
       - synonym
     exact_mappings:
       - biolink:ChemicalEntity
@@ -139,17 +132,25 @@ classes:
     is_a: Entity
     description: An image associated with a phenotype observation.
     slots:
-      - uuid
+      - magnification
+      - resolution
+      - scale_bar
+
+  ControlImage:
+    is_a: Entity
+    description: An image associated with a control, taken at the same developmental stage as the corresponding phenotype observation.
+    slots:
+      - phenotype_id
       - magnification
       - resolution
       - scale_bar
 
   Fish:
     is_a: Entity
-    description: A representation of the zebrafish used in the toxicology study.
+    description: Zebrafish used as subject in the study.
     slots:
-      - name
       - id
+      - name
     slot_usage:
       name:
         required: true
@@ -170,39 +171,43 @@ slots:
     range: uriorcurie
     required: true
   publication:
-    description: The publication identifier (e.g., PMID, DOI) for the study, or "not published".
+    description: The publication identifier (e.g., PMID, DOI) for the study or "not published" if the study is unpublished.
     range: string
   synonym:
+    description: Other names for the chemical.
     range: string
     multivalued: true
   name:
     description: Name or label of an entity.
   exposure_type:
-    description: The exposure type.
+    description: An instance of exposure specifying the type of stressor a subject was exposed to.
     range: ExposureTypeEnum
   unit:
     description: The unit of the quantity value.
   numeric_value:
     description: The numeric value of the quantity value.
   experiment:
-    description: The experiments in this study.
+    description: The experiments in a study.
     range: Experiment
     multivalued: true
     inlined_as_list: true
     inlined: true
   phenotype_observation:
-    description: The phenotype observations from this experiment.
-    range: PhenotypeObservation
+    description: The phenotype observations from this exposure event.
+    range: PhenotypeObservationSet
     multivalued: true
     inlined: true
     inlined_as_list: true
   control:
-    description: Whether this is a control observation.
-    range: boolean
-  exposure_experiment:
-    description: The exposure experiments for this observation.
-    range: ExposureExperiment
-    multivalued: false
+    description: The controls for this experiment.
+    range: Control
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  fish:
+    description: The fish subject of the experiment.
+    range: Fish
+    inlined_as_list: true
     inlined: true
   image:
     description: Images associated with this observation.
@@ -217,47 +222,60 @@ slots:
     inlined: true
     multivalued: true
   stage:
-    description: The developmental stage.
+    description: The developmental stage of fish when the phenotype was observed.
     range: uriorcurie
   prevalence:
-    description: The prevalence of the phenotype.
+    description: The percentage of subject exhibiting this phenotype.
     range: QuantityValue
     inlined_as_list: true
     inlined: true
   severity:
-    description: The severity of the phenotype.
+    description: The intensity of the observed phenotype.
     range: SeverityEnum
   phenotype_term_id:
     description: The phenotype ontology term identifier.
     range: uriorcurie
-  subject:
-    description: The fish subject of the exposure experiment.
-    range: Fish
-    inlined_as_list: true
+  control_type:
+    description: Type of control (e.g., wildtype vs mutant, treated vs untreated).
+    range: string
+  vehicle_if_treated:
+    description: Vehicle used if this is a treated control.
+    range: VehicleEnumeration
+  control_id:
+    description: Identifier for the control, used to link control images to specific controls.
+    range: string
+  control_image:
+    description: Images associated with this control.
+    range: ControlImage
+    multivalued: true
     inlined: true
+    inlined_as_list: true
+  phenotype_id:
+    description: Foreign key reference to the Phenotype uuid (for database representation).
+    range: string
   exposure_event:
     description: The exposure events in this experiment.
     range: ExposureEvent
     multivalued: true
     inlined_as_list: true
     inlined: true
-  standard_rearing_conditions:
-    description: Whether standard rearing conditions were used.
+  standard_rearing_condition:
+    description: An indication if the subject was maintained under standard conditions, which are the established, consistent environmental and husbandry parameters (such as temperature, lighting, diet, and housing) designed to minimize variability and ensure reproducibility in experiments.
     range: boolean
-  number_of_repeats:
-    description: Number of repeats in the regimen.
+  number_of_individual_exposure:
+    description: Total number of individual exposures.
     range: integer
-  rearing_condition_comments:
-    description: Comments about rearing conditions.
+  rearing_condition_comment:
+    description: Comments on rearing conditions, for example, about how conditions deviated from standard parameters.
     range: string
-  stressor_chemical:
-    description: The stressor chemicals used.
-    range: Stressor
+  stressor:
+    description: Substance, chemical or toxicant, that elicit a response (a phenotype) in a subject when encountered through exposure.
+    range: StressorChemical
     multivalued: true
     inlined_as_list: true
     inlined: true
   vehicle:
-    description: The vehicles used in the exposure.
+    description: The substance or medium used deliver a stressor.
     range: VehicleEnumeration
     multivalued: true
   route:
@@ -270,18 +288,18 @@ slots:
     inlined_as_list: true
     inlined: true
   exposure_start_stage:
-    description: The developmental stage at exposure start.
+    description: The developmental stage of fish when exposure started.
     range: uriorcurie
     multivalued: false
   exposure_end_stage:
-    description: The developmental stage at exposure end.
+    description: The developmental stage of fish when exposure ended.
     range: uriorcurie
     multivalued: false
-  comments:
+  comment:
     description: Additional comments.
     range: string
-  additional_exposure_conditions:
-    description: Additional exposure conditions.
+  additional_exposure_condition:
+    description: Additional information about the conditions under which exposure event occurred.
     range: string
   chebi_id:
     description: CHEBI identifier for the chemical.
@@ -297,7 +315,7 @@ slots:
     description: UUID identifier.
     range: string
     required: true
-  chemical:
+  chemical_id:
     description: Chemical identifier (CHEBI, CAS, or UUID).
     range: ChemicalEntity
     required: true
@@ -306,18 +324,18 @@ slots:
   manufacturer:
     description: The manufacturer of the chemical.
     range: string
-  dose:
-    description: The dose of the chemical.
+  concentration:
+    description: The dose or concentration of the chemical to which the subject was exposed to.
     range: QuantityValue
     required: true
     inlined_as_list: true
     inlined: true
-  interval_between_exposures:
+  interval_between_individual_exposures:
     description: Interval between individual exposures.
     range: QuantityValue
     inlined_as_list: true
     inlined: true
-  time_between_first_and_last_exposure:
+  total_exposure_duration:
     description: Time between first and last individual exposure.
     range: QuantityValue
     inlined_as_list: true
@@ -331,16 +349,16 @@ slots:
     description: The type of exposure regimen (e.g., continuous or repeated).
     range: ExposureRegimenTypeEnum
   magnification:
-    description: The magnification of the image.
+    description: The factor by which a microscope enlarges the apparent size of a subject compared to its actual size.
     range: string
   resolution:
-    description: The resolution of the image.
+    description: Level of detail of the image.
     range: string
   scale_bar:
-    description: Scale bar information.
+    description: Scale bar information, including the physical length it represents and the unit of measurement.
     range: string
-  contributor:
-    description: The contributors of the study.
+  annotator:
+    description: ORCID identifier of the indidvidual submitting the study data.
     range: uriorcurie
     multivalued: true
     pattern: "^ORCID:[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[0-9X]$"
@@ -364,7 +382,7 @@ enums:
   ExposureTypeEnum:
     description: An enumeration of exposure types derived from the ECTO ontology.
     reachable_from:
-      source_ontology: "ECTO"
+      source_ontology: obo:ecto
       relationship_types:
         - "rdfs:subClassOf"
       include_self: true
@@ -393,10 +411,8 @@ enums:
     description: An enumeration of vehicles used in exposures.
     permissible_values:
       ethanol:
-        description: Ethanol vehicle
+        description: Ethanol
         meaning: CHEBI:00000000
       dmso:
-        description: DMSO vehicle
+        description: DMSO
         meaning: CHEBI:00000000
-      fish_water:
-        description: Fish water vehicle

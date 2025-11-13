@@ -15,7 +15,7 @@ gen-project:
         --include proto \
         --include shacl \
         --include shex \
-        --exclude sqlddl \
+        --include sqlddl \
         --include jsonldcontext \
         --include jsonschema \
         --exclude owl \

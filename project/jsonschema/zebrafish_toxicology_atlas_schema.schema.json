@@ -2,7 +2,7 @@
     "$defs": {
         "ChemicalEntity": {
             "additionalProperties": false,
-            "description": "A chemical compound used as a toxicant in the study.",
+            "description": "The chemical used as the stressor chemical in an exposure event.",
             "properties": {
                 "cas_id": {
                     "description": "CAS identifier for the chemical.",
@@ -26,6 +26,7 @@
                     ]
                 },
                 "synonym": {
+                    "description": "Other names for the chemical.",
                     "items": {
                         "type": "string"
                     },
@@ -45,24 +46,138 @@
             "title": "ChemicalEntity",
             "type": "object"
         },
-        "Experiment": {
+        "Control": {
             "additionalProperties": false,
-            "description": "An experiment within a study.",
+            "description": "Information about controls used in the experiment, including the type of control (wildtype vs mutant, treated vs untreated) and vehicle information if applicable.",
             "properties": {
-                "control": {
-                    "description": "Whether this is a control observation.",
+                "comment": {
+                    "description": "Additional comments.",
                     "type": [
-                        "boolean",
+                        "string",
                         "null"
                     ]
                 },
-                "phenotype_observation": {
-                    "description": "The phenotype observations from this experiment.",
+                "control_image": {
+                    "description": "Images associated with this control.",
                     "items": {
-                        "$ref": "#/$defs/PhenotypeObservation"
+                        "$ref": "#/$defs/ControlImage"
                     },
                     "type": [
                         "array",
+                        "null"
+                    ]
+                },
+                "control_type": {
+                    "description": "Type of control (e.g., wildtype vs mutant, treated vs untreated).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "uuid": {
+                    "description": "UUID identifier.",
+                    "type": "string"
+                },
+                "vehicle_if_treated": {
+                    "$ref": "#/$defs/VehicleEnumeration",
+                    "description": "Vehicle used if this is a treated control."
+                }
+            },
+            "required": [
+                "uuid"
+            ],
+            "title": "Control",
+            "type": "object"
+        },
+        "ControlImage": {
+            "additionalProperties": false,
+            "description": "An image associated with a control, taken at the same developmental stage as the corresponding phenotype observation.",
+            "properties": {
+                "magnification": {
+                    "description": "The factor by which a microscope enlarges the apparent size of a subject compared to its actual size.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "phenotype_id": {
+                    "description": "Foreign key reference to the Phenotype uuid (for database representation).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "resolution": {
+                    "description": "Level of detail of the image.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "scale_bar": {
+                    "description": "Scale bar information, including the physical length it represents and the unit of measurement.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "uuid": {
+                    "description": "UUID identifier.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "uuid"
+            ],
+            "title": "ControlImage",
+            "type": "object"
+        },
+        "Experiment": {
+            "additionalProperties": false,
+            "description": "Group of observations (phenotypic outcomes and their control) that are linked by a common experiment and subject that are part of a study.",
+            "properties": {
+                "control": {
+                    "description": "The controls for this experiment.",
+                    "items": {
+                        "$ref": "#/$defs/Control"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "exposure_event": {
+                    "description": "The exposure events in this experiment.",
+                    "items": {
+                        "$ref": "#/$defs/ExposureEvent"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "fish": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Fish"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "The fish subject of the experiment."
+                },
+                "rearing_condition_comment": {
+                    "description": "Comments on rearing conditions, for example, about how conditions deviated from standard parameters.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "standard_rearing_condition": {
+                    "description": "An indication if the subject was maintained under standard conditions, which are the established, consistent environmental and husbandry parameters (such as temperature, lighting, diet, and housing) designed to minimize variability and ensure reproducibility in experiments.",
+                    "type": [
+                        "boolean",
                         "null"
                     ]
                 },
@@ -79,16 +194,16 @@
         },
         "ExposureEvent": {
             "additionalProperties": false,
-            "description": "An instance of a toxicological exposure event in the study.",
+            "description": "An occurrence in a study where a subject is exposed to a stressor under defined conditions.",
             "properties": {
-                "additional_exposure_conditions": {
-                    "description": "Additional exposure conditions.",
+                "additional_exposure_condition": {
+                    "description": "Additional information about the conditions under which exposure event occurred.",
                     "type": [
                         "string",
                         "null"
                     ]
                 },
-                "comments": {
+                "comment": {
                     "description": "Additional comments.",
                     "type": [
                         "string",
@@ -96,14 +211,14 @@
                     ]
                 },
                 "exposure_end_stage": {
-                    "description": "The developmental stage at exposure end.",
+                    "description": "The developmental stage of fish when exposure ended.",
                     "type": [
                         "string",
                         "null"
                     ]
                 },
                 "exposure_start_stage": {
-                    "description": "The developmental stage at exposure start.",
+                    "description": "The developmental stage of fish when exposure started.",
                     "type": [
                         "string",
                         "null"
@@ -111,7 +226,17 @@
                 },
                 "exposure_type": {
                     "$ref": "#/$defs/ExposureTypeEnum",
-                    "description": "The exposure type."
+                    "description": "An instance of exposure specifying the type of stressor a subject was exposed to."
+                },
+                "phenotype_observation": {
+                    "description": "The phenotype observations from this exposure event.",
+                    "items": {
+                        "$ref": "#/$defs/PhenotypeObservationSet"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "regimen": {
                     "anyOf": [
@@ -128,10 +253,10 @@
                     "$ref": "#/$defs/ExposureRouteEnum",
                     "description": "The route of exposure."
                 },
-                "stressor_chemical": {
-                    "description": "The stressor chemicals used.",
+                "stressor": {
+                    "description": "Substance, chemical or toxicant, that elicit a response (a phenotype) in a subject when encountered through exposure.",
                     "items": {
-                        "$ref": "#/$defs/Stressor"
+                        "$ref": "#/$defs/StressorChemical"
                     },
                     "type": [
                         "array",
@@ -143,7 +268,7 @@
                     "type": "string"
                 },
                 "vehicle": {
-                    "description": "The vehicles used in the exposure.",
+                    "description": "The substance or medium used deliver a stressor.",
                     "items": {
                         "$ref": "#/$defs/VehicleEnumeration"
                     },
@@ -157,56 +282,6 @@
                 "uuid"
             ],
             "title": "ExposureEvent",
-            "type": "object"
-        },
-        "ExposureExperiment": {
-            "additionalProperties": false,
-            "description": "An experiment exposing fish to chemical stressors.",
-            "properties": {
-                "exposure_event": {
-                    "description": "The exposure events in this experiment.",
-                    "items": {
-                        "$ref": "#/$defs/ExposureEvent"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "rearing_condition_comments": {
-                    "description": "Comments about rearing conditions.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "standard_rearing_conditions": {
-                    "description": "Whether standard rearing conditions were used.",
-                    "type": [
-                        "boolean",
-                        "null"
-                    ]
-                },
-                "subject": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/Fish"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "description": "The fish subject of the exposure experiment."
-                },
-                "uuid": {
-                    "description": "UUID identifier.",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "uuid"
-            ],
-            "title": "ExposureExperiment",
             "type": "object"
         },
         "ExposureRegimenTypeEnum": {
@@ -230,7 +305,7 @@
         },
         "Fish": {
             "additionalProperties": false,
-            "description": "A representation of the zebrafish used in the toxicology study.",
+            "description": "Zebrafish used as subject in the study.",
             "properties": {
                 "id": {
                     "pattern": "^ZFIN:ZDB-FISH-[0-9]{4}-[0-9]{6}-[0-9]+$",
@@ -246,8 +321,8 @@
                 }
             },
             "required": [
-                "name",
                 "id",
+                "name",
                 "uuid"
             ],
             "title": "Fish",
@@ -258,21 +333,21 @@
             "description": "An image associated with a phenotype observation.",
             "properties": {
                 "magnification": {
-                    "description": "The magnification of the image.",
+                    "description": "The factor by which a microscope enlarges the apparent size of a subject compared to its actual size.",
                     "type": [
                         "string",
                         "null"
                     ]
                 },
                 "resolution": {
-                    "description": "The resolution of the image.",
+                    "description": "Level of detail of the image.",
                     "type": [
                         "string",
                         "null"
                     ]
                 },
                 "scale_bar": {
-                    "description": "Scale bar information.",
+                    "description": "Scale bar information, including the physical length it represents and the unit of measurement.",
                     "type": [
                         "string",
                         "null"
@@ -291,8 +366,18 @@
         },
         "Phenotype": {
             "additionalProperties": false,
-            "description": "A phenotype observed in the fish as a result of exposure.",
+            "description": "Any measurable or visible trait change in the subject as a result of exposure.",
             "properties": {
+                "control_image": {
+                    "description": "Images associated with this control.",
+                    "items": {
+                        "$ref": "#/$defs/ControlImage"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "phenotype_term_id": {
                     "description": "The phenotype ontology term identifier.",
                     "type": [
@@ -309,14 +394,14 @@
                             "type": "null"
                         }
                     ],
-                    "description": "The prevalence of the phenotype."
+                    "description": "The percentage of subject exhibiting this phenotype."
                 },
                 "severity": {
                     "$ref": "#/$defs/SeverityEnum",
-                    "description": "The severity of the phenotype."
+                    "description": "The intensity of the observed phenotype."
                 },
                 "stage": {
-                    "description": "The developmental stage.",
+                    "description": "The developmental stage of fish when the phenotype was observed.",
                     "type": [
                         "string",
                         "null"
@@ -333,36 +418,10 @@
             "title": "Phenotype",
             "type": "object"
         },
-        "PhenotypeObservation": {
+        "PhenotypeObservationSet": {
             "additionalProperties": false,
-            "description": "An observation of phenotypes resulting from exposure experiments.",
-            "if": {
-                "properties": {
-                    "control": {}
-                },
-                "required": [
-                    "control"
-                ]
-            },
+            "description": "A phenotypic outcome resulting from an exposure event.",
             "properties": {
-                "control": {
-                    "description": "Whether this is a control observation.",
-                    "type": [
-                        "boolean",
-                        "null"
-                    ]
-                },
-                "exposure_experiment": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/ExposureExperiment"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "description": "The exposure experiments for this observation."
-                },
                 "image": {
                     "description": "Images associated with this observation.",
                     "items": {
@@ -391,12 +450,7 @@
             "required": [
                 "uuid"
             ],
-            "then": {
-                "properties": {
-                    "phenotype": {}
-                }
-            },
-            "title": "PhenotypeObservation",
+            "title": "PhenotypeObservationSet",
             "type": "object"
         },
         "QuantityValue": {
@@ -423,7 +477,7 @@
         },
         "Regimen": {
             "additionalProperties": false,
-            "description": "The regimen of exposure events.",
+            "description": "The schedule and pattern of an exposure event.",
             "properties": {
                 "exposure_regimen_type": {
                     "$ref": "#/$defs/ExposureRegimenTypeEnum",
@@ -440,7 +494,7 @@
                     ],
                     "description": "Individual exposure duration."
                 },
-                "interval_between_exposures": {
+                "interval_between_individual_exposures": {
                     "anyOf": [
                         {
                             "$ref": "#/$defs/QuantityValue"
@@ -451,14 +505,14 @@
                     ],
                     "description": "Interval between individual exposures."
                 },
-                "number_of_repeats": {
-                    "description": "Number of repeats in the regimen.",
+                "number_of_individual_exposure": {
+                    "description": "Total number of individual exposures.",
                     "type": [
                         "integer",
                         "null"
                     ]
                 },
-                "time_between_first_and_last_exposure": {
+                "total_exposure_duration": {
                     "anyOf": [
                         {
                             "$ref": "#/$defs/QuantityValue"
@@ -490,24 +544,24 @@
             "title": "SeverityEnum",
             "type": "string"
         },
-        "Stressor": {
+        "StressorChemical": {
             "additionalProperties": false,
-            "description": "A chemical stressor used in exposure experiments.",
+            "description": "A chemical, that elicit a response (a phenotype) in a subject when when encountered through exposure.",
             "properties": {
-                "chemical": {
+                "chemical_id": {
                     "$ref": "#/$defs/ChemicalEntity",
                     "description": "Chemical identifier (CHEBI, CAS, or UUID)."
                 },
-                "comments": {
+                "comment": {
                     "description": "Additional comments.",
                     "type": [
                         "string",
                         "null"
                     ]
                 },
-                "dose": {
+                "concentration": {
                     "$ref": "#/$defs/QuantityValue",
-                    "description": "The dose of the chemical."
+                    "description": "The dose or concentration of the chemical to which the subject was exposed to."
                 },
                 "manufacturer": {
                     "description": "The manufacturer of the chemical.",
@@ -522,19 +576,19 @@
                 }
             },
             "required": [
-                "chemical",
-                "dose",
+                "chemical_id",
+                "concentration",
                 "uuid"
             ],
-            "title": "Stressor",
+            "title": "StressorChemical",
             "type": "object"
         },
         "Study": {
             "additionalProperties": false,
-            "description": "A toxicology study containing experiments.",
+            "description": "A toxicological investigation, including the experimental conditions and phenotypic outcomes, with information provenance.",
             "properties": {
-                "contributor": {
-                    "description": "The contributors of the study.",
+                "annotator": {
+                    "description": "ORCID identifier of the indidvidual submitting the study data.",
                     "items": {
                         "pattern": "^ORCID:[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[0-9X]$",
                         "type": "string"
@@ -545,7 +599,7 @@
                     ]
                 },
                 "experiment": {
-                    "description": "The experiments in this study.",
+                    "description": "The experiments in a study.",
                     "items": {
                         "$ref": "#/$defs/Experiment"
                     },
@@ -563,7 +617,7 @@
                     ]
                 },
                 "publication": {
-                    "description": "The publication identifier (e.g., PMID, DOI) for the study, or \"not published\".",
+                    "description": "The publication identifier (e.g., PMID, DOI) for the study or \"not published\" if the study is unpublished.",
                     "type": [
                         "string",
                         "null"
@@ -584,8 +638,7 @@
             "description": "An enumeration of vehicles used in exposures.",
             "enum": [
                 "ethanol",
-                "dmso",
-                "fish_water"
+                "dmso"
             ],
             "title": "VehicleEnumeration",
             "type": "string"
