@@ -46,6 +46,159 @@
             "title": "ChemicalEntity",
             "type": "object"
         },
+        "Control": {
+            "additionalProperties": false,
+            "description": "Information about controls used in the experiment, including the type of control (wildtype vs mutant, treated vs untreated) and vehicle information if applicable.",
+            "properties": {
+                "comment": {
+                    "description": "Additional comments.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "control_id": {
+                    "description": "Identifier for the control, used to link control images to specific controls.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "control_image": {
+                    "description": "Images associated with this control.",
+                    "items": {
+                        "$ref": "#/$defs/ControlImage"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "control_type": {
+                    "description": "Type of control (e.g., wildtype vs mutant, treated vs untreated).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "uuid": {
+                    "description": "UUID identifier.",
+                    "type": "string"
+                },
+                "vehicle_if_treated": {
+                    "$ref": "#/$defs/VehicleEnumeration",
+                    "description": "Vehicle used if this is a treated control."
+                }
+            },
+            "required": [
+                "uuid"
+            ],
+            "title": "Control",
+            "type": "object"
+        },
+        "ControlImage": {
+            "additionalProperties": false,
+            "description": "An image associated with a control. Links to the control identifier to specify which control (e.g., untreated vs vehicle-treated) the image represents.",
+            "properties": {
+                "control_identifier": {
+                    "description": "Identifier linking this image to a specific control.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "magnification": {
+                    "description": "The factor by which a microscope enlarges the apparent size of a subject compared to its actual size.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "resolution": {
+                    "description": "Level of detail of the image.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "scale_bar": {
+                    "description": "Scale bar information, including the physical length it represents and the unit of measurement.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "uuid": {
+                    "description": "UUID identifier.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "uuid"
+            ],
+            "title": "ControlImage",
+            "type": "object"
+        },
+        "Experiment": {
+            "additionalProperties": false,
+            "description": "Group of observations (phenotypic outcomes and their control) that are linked by a common experiment and subject that are part of a study.",
+            "properties": {
+                "control": {
+                    "description": "The controls for this experiment.",
+                    "items": {
+                        "$ref": "#/$defs/Control"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "exposure_event": {
+                    "description": "The exposure events in this experiment.",
+                    "items": {
+                        "$ref": "#/$defs/ExposureEvent"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "fish": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Fish"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "The fish subject of the experiment."
+                },
+                "rearing_condition_comment": {
+                    "description": "Comments on rearing conditions, for example, about how conditions deviated from standard parameters.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "standard_rearing_condition": {
+                    "description": "An indication if the subject was maintained under standard conditions, which are the established, consistent environmental and husbandry parameters (such as temperature, lighting, diet, and housing) designed to minimize variability and ensure reproducibility in experiments.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "uuid": {
+                    "description": "UUID identifier.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "uuid"
+            ],
+            "title": "Experiment",
+            "type": "object"
+        },
         "ExposureEvent": {
             "additionalProperties": false,
             "description": "An occurrence in a study where a subject is exposed to a stressor under defined conditions.",
@@ -81,6 +234,16 @@
                 "exposure_type": {
                     "$ref": "#/$defs/ExposureTypeEnum",
                     "description": "An instance of exposure specifying the type of stressor a subject was exposed to."
+                },
+                "phenotype_observation": {
+                    "description": "The phenotype observations from this exposure event.",
+                    "items": {
+                        "$ref": "#/$defs/PhenotypeObservation"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "regimen": {
                     "anyOf": [
@@ -126,56 +289,6 @@
                 "uuid"
             ],
             "title": "ExposureEvent",
-            "type": "object"
-        },
-        "ExposureExperiment": {
-            "additionalProperties": false,
-            "description": "An experimental procedure in which a subject is exposed to a defined stressor, such as a chemical or environmental factor, to evaluate phenotypic effects.",
-            "properties": {
-                "exposure_event": {
-                    "description": "The exposure events in this experiment.",
-                    "items": {
-                        "$ref": "#/$defs/ExposureEvent"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "rearing_condition_comment": {
-                    "description": "Comments on rearing conditions, for example, about how conditions deviated from standard parameters.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "standard_rearing_condition": {
-                    "description": "An indication if the subject was maintained under standard conditions, which are the established, consistent environmental and husbandry parameters (such as temperature, lighting, diet, and housing) designed to minimize variability and ensure reproducibility in experiments.",
-                    "type": [
-                        "boolean",
-                        "null"
-                    ]
-                },
-                "subject": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/Fish"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "description": "The fish subject of the exposure experiment."
-                },
-                "uuid": {
-                    "description": "UUID identifier.",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "uuid"
-            ],
-            "title": "ExposureExperiment",
             "type": "object"
         },
         "ExposureRegimenTypeEnum": {
@@ -258,38 +371,6 @@
             "title": "Image",
             "type": "object"
         },
-        "ObservationSet": {
-            "additionalProperties": false,
-            "description": "Group of observations (phenotypic outcomes and their control) that are linked by a common experiment and subject that are part of a study.",
-            "properties": {
-                "control": {
-                    "description": "A PhenotypeObservation that serves as the reference for comparing other observations to evaluate the effects of experimental variables.",
-                    "type": [
-                        "boolean",
-                        "null"
-                    ]
-                },
-                "phenotype_observation": {
-                    "description": "The phenotype observations from this experiment.",
-                    "items": {
-                        "$ref": "#/$defs/PhenotypeObservation"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "uuid": {
-                    "description": "UUID identifier.",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "uuid"
-            ],
-            "title": "ObservationSet",
-            "type": "object"
-        },
         "Phenotype": {
             "additionalProperties": false,
             "description": "Any measurable or visible trait change in the subject as a result of exposure.",
@@ -337,33 +418,7 @@
         "PhenotypeObservation": {
             "additionalProperties": false,
             "description": "A phenotypic outcome resulting from an exposure event.",
-            "if": {
-                "properties": {
-                    "control": {}
-                },
-                "required": [
-                    "control"
-                ]
-            },
             "properties": {
-                "control": {
-                    "description": "A PhenotypeObservation that serves as the reference for comparing other observations to evaluate the effects of experimental variables.",
-                    "type": [
-                        "boolean",
-                        "null"
-                    ]
-                },
-                "exposure_experiment": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/ExposureExperiment"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "description": "The exposure experiments for this observation."
-                },
                 "image": {
                     "description": "Images associated with this observation.",
                     "items": {
@@ -392,11 +447,6 @@
             "required": [
                 "uuid"
             ],
-            "then": {
-                "properties": {
-                    "phenotype": {}
-                }
-            },
             "title": "PhenotypeObservation",
             "type": "object"
         },
@@ -545,6 +595,16 @@
                         "null"
                     ]
                 },
+                "experiment": {
+                    "description": "The experiments in a study.",
+                    "items": {
+                        "$ref": "#/$defs/Experiment"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "lab": {
                     "description": "The lab where the experiment originated.",
                     "pattern": "^ZFIN:ZDB-LAB-[0-9]+-[0-9]+$",
@@ -553,18 +613,8 @@
                         "null"
                     ]
                 },
-                "observation_set": {
-                    "description": "The observation set in a study.",
-                    "items": {
-                        "$ref": "#/$defs/ObservationSet"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
                 "publication": {
-                    "description": "The publication identifier (e.g., PMID, DOI) for the study.",
+                    "description": "The publication identifier (e.g., PMID, DOI) for the study or \"not published\" if the study is unpublished.",
                     "type": [
                         "string",
                         "null"

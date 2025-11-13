@@ -69,6 +69,7 @@ classes:
       - prevalence
       - severity
       - phenotype_term_id
+      - control_image
 
   Control:
     is_a: Entity
@@ -134,19 +135,20 @@ classes:
     description: An image associated with a phenotype observation.
     slots:
       - uuid
+      - phenotype_observation_id
       - magnification
       - resolution
       - scale_bar
 
   ControlImage:
     is_a: Entity
-    description: An image associated with a control. Links to the control identifier to specify which control (e.g., untreated vs vehicle-treated) the image represents.
+    description: An image associated with a control, taken at the same developmental stage as the corresponding phenotype observation.
     slots:
       - uuid
+      - phenotype_id
       - magnification
       - resolution
       - scale_bar
-      - control_identifier
 
   Fish:
     is_a: Entity
@@ -253,8 +255,11 @@ slots:
     multivalued: true
     inlined: true
     inlined_as_list: true
-  control_identifier:
-    description: Identifier linking this image to a specific control.
+  phenotype_observation_id:
+    description: Foreign key reference to the PhenotypeObservation uuid (for database representation).
+    range: string
+  phenotype_id:
+    description: Foreign key reference to the Phenotype uuid (for database representation).
     range: string
   exposure_event:
     description: The exposure events in this experiment.
