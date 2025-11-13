@@ -41,7 +41,7 @@ phenotype_observation:
     phenotype:
       - uuid: "phenotype-001"
         stage: "ZFIN:ZDB-STAGE-050211-5"
-        phenotype_term_id: "PATO:0001236"
+        phenotype_term_id: "ZP:0000001"
         severity: "moderate"
         prevalence:
           unit: "percent"

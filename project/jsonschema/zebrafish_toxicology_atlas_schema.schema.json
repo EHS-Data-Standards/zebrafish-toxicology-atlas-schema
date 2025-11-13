@@ -231,7 +231,7 @@
                 "phenotype_observation": {
                     "description": "The phenotype observations from this exposure event.",
                     "items": {
-                        "$ref": "#/$defs/PhenotypeObservation"
+                        "$ref": "#/$defs/PhenotypeObservationSet"
                     },
                     "type": [
                         "array",
@@ -418,7 +418,7 @@
             "title": "Phenotype",
             "type": "object"
         },
-        "PhenotypeObservation": {
+        "PhenotypeObservationSet": {
             "additionalProperties": false,
             "description": "A phenotypic outcome resulting from an exposure event.",
             "properties": {
@@ -450,7 +450,7 @@
             "required": [
                 "uuid"
             ],
-            "title": "PhenotypeObservation",
+            "title": "PhenotypeObservationSet",
             "type": "object"
         },
         "QuantityValue": {
