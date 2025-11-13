@@ -5,7 +5,7 @@ from pathlib import Path
 import yaml
 from linkml.generators.pythongen import PythonGenerator
 ROOT = os.path.join(os.path.dirname(__file__), '..')
-DATA_DIR = os.path.join(ROOT, "src", "data", "examples")
+DATA_DIR = os.path.join(ROOT, "tests", "data", "examples")
 
 EXAMPLE_FILES = glob.glob(os.path.join(DATA_DIR, '*.yaml'))
 schemal_yaml =  file_path = Path(__file__).parent.parent / 'src' / 'zebrafish_toxicology_atlas_schema' / 'schema' / 'zebrafish_toxicology_atlas_schema.yaml'

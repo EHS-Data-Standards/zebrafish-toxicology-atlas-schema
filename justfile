@@ -109,7 +109,7 @@ _compile_sheets:
 # Generate examples
 _gen-examples:
     mkdir -p {{exampledir}}
-    cp -r src/data/examples/* {{exampledir}}
+    cp -r tests/data/examples/* {{exampledir}}
 
 # Run all tests
 test: _test-schema _test-python _test-examples
@@ -133,8 +133,8 @@ _test-examples: _ensure_examples_output
     uv run linkml-run-examples \
         --output-formats json \
         --output-formats yaml \
-        --counter-example-input-directory src/data/examples/invalid \
-        --input-directory src/data/examples/valid \
+        --counter-example-input-directory tests/data/examples/invalid \
+        --input-directory tests/data/examples/valid \
         --output-directory examples/output \
         --schema {{source_schema_path}} > examples/output/README.md
 
