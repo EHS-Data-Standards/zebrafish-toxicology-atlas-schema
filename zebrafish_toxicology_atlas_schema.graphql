@@ -43,6 +43,7 @@ type ControlImage
     magnification: String
     resolution: String
     scaleBar: String
+    phenotypeComments: String
   }
 
 interface Entity

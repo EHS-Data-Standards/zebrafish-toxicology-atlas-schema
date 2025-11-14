@@ -62,6 +62,7 @@ class "ControlImage" [[{An image associated with a control, taken at the same de
     {field} magnification : string  
     {field} resolution : string  
     {field} scale_bar : string  
+    {field} phenotype_comments : string  
     {field} uuid(i) : string  
 }
 class "Image" [[{An image associated with a phenotype observation.}]] {

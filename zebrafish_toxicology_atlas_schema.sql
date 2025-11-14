@@ -66,6 +66,7 @@
 --     * Slot: magnification Description: The factor by which a microscope enlarges the apparent size of a subject compared to its actual size.
 --     * Slot: resolution Description: Level of detail of the image.
 --     * Slot: scale_bar Description: Scale bar information, including the physical length it represents and the unit of measurement.
+--     * Slot: phenotype_comments Description: Comments about the phenotype in the control image.
 --     * Slot: uuid Description: UUID identifier.
 --     * Slot: PhenotypeObservationSet_uuid Description: Autocreated FK slot
 --     * Slot: Control_uuid Description: Autocreated FK slot
@@ -143,13 +144,13 @@ CREATE TABLE "Study_annotator" (
 	annotator TEXT,
 	PRIMARY KEY ("Study_uuid", annotator),
 	FOREIGN KEY("Study_uuid") REFERENCES "Study" (uuid)
-);CREATE INDEX "ix_Study_annotator_Study_uuid" ON "Study_annotator" ("Study_uuid");CREATE INDEX "ix_Study_annotator_annotator" ON "Study_annotator" (annotator);
+);CREATE INDEX "ix_Study_annotator_annotator" ON "Study_annotator" (annotator);CREATE INDEX "ix_Study_annotator_Study_uuid" ON "Study_annotator" ("Study_uuid");
 CREATE TABLE "ChemicalEntity_synonym" (
 	"ChemicalEntity_uuid" TEXT,
 	synonym TEXT,
 	PRIMARY KEY ("ChemicalEntity_uuid", synonym),
 	FOREIGN KEY("ChemicalEntity_uuid") REFERENCES "ChemicalEntity" (uuid)
-);CREATE INDEX "ix_ChemicalEntity_synonym_synonym" ON "ChemicalEntity_synonym" (synonym);CREATE INDEX "ix_ChemicalEntity_synonym_ChemicalEntity_uuid" ON "ChemicalEntity_synonym" ("ChemicalEntity_uuid");
+);CREATE INDEX "ix_ChemicalEntity_synonym_ChemicalEntity_uuid" ON "ChemicalEntity_synonym" ("ChemicalEntity_uuid");CREATE INDEX "ix_ChemicalEntity_synonym_synonym" ON "ChemicalEntity_synonym" (synonym);
 CREATE TABLE "Control" (
 	control_type TEXT,
 	vehicle_if_treated VARCHAR(7),
@@ -222,6 +223,7 @@ CREATE TABLE "ControlImage" (
 	magnification TEXT,
 	resolution TEXT,
 	scale_bar TEXT,
+	phenotype_comments TEXT,
 	uuid TEXT NOT NULL,
 	"PhenotypeObservationSet_uuid" TEXT,
 	"Control_uuid" TEXT,

@@ -1162,6 +1162,19 @@
       "@type": "SlotDefinition"
     },
     {
+      "name": "phenotype_comments",
+      "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/phenotype_comments",
+      "description": "Comments about the phenotype in the control image.",
+      "from_schema": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
+      "slot_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/phenotype_comments",
+      "owner": "ControlImage",
+      "domain_of": [
+        "ControlImage"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
       "name": "Fish_name",
       "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/name",
       "description": "Name or label of an entity.",
@@ -1407,7 +1420,8 @@
         "phenotype_id",
         "magnification",
         "resolution",
-        "scale_bar"
+        "scale_bar",
+        "phenotype_comments"
       ],
       "slot_usage": {},
       "class_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/ControlImage",
@@ -1444,9 +1458,9 @@
   ],
   "metamodel_version": "1.7.0",
   "source_file": "zebrafish_toxicology_atlas_schema.yaml",
-  "source_file_date": "2025-11-14T00:06:19",
-  "source_file_size": 12450,
-  "generation_date": "2025-11-14T00:06:58",
+  "source_file_date": "2025-11-14T00:07:58",
+  "source_file_size": 12585,
+  "generation_date": "2025-11-14T00:08:49",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/zebrafish_toxicology_atlas_schema.context.jsonld",

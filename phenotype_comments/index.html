@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/magnification/">
+        <link rel="canonical" href="https://sierra-moxon.github.io/zebrafish-toxicology-atlas-schema/phenotype_comments/">
       
       
       
@@ -18,7 +18,7 @@
     
     
       
-        <title>Slot: magnification - Zebrafish Toxicology Atlas Schema Documentation</title>
+        <title>Slot: phenotype_comments - Zebrafish Toxicology Atlas Schema Documentation</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-magnification" class="md-skip">
+        <a href="#slot-phenotype_comments" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: magnification
+              Slot: phenotype_comments
             
           </span>
         </div>
@@ -420,10 +420,10 @@
   
 
 
-<h1 id="slot-magnification">Slot: magnification</h1>
-<p><em>The factor by which a microscope enlarges the apparent size of a subject compared to its actual size.</em></p>
-<p>URI: <a href="https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/magnification">zebrafish_toxicology_atlas_schema:magnification</a>
-Alias: magnification</p>
+<h1 id="slot-phenotype_comments">Slot: phenotype_comments</h1>
+<p><em>Comments about the phenotype in the control image.</em></p>
+<p>URI: <a href="https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/phenotype_comments">zebrafish_toxicology_atlas_schema:phenotype_comments</a>
+Alias: phenotype_comments</p>
 <!-- no inheritance hierarchy -->
 
 <h2 id="applicable-classes">Applicable Classes</h2>
@@ -436,11 +436,6 @@ Alias: magnification</p>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><a href="../Image/">Image</a></td>
-<td>An image associated with a phenotype observation</td>
-<td>no</td>
-</tr>
 <tr>
 <td><a href="../ControlImage/">ControlImage</a></td>
 <td>An image associated with a control, taken at the same developmental stage as ...</td>
@@ -468,25 +463,23 @@ Alias: magnification</p>
 <tbody>
 <tr>
 <td>self</td>
-<td>zebrafish_toxicology_atlas_schema:magnification</td>
+<td>zebrafish_toxicology_atlas_schema:phenotype_comments</td>
 </tr>
 <tr>
 <td>native</td>
-<td>zebrafish_toxicology_atlas_schema:magnification</td>
+<td>zebrafish_toxicology_atlas_schema:phenotype_comments</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: magnification
-description: The factor by which a microscope enlarges the apparent size of a subject
-  compared to its actual size.
+<pre><code class="language-yaml">name: phenotype_comments
+description: Comments about the phenotype in the control image.
 from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
 rank: 1000
-alias: magnification
+alias: phenotype_comments
 domain_of:
-- Image
 - ControlImage
 range: string
 

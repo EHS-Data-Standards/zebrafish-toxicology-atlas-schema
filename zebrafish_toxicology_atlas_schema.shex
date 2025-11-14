@@ -74,7 +74,8 @@ linkml:Sparqlpath xsd:string
           <phenotype_id> @linkml:String ? ;
           <magnification> @linkml:String ? ;
           <resolution> @linkml:String ? ;
-          <scale_bar> @linkml:String ?
+          <scale_bar> @linkml:String ? ;
+          <phenotype_comments> @linkml:String ?
        ) ;
        rdf:type [ <ControlImage> ]
     )

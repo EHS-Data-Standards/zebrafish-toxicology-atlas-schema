@@ -255,6 +255,8 @@
 
       ControlImage : magnification
 
+      ControlImage : phenotype_comments
+
       ControlImage : phenotype_id
 
       ControlImage : resolution
@@ -305,6 +307,12 @@
 <td><a href="../scale_bar/">scale_bar</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>Scale bar information, including the physical length it represents and the un...</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../phenotype_comments/">phenotype_comments</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Comments about the phenotype in the control image</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -378,6 +386,7 @@ slots:
 - magnification
 - resolution
 - scale_bar
+- phenotype_comments
 
 </code></pre>
 </details>
@@ -433,6 +442,16 @@ attributes:
     owner: ControlImage
     domain_of:
     - Image
+    - ControlImage
+    range: string
+  phenotype_comments:
+    name: phenotype_comments
+    description: Comments about the phenotype in the control image.
+    from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
+    rank: 1000
+    alias: phenotype_comments
+    owner: ControlImage
+    domain_of:
     - ControlImage
     range: string
   uuid:
