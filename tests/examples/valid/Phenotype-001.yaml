@@ -6,8 +6,3 @@ severity: "moderate"
 prevalence:
   unit: "percent"
   numeric_value: "75"
-control_image:
-  - uuid: "control-image-001"
-    magnification: "10x"
-    resolution: "1024x768"
-    scale_bar: "100 µm"
