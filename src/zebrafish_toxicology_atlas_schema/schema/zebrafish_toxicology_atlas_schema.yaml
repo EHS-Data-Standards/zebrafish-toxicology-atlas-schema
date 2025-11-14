@@ -144,6 +144,7 @@ classes:
       - magnification
       - resolution
       - scale_bar
+      - phenotype_comments
 
   Fish:
     is_a: Entity
@@ -366,6 +367,9 @@ slots:
     description: The lab where the experiment originated.
     range: uriorcurie
     pattern: "^ZFIN:ZDB-LAB-[0-9]+-[0-9]+$"
+  phenotype_comments:
+    description: Comments about the phenotype in the control image.
+    range: string
 
 enums:
 
