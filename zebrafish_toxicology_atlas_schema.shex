@@ -151,8 +151,7 @@ linkml:Sparqlpath xsd:string
           <severity> [ <https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/SeverityEnum#mild>
              <https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/SeverityEnum#moderate>
              <https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/SeverityEnum#severe> ] ? ;
-          <phenotype_term_id> @linkml:Uriorcurie ? ;
-          <control_image> @<ControlImage> *
+          <phenotype_term_id> @linkml:Uriorcurie ?
        ) ;
        rdf:type [ <Phenotype> ]
     )
@@ -162,7 +161,8 @@ linkml:Sparqlpath xsd:string
     (  $<PhenotypeObservationSet_tes> (  &<Entity_tes> ;
           rdf:type [ <Entity> ] ? ;
           <image> @<Image> * ;
-          <phenotype> @<Phenotype> *
+          <phenotype> @<Phenotype> * ;
+          <control_image> @<ControlImage> *
        ) ;
        rdf:type [ <PhenotypeObservationSet> ]
     )

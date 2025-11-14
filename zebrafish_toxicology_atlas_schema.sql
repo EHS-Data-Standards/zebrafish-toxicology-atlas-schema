@@ -62,12 +62,12 @@
 --     * Slot: uuid Description: UUID identifier.
 --     * Slot: PhenotypeObservationSet_uuid Description: Autocreated FK slot
 -- # Class: ControlImage Description: An image associated with a control, taken at the same developmental stage as the corresponding phenotype observation.
---     * Slot: phenotype_id Description: Foreign key reference to the Phenotype uuid (for database representation).
+--     * Slot: phenotype_id Description: Foreign key reference to the PhenotypeObservationSet uuid (for database representation).
 --     * Slot: magnification Description: The factor by which a microscope enlarges the apparent size of a subject compared to its actual size.
 --     * Slot: resolution Description: Level of detail of the image.
 --     * Slot: scale_bar Description: Scale bar information, including the physical length it represents and the unit of measurement.
 --     * Slot: uuid Description: UUID identifier.
---     * Slot: Phenotype_uuid Description: Autocreated FK slot
+--     * Slot: PhenotypeObservationSet_uuid Description: Autocreated FK slot
 --     * Slot: Control_uuid Description: Autocreated FK slot
 -- # Class: Fish Description: Zebrafish used as subject in the study.
 --     * Slot: id
@@ -143,13 +143,13 @@ CREATE TABLE "Study_annotator" (
 	annotator TEXT,
 	PRIMARY KEY ("Study_uuid", annotator),
 	FOREIGN KEY("Study_uuid") REFERENCES "Study" (uuid)
-);CREATE INDEX "ix_Study_annotator_annotator" ON "Study_annotator" (annotator);CREATE INDEX "ix_Study_annotator_Study_uuid" ON "Study_annotator" ("Study_uuid");
+);CREATE INDEX "ix_Study_annotator_Study_uuid" ON "Study_annotator" ("Study_uuid");CREATE INDEX "ix_Study_annotator_annotator" ON "Study_annotator" (annotator);
 CREATE TABLE "ChemicalEntity_synonym" (
 	"ChemicalEntity_uuid" TEXT,
 	synonym TEXT,
 	PRIMARY KEY ("ChemicalEntity_uuid", synonym),
 	FOREIGN KEY("ChemicalEntity_uuid") REFERENCES "ChemicalEntity" (uuid)
-);CREATE INDEX "ix_ChemicalEntity_synonym_ChemicalEntity_uuid" ON "ChemicalEntity_synonym" ("ChemicalEntity_uuid");CREATE INDEX "ix_ChemicalEntity_synonym_synonym" ON "ChemicalEntity_synonym" (synonym);
+);CREATE INDEX "ix_ChemicalEntity_synonym_synonym" ON "ChemicalEntity_synonym" (synonym);CREATE INDEX "ix_ChemicalEntity_synonym_ChemicalEntity_uuid" ON "ChemicalEntity_synonym" ("ChemicalEntity_uuid");
 CREATE TABLE "Control" (
 	control_type TEXT,
 	vehicle_if_treated VARCHAR(7),
@@ -223,10 +223,10 @@ CREATE TABLE "ControlImage" (
 	resolution TEXT,
 	scale_bar TEXT,
 	uuid TEXT NOT NULL,
-	"Phenotype_uuid" TEXT,
+	"PhenotypeObservationSet_uuid" TEXT,
 	"Control_uuid" TEXT,
 	PRIMARY KEY (uuid),
-	FOREIGN KEY("Phenotype_uuid") REFERENCES "Phenotype" (uuid),
+	FOREIGN KEY("PhenotypeObservationSet_uuid") REFERENCES "PhenotypeObservationSet" (uuid),
 	FOREIGN KEY("Control_uuid") REFERENCES "Control" (uuid)
 );CREATE INDEX "ix_ControlImage_uuid" ON "ControlImage" (uuid);
 

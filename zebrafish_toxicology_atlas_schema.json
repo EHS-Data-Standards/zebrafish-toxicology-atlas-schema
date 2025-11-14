@@ -101,7 +101,7 @@
                     ]
                 },
                 "phenotype_id": {
-                    "description": "Foreign key reference to the Phenotype uuid (for database representation).",
+                    "description": "Foreign key reference to the PhenotypeObservationSet uuid (for database representation).",
                     "type": [
                         "string",
                         "null"
@@ -368,16 +368,6 @@
             "additionalProperties": false,
             "description": "Any measurable or visible trait change in the subject as a result of exposure.",
             "properties": {
-                "control_image": {
-                    "description": "Images associated with this control.",
-                    "items": {
-                        "$ref": "#/$defs/ControlImage"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
                 "phenotype_term_id": {
                     "description": "The phenotype ontology term identifier.",
                     "type": [
@@ -422,6 +412,16 @@
             "additionalProperties": false,
             "description": "A phenotypic outcome resulting from an exposure event.",
             "properties": {
+                "control_image": {
+                    "description": "Images associated with this control.",
+                    "items": {
+                        "$ref": "#/$defs/ControlImage"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "image": {
                     "description": "Images associated with this observation.",
                     "items": {

@@ -744,7 +744,7 @@
       "slot_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/control_image",
       "owner": "Control",
       "domain_of": [
-        "Phenotype",
+        "PhenotypeObservationSet",
         "Control"
       ],
       "range": "ControlImage",
@@ -756,7 +756,7 @@
     {
       "name": "phenotype_id",
       "definition_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/phenotype_id",
-      "description": "Foreign key reference to the Phenotype uuid (for database representation).",
+      "description": "Foreign key reference to the PhenotypeObservationSet uuid (for database representation).",
       "from_schema": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema",
       "slot_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/phenotype_id",
       "owner": "ControlImage",
@@ -1258,7 +1258,8 @@
       "slots": [
         "uuid",
         "image",
-        "phenotype"
+        "phenotype",
+        "control_image"
       ],
       "slot_usage": {},
       "class_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/PhenotypeObservationSet",
@@ -1275,8 +1276,7 @@
         "stage",
         "prevalence",
         "severity",
-        "phenotype_term_id",
-        "control_image"
+        "phenotype_term_id"
       ],
       "slot_usage": {},
       "class_uri": "https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema/Phenotype",
@@ -1444,9 +1444,9 @@
   ],
   "metamodel_version": "1.7.0",
   "source_file": "zebrafish_toxicology_atlas_schema.yaml",
-  "source_file_date": "2025-11-13T17:34:01",
-  "source_file_size": 12436,
-  "generation_date": "2025-11-13T17:34:39",
+  "source_file_date": "2025-11-14T00:06:19",
+  "source_file_size": 12450,
+  "generation_date": "2025-11-14T00:06:58",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/zebrafish_toxicology_atlas_schema.context.jsonld",

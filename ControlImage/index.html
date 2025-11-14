@@ -286,7 +286,7 @@
 <tr>
 <td><a href="../phenotype_id/">phenotype_id</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Foreign key reference to the Phenotype uuid (for database representation)</td>
+<td>Foreign key reference to the PhenotypeObservationSet uuid (for database repre...</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -327,7 +327,7 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../Phenotype/">Phenotype</a></td>
+<td><a href="../PhenotypeObservationSet/">PhenotypeObservationSet</a></td>
 <td><a href="../control_image/">control_image</a></td>
 <td>range</td>
 <td><a href="./">ControlImage</a></td>
@@ -391,7 +391,8 @@ is_a: Entity
 attributes:
   phenotype_id:
     name: phenotype_id
-    description: Foreign key reference to the Phenotype uuid (for database representation).
+    description: Foreign key reference to the PhenotypeObservationSet uuid (for database
+      representation).
     from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
     rank: 1000
     alias: phenotype_id

@@ -52,6 +52,11 @@ abstract "Entity" [[{The base class for all entities in the Zebrafish Toxicology
 "Entity" ^-- "StressorChemical"
 "ExposureEvent" *--> "0..1" "Regimen" : "regimen"
 "Entity" ^-- "Regimen"
+class "PhenotypeObservationSet" [[{A phenotypic outcome resulting from an exposure event.}]] {
+    {field} uuid(i) : string  
+}
+"PhenotypeObservationSet" *--> "0..*" "Phenotype" : "phenotype"
+"Entity" ^-- "Phenotype"
 class "ControlImage" [[{An image associated with a control, taken at the same developmental stage as the corresponding phenotype observation.}]] {
     {field} phenotype_id : string  
     {field} magnification : string  
@@ -59,18 +64,13 @@ class "ControlImage" [[{An image associated with a control, taken at the same de
     {field} scale_bar : string  
     {field} uuid(i) : string  
 }
-class "PhenotypeObservationSet" [[{A phenotypic outcome resulting from an exposure event.}]] {
-    {field} uuid(i) : string  
-}
-"Phenotype" *--> "0..*" "ControlImage" : "control_image"
-"PhenotypeObservationSet" *--> "0..*" "Phenotype" : "phenotype"
-"Entity" ^-- "Phenotype"
 class "Image" [[{An image associated with a phenotype observation.}]] {
     {field} magnification : string  
     {field} resolution : string  
     {field} scale_bar : string  
     {field} uuid(i) : string  
 }
+"PhenotypeObservationSet" *--> "0..*" "ControlImage" : "control_image"
 "PhenotypeObservationSet" *--> "0..*" "Image" : "image"
 "ExposureEvent" *--> "0..*" "PhenotypeObservationSet" : "phenotype_observation"
 "Entity" ^-- "PhenotypeObservationSet"

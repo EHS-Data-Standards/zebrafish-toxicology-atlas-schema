@@ -253,6 +253,17 @@
       Entity &lt;|-- PhenotypeObservationSet
         click Entity href "../Entity/"
 
+      PhenotypeObservationSet : control_image
+
+
+
+
+
+        PhenotypeObservationSet --&gt; "*" ControlImage : control_image
+        click ControlImage href "../ControlImage/"
+
+
+
       PhenotypeObservationSet : image
 
 
@@ -307,6 +318,12 @@
 <td><a href="../phenotype/">phenotype</a></td>
 <td>* <br/> <a href="../Phenotype/">Phenotype</a></td>
 <td>The phenotype observed</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../control_image/">control_image</a></td>
+<td>* <br/> <a href="../ControlImage/">ControlImage</a></td>
+<td>Images associated with this control</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -371,6 +388,7 @@ is_a: Entity
 slots:
 - image
 - phenotype
+- control_image
 
 </code></pre>
 </details>
@@ -404,6 +422,20 @@ attributes:
     domain_of:
     - PhenotypeObservationSet
     range: Phenotype
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  control_image:
+    name: control_image
+    description: Images associated with this control.
+    from_schema: https://w3id.org/sierra-moxon/zebrafish-toxicology-atlas-schema
+    rank: 1000
+    alias: control_image
+    owner: PhenotypeObservationSet
+    domain_of:
+    - PhenotypeObservationSet
+    - Control
+    range: ControlImage
     multivalued: true
     inlined: true
     inlined_as_list: true
